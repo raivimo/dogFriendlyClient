@@ -24,6 +24,7 @@ import { LogoutComponent } from './component/shared/routed/logout/logout.compone
 import { UsuarioDetailAdminUnroutedComponent } from './component/application/usuario/unrouted/admin/usuario-detail-admin-unrouted/usuario-detail-admin-unrouted.component';
 import { FooterComponent } from './component/shared/unrouted/footer/footer.component';
 import { UsuarioEditAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-edit-admin-routed/usuario-edit-admin-routed.component';
+import { TipousuarioFinderAdminUnroutedComponent } from './component/application/tipousuario/unrouted/admin/tipousuario-finder-admin-unrouted/tipousuario-finder-admin-unrouted.component';
 
 
 @NgModule({
@@ -33,14 +34,20 @@ import { UsuarioEditAdminRoutedComponent } from './component/application/usuario
     LoginComponent,
     LogoutComponent,
     MenuComponent,
+    //Usuario
     UsuarioEditAdminRoutedComponent,
     UsuarioPlistAdminRoutedComponent,
     UsuarioRemoveAdminRoutedComponent,
     UsuarioViewAdminRoutedComponent,
     UsuarioNewAdminRoutedComponent,
     UsuarioDetailAdminUnroutedComponent,
+    //Tipousuario
     TipousuarioPlistAdminRoutedComponent,
     FooterComponent,
+    SearchUnroutedComponent,
+    DropdownRegisterPageComponent,
+    TipousuarioFinderAdminUnroutedComponent,
+    PaginationUnroutedComponent,
   ],
   
   imports: [

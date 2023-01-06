@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { ITipousuario } from '../../../../../../model/tipousuario-response-interface';
+import { TipousuarioService } from '../../../../../../service/tipousuario.service';
 declare let bootstrap: any;
 
 @Component({
@@ -31,6 +33,7 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oUsuarioService: UsuarioService,
+    private oTipousuarioService: TipousuarioService,
     private oFormBuilder: FormBuilder,
   ) {
     //this.id = oActivatedRoute.snapshot.params['id'];
@@ -65,7 +68,6 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
       this.oUsuarioService.newOne(this.oUsuario2Send).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
-          console.log("eee")
           this.modalTitle = "dogFriendly";
           this.modalContent = "Usuario " + data + " creado";
           this.showModal(data);
@@ -86,8 +88,8 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
     this.myModal.show()
   }
 
-  /* openModalFindTeam(): void {
-    this.myModal = new bootstrap.Modal(document.getElementById("findTeam"), { //pasar el myModal como parametro
+  openModalFindTipousuario(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("findTipousuario"), { //pasar el myModal como parametro
       keyboard: false
     })
     this.myModal.show()
@@ -95,27 +97,25 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
 
   }
 
-  closeTeamModal(id_team: number) {
-    this.oForm.controls['id_team'].setValue(id_team);
-    this.updateTeamDescription(id_team);
+  closeTipousuarioModal(id_tipousuario: number) {
+    this.oForm.controls['id_tipousuario'].setValue(id_tipousuario);
+    this.updateTipousuarioDescription(id_tipousuario);
     this.myModal.hide();
   }
 
-  updateTeamDescription(id_team: number) {
-    this.oTeamService.getOne(id_team).subscribe({
-      next: (data: ITeam) => {      
-        this.teamDescription = data.name;        
+  updateTipousuarioDescription(id_tipousuario: number) {
+    this.oTipousuarioService.getOne(id_tipousuario).subscribe({
+      next: (data: ITipousuario) => {      
+        this.tipousuarioDescription = data.nombre;        
       },
       error: (error: any) => {
-        this.teamDescription = "Team not found";        
-        this.oForm.controls['id_team'].setErrors({'incorrect': true});
+        this.tipousuarioDescription = "TipoUsuario not found";        
+        this.oForm.controls['id_tipousuario'].setErrors({'incorrect': true});
       }
     })
-  } */
-
-
-  openModalFindTipousuario(): void {
-
   }
+
+
+
 
 }

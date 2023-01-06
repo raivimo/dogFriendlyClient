@@ -4,6 +4,10 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { ITipousuario } from '../../../../../../model/tipousuario-response-interface';
+import { TipousuarioService } from 'src/app/service/tipousuario.service';
+
+
 declare let bootstrap: any;
 @Component({
   selector: 'app-usuario-edit-admin-routed',
@@ -23,7 +27,6 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
   modalTitle: string = "";
   modalContent: string = "";
   // foreigns
-  teamDescription: string = "";
   tipousuarioDescription: string = "";
 
   constructor(
@@ -31,6 +34,7 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
     private oActivatedRoute: ActivatedRoute,
     private oUsuarioService: UsuarioService,
     private oFormBuilder: FormBuilder,
+    private oTipousuarioService: TipousuarioService
   ) {
     this.id = oActivatedRoute.snapshot.params['id'];
   }
@@ -47,14 +51,15 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
         console.log(data);
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id, [Validators.required]],
-          nombre: [data.nombre, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
-          apellido1: [data.apellido1, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
-          apellido2: [data.apellido2, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
+          nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+          apellido1: [data.apellido1, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          apellido2: [data.apellido2, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
           email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          login: [data.login, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+          login: [data.login, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
           fechaNacimiento: [data.fechaNacimiento, [Validators.required]],
-          id_tipousuario: [data.tipousuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
+          id_tipousuario: [data.tipousuario.id, [Validators.required, Validators.pattern(/^\d{1,4}$/)]]
         });
+        this.updateTipousuarioDescription(this.oUsuario.tipousuario.id);
       }
     })
   }
@@ -78,7 +83,7 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
           
           //open bootstrap modal here
           this.modalTitle = "dogFriends";
-          this.modalContent = "Usuario " + this.id + " updated";
+          this.modalContent = "Usuario " + this.id + " actualizado";
           this.showModal();
         }
       })
@@ -96,8 +101,8 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
     this.myModal.show()
   }
 
- /*  openModalFindTeam(): void {
-    this.myModal = new bootstrap.Modal(document.getElementById("findTeam"), { //pasar el myModal como parametro
+  openModalFindTipousuario(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("findTipousuario"), { //pasar el myModal como parametro
       keyboard: false
     })
     this.myModal.show()
@@ -105,27 +110,23 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
 
   }
 
-  closeTeamModal(id_team: number) {
-    this.oForm.controls['id_team'].setValue(id_team);
-    this.updateTeamDescription(id_team);
+  closeTipousuarioModal(id_tipousuario: number) {
+    this.oForm.controls['id_tipousuario'].setValue(id_tipousuario);
+    this.updateTipousuarioDescription(id_tipousuario);
     this.myModal.hide();
   }
 
-  updateTeamDescription(id_team: number) {
-    this.oTeamService.getOne(id_team).subscribe({
-      next: (data: ITeam) => {      
-        this.teamDescription = data.nombre;        
+  updateTipousuarioDescription(id_tipousuario: number) {
+    this.oTipousuarioService.getOne(id_tipousuario).subscribe({
+      next: (data: ITipousuario) => {      
+        this.tipousuarioDescription = data.nombre;        
       },
       error: (error: any) => {
-        this.teamDescription = "Team not found";        
-        this.oForm.controls['id_team'].setErrors({'incorrect': true});
+        this.tipousuarioDescription = "Tipousuario not found";        
+        this.oForm.controls['id_tipousuario'].setErrors({'incorrect': true});
       }
     })
   }
 
- */
-  openModalFindTipousuario(): void {
-
-  }
 
 }

@@ -36,7 +36,7 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage() {
+  getPage() {   
     this.oUsuarioService.getUsuariosPlist(this.page, this.numberOfElements, 
       this.strTermFilter, this.id_tipousuarioFilter, this.sortField, this.sortDirection)
       .subscribe({

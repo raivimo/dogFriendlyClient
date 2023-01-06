@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <h1 class="text-center mb-5">Edit de Usuario</h1>
+      <h1 class="text-center mb-5">Editar Usuario</h1>
 
       <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
 
@@ -144,13 +144,19 @@
           <label for="inputTipousuario" class="col-sm-2 col-form-label">Tipousuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
-              <span class="input-group-text">Descripcion de la ajena</span>
-              <input type="number" class="form-control" formControlName="id_tipousuario" [ngClass]="{'is-valid' : 
-              oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
+              <span class="input-group-text">{{tipousuarioDescription}}</span>
+              <input type="number" class="form-control" formControlName="id_tipousuario" 
+              
+              (keyup)="updateTipousuarioDescription(oForm.controls.id_tipousuario.value)"
+              
+              
+              
+              [ngClass]="{'is-valid':oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
                !oForm.controls.id_tipousuario.errors?.['pattern'],
                 'is-invalid' :  (oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required'] )
                 || ( oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern'])}">
-              <!-- <button type="button" class="btn btn-primary" (click)="openModalFindTipousuario()">Buscar</button>   -->
+
+              <button type="button" class="btn btn-primary" (click)="openModalFindTipousuario()">Buscar</button>  
               <div class="text-danger"
                 *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required']">
                 El campo es obligatorio.
@@ -191,7 +197,7 @@
 </div>
 
 
-<div class="modal fade" id="findTeam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="findTipousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -200,6 +206,7 @@
       </div>
       <div class="modal-body">
 
+       <app-tipousuario-finder-admin-unrouted (closeEvent)="closeTipousuarioModal($event)"></app-tipousuario-finder-admin-unrouted>
 
       </div>
       <div class="modal-footer">

@@ -1,7 +1,7 @@
 import { Pageable, Sort } from "./shared-interface";
 
 export interface TipousuarioResponse {
-    content:          Tipousuario[];
+    content:          ITipousuario[];
     pageable:         Pageable;
     last:             boolean;
     totalPages:       number;
@@ -14,7 +14,7 @@ export interface TipousuarioResponse {
     empty:            boolean;
 }
 
-export interface Tipousuario {
+export interface ITipousuario {
     id:         number;
     nombre:       string;
 }

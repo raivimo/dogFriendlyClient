@@ -1,13 +1,14 @@
 <form>
-    <div class="input-group input-group-sm">
+  <div class="input-group input-group-sm">
 
-      <input
-      type="text"
-      class="form-control"
-      placeholder="{{placeHolder}}"
-      aria-describedby="inputGroup-sizing-sm"
-      (keyup) =" buscar()"
-      />
+    <input
+    type="text"
+    class="form-control"
+    placeholder="{{placeHolder}}"
+    [(ngModel)]="termino" name="buscar" aria-label="Small"
+    aria-describedby="inputGroup-sizing-sm"
+    (keyup) =" buscar()"
+    />
 
-    </div>
-  </form>
+  </div>
+</form>

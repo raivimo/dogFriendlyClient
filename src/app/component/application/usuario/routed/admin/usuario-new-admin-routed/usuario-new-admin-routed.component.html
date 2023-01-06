@@ -144,13 +144,18 @@
           <label for="inputTipousuario" class="col-sm-2 col-form-label">Tipousuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
-              <span class="input-group-text">Descripcion de la ajena</span>
-              <input type="number" class="form-control" formControlName="id_tipousuario" [ngClass]="{'is-valid' : 
-              oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
+              <span class="input-group-text">{{tipousuarioDescription}}</span>
+              <input type="number" class="form-control" formControlName="id_tipousuario"
+
+              (keyup)="updateTipousuarioDescription(oForm.controls.id_tipousuario.value)"
+              
+              [ngClass]="{'is-valid' : oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
                !oForm.controls.id_tipousuario.errors?.['pattern'],
                 'is-invalid' :  (oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required'] )
                 || ( oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern'])}">
-              <!-- <button type="button" class="btn btn-primary" (click)="openModalFindTipousuario()">Buscar</button>   -->
+
+              <button type="button" class="btn btn-primary" (click)="openModalFindTipousuario()">Buscar</button>  
+
               <div class="text-danger"
                 *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required']">
                 El campo es obligatorio.
@@ -162,8 +167,7 @@
             </div>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary"
-             >Guardar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
         </div>
       </form>
@@ -175,24 +179,26 @@
 <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
-
         {{modalContent}}
-
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
       </div>
+
     </div>
   </div>
 </div>
 
 
-<div class="modal fade" id="findTeam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="findTipousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -201,6 +207,7 @@
       </div>
       <div class="modal-body">
 
+        <app-tipousuario-finder-admin-unrouted (closeEvent)="closeTipousuarioModal($event)"></app-tipousuario-finder-admin-unrouted>
 
       </div>
       <div class="modal-footer">

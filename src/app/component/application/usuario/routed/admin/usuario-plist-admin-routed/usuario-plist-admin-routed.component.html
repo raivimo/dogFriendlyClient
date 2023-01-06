@@ -1,22 +1,33 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
+
       <h1 class="text-center mb-5">Lista de Usuarios</h1>      
       <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
         <a [routerLink]="['/admin/usuario/new']" class="btn btn-primary mx-3">Alta de usuario</a>
-      <!--   <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+
+        <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+
         <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.numberOfElements"
           (eeRpp)="this.setRpp($event)">
-        </app-dropdown-register-page> -->
+        </app-dropdown-register-page>
       </div>
+
+        <div class="col-md">
+          <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
+        </div>
+
       <div class="col-md text-start">
         <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
         <button class="btn btn-outline-danger" *ngIf="id_tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">
           <i class="bi bi-x-circle"></i> Reset tipousuario {{id_tipousuarioFilter}} filter</button>
       </div>
+
       <div class="col-md text-end">
         <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
       </div>
+      
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
