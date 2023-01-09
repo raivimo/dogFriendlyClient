@@ -28,7 +28,7 @@ export class GenerateComponent implements OnInit {
     private oRoute: ActivatedRoute,
     private oRouter: Router,
     protected oLocation: Location,
-  ) {
+    ) {
    /*  if (this.oRoute.snapshot.data) {
       this.oUserSession = this.oRoute.snapshot.data.message;
       localStorage.setItem("usuario", JSON.stringify(this.oRoute.snapshot.data.message));
@@ -37,20 +37,21 @@ export class GenerateComponent implements OnInit {
       oRouter.navigate(['/home']);
     } */
 
-    this.getCount();
+    
    }
 
   ngOnInit(): void {
+    this.getCount();
   }
   getCount(): void {
     this.bLoading=true;
-/*     this.oCountService.getCountProductos().subscribe((n: number) => this.nProductos = n);
+   /*  this.oCountService.getCountProductos().subscribe((n: number) => this.nProductos = n);
     this.oCountService.getCountCarritos().subscribe((n: number) => this.nCarritos = n);
     this.oCountService.getCountCompras().subscribe((n: number) => this.nCompras = n);
-    this.oCountService.getCountFacturas().subscribe((n: number) => this.nFacturas = n);
-    this.oCountService.getCountTiposProducto().subscribe((n: number) => this.nTiposProducto = n); */
+    this.oCountService.getCountFacturas().subscribe((n: number) => this.nFacturas = n); */
+    /* this.oCountService.getCountTiposProducto().subscribe((n: number) => this.nTiposProducto = n); */
     this.oCountService.getCountUsuarios().subscribe((n: number) => this.nUsuarios = n);
-   /*  this.oCountService.getCountTiposUsuario().subscribe((n: number) => this.nTiposDeUsuario = n); */
+    this.oCountService.getCountTiposUsuario().subscribe((n: number) => this.nTiposDeUsuario = n);
     this.bLoading=false;
   }
 

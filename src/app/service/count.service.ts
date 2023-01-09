@@ -12,19 +12,20 @@ import { baseURL, httpOptions } from 'src/environments/environment';
 export class CountService {
   constructor(private http: HttpClient) { }
 
-/*   getCountProductos(): Observable<number> {
-    return this.http.get<number>(baseURL + '/producto/count', httpOptions);
-  } */
+  /*   getCountProductos(): Observable<number> {
+      return this.http.get<number>(baseURL + '/producto/count', httpOptions);
+    } */
 
   getCountUsuarios(): Observable<number> {
     return this.http.get<number>(baseURL + '/usuario/count', httpOptions);
   }
 
- /*  getCountTiposUsuario(): Observable<number> {
+  getCountTiposUsuario(): Observable<number> {
     return this.http.get<number>(baseURL + '/tipousuario/count', httpOptions);
   }
 
-  getCountTiposProducto(): Observable<number> {
+
+/*   getCountTiposProducto(): Observable<number> {
     return this.http.get<number>(baseURL + '/tipoproducto/count', httpOptions);
   }
 
@@ -38,6 +39,6 @@ export class CountService {
 
   getCountCarritos(): Observable<number> {
     return this.http.get<number>(baseURL + '/carrito/count', httpOptions);
-  } */
+  }  */
 
 }

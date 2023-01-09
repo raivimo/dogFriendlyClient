@@ -2,8 +2,10 @@
   <div class="row">
     <div class="col">
 
-      <h1 class="text-center mb-5">Lista de Usuarios</h1>      
+      <h1 class="text-center mb-5">Lista de Usuarios</h1>
+
       <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
+        <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary mx-3">Generar Usuarios</a>      
         <a [routerLink]="['/admin/usuario/new']" class="btn btn-primary mx-3">Alta de usuario</a>
 
         <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
