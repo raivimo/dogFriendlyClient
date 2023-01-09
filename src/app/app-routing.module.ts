@@ -9,6 +9,8 @@ import { UsuarioRemoveAdminRoutedComponent } from './component/application/usuar
 import { UsuarioEditAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-edit-admin-routed/usuario-edit-admin-routed.component';
 import { UsuarioNewAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-new-admin-routed/usuario-new-admin-routed.component';
 import { LogoutComponent } from './component/shared/routed/logout/logout.component';
+import { GenerateComponent } from './component/shared/routed/generate/generate.component';
+/* import { SessionResolver } from './resolve/session.resolve'; */
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },  
   { path: 'logout', component: LogoutComponent },  
+  { path: 'admin/random/load', component: GenerateComponent},
+  
   { path: 'admin/usuario/plist', component: UsuarioPlistAdminRoutedComponent },
   { path: 'admin/usuario/view/:id', component: UsuarioViewAdminRoutedComponent },
   { path: 'admin/usuario/remove/:id', component: UsuarioRemoveAdminRoutedComponent},

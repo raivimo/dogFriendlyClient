@@ -25,6 +25,10 @@ import { UsuarioDetailAdminUnroutedComponent } from './component/application/usu
 import { FooterComponent } from './component/shared/unrouted/footer/footer.component';
 import { UsuarioEditAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-edit-admin-routed/usuario-edit-admin-routed.component';
 import { TipousuarioFinderAdminUnroutedComponent } from './component/application/tipousuario/unrouted/admin/tipousuario-finder-admin-unrouted/tipousuario-finder-admin-unrouted.component';
+import { GenerateComponent } from './component/shared/routed/generate/generate.component';
+import { CountService } from './service/count.service';
+import { GenerateService } from './service/generate.service';
+import { MetadataService } from './service/metadata.service';
 
 
 @NgModule({
@@ -43,11 +47,14 @@ import { TipousuarioFinderAdminUnroutedComponent } from './component/application
     UsuarioDetailAdminUnroutedComponent,
     //Tipousuario
     TipousuarioPlistAdminRoutedComponent,
+
+    //
     FooterComponent,
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
     TipousuarioFinderAdminUnroutedComponent,
     PaginationUnroutedComponent,
+    GenerateComponent,
   ],
   
   imports: [
@@ -61,7 +68,11 @@ import { TipousuarioFinderAdminUnroutedComponent } from './component/application
   providers: [
     CryptoService,
     DecodeService,
-    PaginationService
+    PaginationService,
+    CountService,
+    GenerateService,
+    MetadataService,
+    
   ],
   bootstrap: [AppComponent]
 })

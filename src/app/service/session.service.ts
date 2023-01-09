@@ -39,6 +39,17 @@ export class SessionService {
         return localStorage.getItem("token");
     }
 
+
+
+
+    check(): Observable<String> {
+        return this.oHttpClient.get<String>(this.sURL, httpOptions)
+    }
+
+
+
+
+    
     isSessionActive(): Boolean {
         let strToken: string = localStorage.getItem("token");
         if (strToken) {
@@ -59,30 +70,30 @@ export class SessionService {
 
     on(event: Events, action: any): Subscription {
         return this.subject
-          .pipe(
-            filter((e: EmitEvent) => {
-              return e.name === event;
-            }),
-            map((e: EmitEvent) => {
-              return e.value;
-            })
-          )
-          .subscribe(action);
-      }
-    
-      emit(event: EmitEvent) {
+            .pipe(
+                filter((e: EmitEvent) => {
+                    return e.name === event;
+                }),
+                map((e: EmitEvent) => {
+                    return e.value;
+                })
+            )
+            .subscribe(action);
+    }
+
+    emit(event: EmitEvent) {
         this.subject.next(event);
-      }
+    }
 
 
 }
 
 export class EmitEvent {
-    constructor(public name: any, public value?: any) {}
-  }
-  
-  // this works like a communication channel
-  export enum Events {
+    constructor(public name: any, public value?: any) { }
+}
+
+// this works like a communication channel
+export enum Events {
     login,
     logout
-  }
+}
