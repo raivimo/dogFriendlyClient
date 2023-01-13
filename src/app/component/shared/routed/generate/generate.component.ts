@@ -6,6 +6,7 @@ import { CountService } from 'src/app/service/count.service';
 import { GenerateService } from 'src/app/service/generate.service';
 import { Location } from '@angular/common';
 import { MetadataService } from 'src/app/service/metadata.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-generate',
@@ -43,6 +44,8 @@ export class GenerateComponent implements OnInit {
   ngOnInit(): void {
     this.getCount();
   }
+
+  
   getCount(): void {
     this.bLoading=true;
    /*  this.oCountService.getCountProductos().subscribe((n: number) => this.nProductos = n);
@@ -91,7 +94,8 @@ export class GenerateComponent implements OnInit {
 eventsModalSubject: Subject<string> = new Subject<string>();
 
 openModal() {
-  this.eventsModalSubject.next("hola");
+  this.eventsModalSubject.next("hola"); //REVISAR
+  this.getCount();
 }
 
 onCloseModal() {
