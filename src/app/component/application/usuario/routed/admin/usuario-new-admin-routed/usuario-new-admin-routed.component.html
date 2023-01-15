@@ -106,10 +106,30 @@
           </div>
         </div>
 
-        <div class="mb-3 row">
+        <!-- <div class="mb-3 row">
           <label for="inputLogin" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
           <div class="col-sm-4 has-validation">
             <input type="text" class="form-control" id="inputFechanacimiento" formControlName="fechaNacimiento">
+          </div>
+        </div> -->
+        <div class="mb-3 row">
+          <label for="fechaNacimiento" class="col-sm-2 col-form-label" aria-placeholder="dd-mm-yyyy">Fecha de Nacimiento</label>
+          <div class="col-sm-4 has-validation">
+            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
+            oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['pattern'],
+              'is-invalid' :  oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern'] ||
+              oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}" id="inputfechaNacimiento"
+              formControlName="fechaNacimiento" id="inputfechaNacimiento" formControlName="fechaNacimiento">
+
+            <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern']">
+              Error format (dd-MM-yyyy)
+            </div>
+
+            <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']">
+              Required
+            </div>
           </div>
         </div>
 
@@ -140,7 +160,7 @@
 
 
 
-        <div class="mb-3 row">
+      <!--   <div class="mb-3 row">
           <label for="inputTipousuario" class="col-sm-2 col-form-label">Tipousuario</label>
           <div class="col-sm-6 has-validation">
             <div class="input-group">
@@ -170,7 +190,42 @@
             <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
         </div>
-      </form>
+      </form> -->
+      <div class="mb-3 row">
+        <label for="inputTipousuario" class="col-sm-2 col-form-label">Tipousuario</label>
+        <div class="col-sm-6 has-validation">
+          <div class="input-group">
+            <span class="input-group-text">{{tipousuarioDescription}}</span>
+            
+            <input type="text" class="form-control" formControlName="id_tipousuario" 
+
+            (keyup)="updateTipousuarioDescription(oForm.controls.id_tipousuario.value)"
+
+            [ngClass]="{'is-valid' :
+              oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
+               !oForm.controls.id_tipousuario.errors?.['pattern'] && !oForm.controls.id_tipousuario.errors?.['incorrect'],
+                'is-invalid' :  (oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required'] )
+                ||
+                ( oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['incorrect'])
+              }">
+            <button type="button" class="btn btn-primary" (click)="openModalFindTipousuario()">Buscar</button>  
+
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required']">
+              El campo es obligatorio.
+            </div>
+
+            <div class="text-danger"
+              *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern']">
+              El campo ha de ser un entrero entre 1 y cuatro.
+            </div>
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </form>
 
     </div>
   </div>

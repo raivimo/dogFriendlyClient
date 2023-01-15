@@ -18,6 +18,7 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
   strTermFilter: string = "";
   id_tipousuarioFilter: number = 0;
   numberOfElements: number = 5;
+  pageSize: number = 5;
   page: number = 0;
   sortField: string = "";
   sortDirection: string = "";
@@ -36,14 +37,14 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage() {   
-    this.oUsuarioService.getUsuariosPlist(this.page, this.numberOfElements, 
-      this.strTermFilter, this.id_tipousuarioFilter, this.sortField, this.sortDirection)
+  getPage() {
+    this.oUsuarioService.getUsuariosPlist(this.page, this.numberOfElements, this.strTermFilter, this.id_tipousuarioFilter, this.sortField, this.sortDirection)
       .subscribe({
         next: (resp: IPage<IUsuario>) => {
           this.responseFromServer = resp;
           if (this.page > resp.totalPages - 1) {
             this.page = resp.totalPages - 1;
+            this.getPage();
           }
         },
         error: (err: HttpErrorResponse) => {
@@ -59,7 +60,9 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
 
   setRpp(rpp: number) {
     this.numberOfElements = rpp;
+    this.page = 0;
     this.getPage();
+
   }
 
   setFilter(term: string): void {

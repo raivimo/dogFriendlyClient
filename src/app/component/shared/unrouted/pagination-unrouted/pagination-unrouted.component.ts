@@ -10,8 +10,7 @@ import { PaginationService } from 'src/app/service/pagination.service';
 
 export class PaginationUnroutedComponent implements OnInit {
 
-  @Input()
-  set nPage(value: number) {
+  @Input() set nPage(value: number) {
     this._nPage = value;
     this.aPaginationBar = this.oPaginationService.pagination(this._nTotalPages, this._nPage);
   }
@@ -19,8 +18,7 @@ export class PaginationUnroutedComponent implements OnInit {
     return this._nPage;
   }
 
-  @Input()
-  set nTotalPages(value: number) {
+  @Input() set nTotalPages(value: number) {
     this._nTotalPages = value;
     this.aPaginationBar = this.oPaginationService.pagination(this._nTotalPages, this._nPage);
   }

@@ -107,22 +107,39 @@
         </div>
 
         <div class="mb-3 row">
-          <label for="inputLogin" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+          <label for="fechaNacimiento" class="col-sm-2 col-form-label" aria-placeholder="dd-mm-yyyy">Fecha de Nacimiento</label>
           <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" id="inputFechanacimiento" formControlName="fechaNacimiento">
+            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
+            oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['pattern'],
+              'is-invalid' :  oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern'] ||
+              oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}" id="inputfechaNacimiento"
+              formControlName="fechaNacimiento" id="inputfechaNacimiento" formControlName="fechaNacimiento">
+
+            <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern']">
+              Error format (dd-MM-yyyy)
+            </div>
+
+            <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
+              *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']">
+              Required
+            </div>
           </div>
         </div>
 
+        
         <div class="mb-3 row">
           <label for="inputLogin" class="col-sm-2 col-form-label">Login</label>
           <div class="col-sm-4 has-validation">
+
             <input type="text" class="form-control" id="inputLogin" formControlName="login" [ngClass]="{'is-valid' : 
-            oForm.controls.login.dirty && !oForm.controls.login.errors?.['required'] &&
-            oForm.controls.login.dirty && !oForm.controls.login.errors?.['minlength'] 
+              oForm.controls.login.dirty && !oForm.controls.login.errors?.['required'] &&
+               oForm.controls.login.dirty && !oForm.controls.login.errors?.['minlength'] 
               && oForm.controls.login.dirty && !oForm.controls.login.errors?.['maxlength'],
               'is-invalid' :  oForm.controls.login.dirty &&  oForm.controls.login.errors?.['minlength'] 
               ||  oForm.controls.login.dirty &&  oForm.controls.login.errors?.['maxlength'] ||  
               oForm.controls.login.dirty &&  oForm.controls.login.errors?.['required']}">
+
             <div class="invalid-feedback"
               *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['minlength']">
               La longitud mínima es de 5 caracteres.
@@ -145,25 +162,28 @@
           <div class="col-sm-6 has-validation">
             <div class="input-group">
               <span class="input-group-text">{{tipousuarioDescription}}</span>
-              <input type="number" class="form-control" formControlName="id_tipousuario" 
               
-              (keyup)="updateTipousuarioDescription(oForm.controls.id_tipousuario.value)"
-              
-              
-              
-              [ngClass]="{'is-valid':oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
-               !oForm.controls.id_tipousuario.errors?.['pattern'],
-                'is-invalid' :  (oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required'] )
-                || ( oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern'])}">
+              <input type="text" class="form-control" formControlName="id_tipousuario" 
 
+              (keyup)="updateTipousuarioDescription(oForm.controls.id_tipousuario.value)"
+
+              [ngClass]="{'is-valid' :
+                oForm.controls.id_tipousuario.dirty && !oForm.controls.id_tipousuario.errors?.['required'] &&
+                 !oForm.controls.id_tipousuario.errors?.['pattern'] && !oForm.controls.id_tipousuario.errors?.['incorrect'],
+                  'is-invalid' :  (oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required'] )
+                  ||
+                  ( oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['incorrect'])
+                }">
               <button type="button" class="btn btn-primary" (click)="openModalFindTipousuario()">Buscar</button>  
+
               <div class="text-danger"
                 *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['required']">
                 El campo es obligatorio.
               </div>
+
               <div class="text-danger"
                 *ngIf="oForm.controls.id_tipousuario.dirty &&  oForm.controls.id_tipousuario.errors?.['pattern']">
-                El campo ha de ser un entrero de máximo 6 dígitos.
+                El campo ha de ser un entrero entre 1 y cuatro.
               </div>
             </div>
           </div>
@@ -176,6 +196,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
 
 <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">

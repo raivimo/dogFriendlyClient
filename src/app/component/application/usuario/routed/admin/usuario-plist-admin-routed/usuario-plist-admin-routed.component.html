@@ -10,15 +10,14 @@
 
         <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
 
-        <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.numberOfElements"
-          (eeRpp)="this.setRpp($event)">
-        </app-dropdown-register-page>
+        <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size" (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
       </div>
 
         <div class="col-md">
           <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
             (eePage)="setPage($event)"></app-pagination-unrouted>
         </div>
+        
 
       <div class="col-md text-start">
         <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
