@@ -1,5 +1,5 @@
 import { IUsuario } from 'src/app/model/usuario-interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/service/usuario.service';
 

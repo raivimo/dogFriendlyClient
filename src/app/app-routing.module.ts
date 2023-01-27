@@ -10,6 +10,10 @@ import { UsuarioEditAdminRoutedComponent } from './component/application/usuario
 import { UsuarioNewAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-new-admin-routed/usuario-new-admin-routed.component';
 import { LogoutComponent } from './component/shared/routed/logout/logout.component';
 import { GenerateComponent } from './component/shared/routed/generate/generate.component';
+import { TipousuarioEditAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-edit-admin-routed/tipousuario-edit-admin-routed.component';
+import { TipousuarioNewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-new-admin-routed/tipousuario-new-admin-routed.component';
+import { TipousuarioRemoveAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-remove-admin-routed/tipousuario-remove-admin-routed.component';
+import { TipousuarioViewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-view-admin-routed/tipousuario-view-admin-routed.component';
 /* import { SessionResolver } from './resolve/session.resolve'; */
 
 
@@ -19,13 +23,19 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },  
   { path: 'logout', component: LogoutComponent },  
   { path: 'admin/random/load', component: GenerateComponent},
-  
+  //Usuario
   { path: 'admin/usuario/plist', component: UsuarioPlistAdminRoutedComponent },
   { path: 'admin/usuario/view/:id', component: UsuarioViewAdminRoutedComponent },
   { path: 'admin/usuario/remove/:id', component: UsuarioRemoveAdminRoutedComponent},
   { path: 'admin/usuario/new', component: UsuarioNewAdminRoutedComponent},
   { path: 'admin/usuario/edit/:id', component: UsuarioEditAdminRoutedComponent},
   { path: 'admin/tipousuario/plist', component: TipousuarioPlistAdminRoutedComponent },
+  //TipoUsuario
+  { path: 'admin/tipousuario/plist', component: TipousuarioPlistAdminRoutedComponent },
+  { path: 'admin/tipousuario/view/:id', component: TipousuarioViewAdminRoutedComponent },
+  { path: 'admin/tipousuario/remove/:id', component: TipousuarioRemoveAdminRoutedComponent},
+  { path: 'admin/tipousuario/new', component: TipousuarioNewAdminRoutedComponent},
+  { path: 'admin/tipousuario/edit/:id', component:TipousuarioEditAdminRoutedComponent},
 
 ];
 

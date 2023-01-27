@@ -8,15 +8,13 @@
           <app-search-unrouted [placeHolder]="'Buscar Tipo de Usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
 
           <app-dropdown-register-page
-             class="mx-2" [PageSize]="this.getPageRegister()" (eeRpp)="this.setRpp($event)">
+             class="mx-2" [PageSize]="responseFromServer.size" (eeRpp)="this.setRpp($event)">
           </app-dropdown-register-page>
 
         </div>
-        <div class="col-md text-center">
-          <app-pagination-unrouted
-           [nPage]="getPageNumber() + 1" [nTotalPages]="this.getpagesCount()"
-            (eePage)="setPage($event)">
-          </app-pagination-unrouted>
+        <div class="col-md">
+          <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+          (eePage)="setPage($event)"></app-pagination-unrouted>
         </div>
         
         <table class="table table-bordered table-striped">
@@ -27,7 +25,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let tipousuario of this.getPlistContent()">
+            <tr *ngFor="let tipousuario of responseFromServer.content">
               <td>{{tipousuario.id}}</td>
               <td>{{tipousuario.nombre}}</td>
               <td>

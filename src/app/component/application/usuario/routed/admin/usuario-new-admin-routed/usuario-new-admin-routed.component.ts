@@ -1,11 +1,11 @@
-import { IUsuario2Form, IUsuario2Send } from '../../../../../../model/usuario-interface';
+import { IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { ITipousuario } from '../../../../../../model/tipousuario-response-interface';
-import { TipousuarioService } from '../../../../../../service/tipousuario.service';
+import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
+import { TipousuarioService } from 'src/app/service/tipousuario.service';
 declare let bootstrap: any;
 
 @Component({
@@ -93,8 +93,6 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
       keyboard: false
     })
     this.myModal.show()
-
-
   }
 
   closeTipousuarioModal(id_tipousuario: number) {
@@ -105,7 +103,7 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
 
   updateTipousuarioDescription(id_tipousuario: number) {
     this.oTipousuarioService.getOne(id_tipousuario).subscribe({
-      next: (data: ITipousuario) => {      
+      next: (data: ITipoUsuario) => {      
         this.tipousuarioDescription = data.nombre;        
       },
       error: (error: any) => {

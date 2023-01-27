@@ -1,33 +1,53 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { baseURL } from 'src/environments/environment';
-import { TipousuarioResponse, ITipousuario } from '../model/tipousuario-response-interface';
+import { baseURL, httpOptions } from 'src/environments/environment';
+import { TipousuarioResponse, ITipoUsuario, ITipoUsuarioSend } from '../model/tipousuario-response-interface';
+import { IPage } from '../model/generic-types-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipousuarioService {
 
-  constructor( private oHttp : HttpClient ) { }
-
   private entityURL: string = "/tipousuario";
+  url: string = ""
 
+  constructor( private oHttp : HttpClient ) { 
+    this.url = `${baseURL}${this.entityURL}`;
+  }
 
-  getTipousuarioPlist(page: number, size: number, termino:string, id_tipousuario:number):  Observable<TipousuarioResponse>{
+  getTipousuarioPlist(page: number, size: number, termino:string, strSortField: string, strOrderDirection: string):  Observable<IPage<ITipoUsuario>>{
     let params = new HttpParams()
     .set("filter", termino)
     .set("page", page)
     .set("size", size);
-    if (id_tipousuario != 0) {
-      params = params.set("TipoUsuario", id_tipousuario);
+    if (strSortField != "") { //&sort=codigo,[asc|desc]
+      if (strOrderDirection != "") {
+        params = params.set("sort", strSortField + "," + strOrderDirection);
+      } else {
+        params = params.set("sort", strSortField);
+      }
     }
-
-    const url : string = `${baseURL}${this.entityURL}`;
-    return this.oHttp.get<TipousuarioResponse>(url,{params: params});
+    const { withCredentials, headers} = httpOptions
+    return this.oHttp.get<IPage<ITipoUsuario>>(this.url, {headers: headers, withCredentials, params: params });
   }
 
-  getOne(id: number): Observable<ITipousuario> {    
-    return this.oHttp.get<ITipousuario>(`${baseURL}${this.entityURL}` + "/" + id);
+  getOne(id: number): Observable<ITipoUsuario> {    
+    return this.oHttp.get<ITipoUsuario>(`${baseURL}${this.entityURL}` + "/" + id);
   }
+
+  removeOne(id: number): Observable<number> {
+    return this.oHttp.delete<number>(this.url + '/' + id, httpOptions);
+  }
+
+  updateOne(oITipoUsuarioSend: ITipoUsuarioSend): Observable<number> {
+    return this.oHttp.put<number>(this.url, oITipoUsuarioSend, httpOptions);
+  }
+
+  newOne(oTipoUsuarioSend: ITipoUsuarioSend): Observable<number> {       
+    return this.oHttp.post<number>(this.url, oTipoUsuarioSend, httpOptions);
+  }
+
+
 }

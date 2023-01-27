@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuarioPlistAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-plist-admin-routed/usuario-plist-admin-routed.component';
 import { UsuarioViewAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-view-admin-routed/usuario-view-admin-routed.component';
 import { TipousuarioPlistAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-plist-admin-routed/tipousuario-plist-admin-routed.component';
-import { PaginationComponent } from './component/shared/unrouted/pagination/pagination.component';
 import { SearchUnroutedComponent } from './component/shared/unrouted/search-unrouted/search-unrouted.component';
 import { DropdownRegisterPageComponent } from './component/shared/unrouted/dropdown-register-page/dropdown-register-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +28,11 @@ import { GenerateComponent } from './component/shared/routed/generate/generate.c
 import { CountService } from './service/count.service';
 import { GenerateService } from './service/generate.service';
 import { MetadataService } from './service/metadata.service';
+import { TipousuarioEditAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-edit-admin-routed/tipousuario-edit-admin-routed.component';
+import { TipousuarioNewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-new-admin-routed/tipousuario-new-admin-routed.component';
+import { TipousuarioRemoveAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-remove-admin-routed/tipousuario-remove-admin-routed.component';
+import { TipousuarioViewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-view-admin-routed/tipousuario-view-admin-routed.component';
+import { TipousuarioDetailAdminUnroutedComponent } from './component/application/tipousuario/unrouted/admin/tipousuario-detail-admin-unrouted/tipousuario-detail-admin-unrouted.component';
 
 
 @NgModule({
@@ -47,6 +51,10 @@ import { MetadataService } from './service/metadata.service';
     UsuarioDetailAdminUnroutedComponent,
     //Tipousuario
     TipousuarioPlistAdminRoutedComponent,
+    TipousuarioEditAdminRoutedComponent,
+    TipousuarioNewAdminRoutedComponent,
+    TipousuarioRemoveAdminRoutedComponent,
+    TipousuarioViewAdminRoutedComponent,
 
     //
     FooterComponent,
@@ -55,6 +63,8 @@ import { MetadataService } from './service/metadata.service';
     TipousuarioFinderAdminUnroutedComponent,
     PaginationUnroutedComponent,
     GenerateComponent,
+    TipousuarioDetailAdminUnroutedComponent,
+   
   ],
   
   imports: [

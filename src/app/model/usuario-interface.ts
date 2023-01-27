@@ -1,7 +1,7 @@
 
 import { FormControl } from "@angular/forms";
 import { IEntity } from "./generic-types-interface";
-import { ITipousuario } from "./tipousuario-response-interface";
+import { ITipoUsuario } from "./tipousuario-response-interface";
 
 
 
@@ -14,7 +14,7 @@ export interface IUsuario {
     email:         string;
     login:         string;
     fechaNacimiento: string;
-    tipousuario:   ITipousuario;
+    tipousuario:   ITipoUsuario;
 }
 
 export interface IUsuario2Form {

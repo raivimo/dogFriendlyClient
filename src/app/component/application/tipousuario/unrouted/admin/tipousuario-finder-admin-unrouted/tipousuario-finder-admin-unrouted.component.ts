@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ITipousuario, TipousuarioResponse } from '../../../../../../model/tipousuario-response-interface';
-import { faEye, faTrash, faUserPen } from '@fortawesome/free-solid-svg-icons';
+import { ITipoUsuario, TipousuarioResponse } from '../../../../../../model/tipousuario-response-interface';
+import { faArrowDown, faArrowUp, faEye, faTrash, faUserPen } from '@fortawesome/free-solid-svg-icons';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { IPage } from 'src/app/model/generic-types-interface';
 
 @Component({
   selector: 'app-tipousuario-finder-admin-unrouted',
@@ -12,17 +13,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class TipousuarioFinderAdminUnroutedComponent implements OnInit {
 
   @Output() closeEvent = new EventEmitter<number>();
-
-  private pListContent!: ITipousuario[];
-  private pagesCount!: number;
-  private numberPage: number = 0;
-  private pageRegister: number = 5;
-  private termino: string = "";
-  id_tipousuario: number = 0;
-
+  responseFromServer: IPage<ITipoUsuario>;
+  //
+  strTermFilter: string = "";
+  numberOfElements: number = 5;
+  pageSize: number = 5;
+  page: number = 0;
+  sortField: string = "";
+  sortDirection: string = "";
+  //
   faEye = faEye;
   faUserPen = faUserPen;
   faTrash = faTrash;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
 
 
   constructor(
@@ -33,55 +37,45 @@ export class TipousuarioFinderAdminUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  getPage() {
-    this.oTipousuarioService.getTipousuarioPlist(this.numberPage, this.pageRegister, this.termino, this.id_tipousuario)
-      .subscribe({
-        next: (resp: TipousuarioResponse) => {
-          this.pListContent = resp.content;
-          this.pagesCount = resp.totalPages;
-          this.numberPage = resp.number;
-        },
-        error: (err: HttpErrorResponse) => {
-          console.log(err);
-        }
-      })
-  }
-
-  getPageNumber(): number {
-    return this.numberPage;
-  }
-
-  getPlistContent(): ITipousuario[] {
-    return this.pListContent;
-  }
-
-  getpagesCount(): number {
-    return this.pagesCount;
+  getPage(){
+    this.oTipousuarioService.getTipousuarioPlist(this.page, this.numberOfElements, this.strTermFilter, this.sortField, this.sortDirection)
+    .subscribe({
+      next: (resp :IPage<ITipoUsuario>) =>{
+        this.responseFromServer = resp;
+          if (this.page > resp.totalPages - 1) {
+            this.page = resp.totalPages - 1;
+            this.getPage();
+          }},
+      error: (err: HttpErrorResponse) =>{
+        console.log(err);
+      }
+    })
   }
 
   setPage(e: number) {
-    this.numberPage = e - 1;
+    this.page = (e - 1);
     this.getPage();
   }
 
-  getPageRegister(): number {
-    return this.pageRegister;
+  setRpp(rpp: number) {
+    this.numberOfElements = rpp;
+    this.page = 0;
+    this.getPage();
+
   }
 
-  setRpp(registerPage: number) {
-    this.pageRegister = registerPage;
+  setFilter(term: string): void {
+    this.strTermFilter = term;
     this.getPage();
   }
 
-  setFilter(termino: string): void {
-    this.termino = termino;
-    this.numberPage = 0;
-    this.getPage();
-  }
-
-  filterByUsertype(id: number): void {
-    this.id_tipousuario = id;
-    this.numberPage = 0;
+  setOrder(order: string): void {
+    this.sortField = order;
+    if (this.sortDirection == "asc") {
+      this.sortDirection = "desc";
+    } else {
+      this.sortDirection = "asc";
+    }
     this.getPage();
   }
 

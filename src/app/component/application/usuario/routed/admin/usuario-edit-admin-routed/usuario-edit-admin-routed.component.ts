@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { ITipousuario } from '../../../../../../model/tipousuario-response-interface';
+import { ITipoUsuario } from '../../../../../../model/tipousuario-response-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
 
 
@@ -119,7 +119,7 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
 
   updateTipousuarioDescription(id_tipousuario: number) {
     this.oTipousuarioService.getOne(id_tipousuario).subscribe({
-      next: (data: ITipousuario) => {      
+      next: (data: ITipoUsuario) => {      
         this.tipousuarioDescription = data.nombre;        
       },
       error: (error: any) => {
