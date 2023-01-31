@@ -34,6 +34,11 @@ import { TipopaseoNewAdminRoutedComponent } from './component/application/tipopa
 import { TipopaseoPlistAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-plist-admin-routed/tipopaseo-plist-admin-routed.component';
 import { TipopaseoRemoveAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-remove-admin-routed/tipopaseo-remove-admin-routed.component';
 import { TipopaseoViewAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-view-admin-routed/tipopaseo-view-admin-routed.component';
+import { FacturaEditAdminRoutedComponent } from './component/application/factura/routed/admin/factura-edit-admin-routed/factura-edit-admin-routed.component';
+import { FacturaNewAdminRoutedComponent } from './component/application/factura/routed/admin/factura-new-admin-routed/factura-new-admin-routed.component';
+import { FacturaPlistAdminRoutedComponent } from './component/application/factura/routed/admin/factura-plist-admin-routed/factura-plist-admin-routed.component';
+import { FacturaRemoveAdminRoutedComponent } from './component/application/factura/routed/admin/factura-remove-admin-routed/factura-remove-admin-routed.component';
+import { FacturaViewAdminRoutedComponent } from './component/application/factura/routed/admin/factura-view-admin-routed/factura-view-admin-routed.component';
 /* import { SessionResolver } from './resolve/session.resolve'; */
 
 
@@ -79,6 +84,12 @@ const routes: Routes = [
   { path: 'admin/tipopaseo/remove/:id', component: TipopaseoRemoveAdminRoutedComponent},
   { path: 'admin/tipopaseo/new', component: TipopaseoNewAdminRoutedComponent},
   { path: 'admin/tipopaseo/edit/:id', component:TipopaseoEditAdminRoutedComponent},
+  //Factura
+  { path: 'admin/factura/plist', component: FacturaPlistAdminRoutedComponent },
+  { path: 'admin/factura/view/:id', component: FacturaViewAdminRoutedComponent },
+  { path: 'admin/factura/remove/:id', component: FacturaRemoveAdminRoutedComponent},
+  { path: 'admin/factura/new', component: FacturaNewAdminRoutedComponent},
+  { path: 'admin/factura/edit/:id', component:FacturaEditAdminRoutedComponent},
 ];
 
 @NgModule({
