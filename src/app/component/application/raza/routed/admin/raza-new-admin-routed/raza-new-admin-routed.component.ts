@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IRaza, IRazaForm, IRazaSend } from '../../../../../../model/raza-interface';
-import { RazaService } from '../../../../../../service/raza.service';
+import { IRaza, IRazaForm, IRazaSend } from 'src/app/model/raza-interface';
+import { RazaService } from 'src/app/service/raza.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 declare let bootstrap: any;
@@ -12,7 +12,6 @@ declare let bootstrap: any;
 })
 export class RazaNewAdminRoutedComponent implements OnInit {
    
-  //id: number = 0;
   oRaza: IRaza = null;
   oRazaForm: IRazaForm = null;
   oRazaSend: IRazaSend = null;
@@ -22,7 +21,6 @@ export class RazaNewAdminRoutedComponent implements OnInit {
   myModal: any;
   modalTitle: string = "";
   modalContent: string = "";
-
   // foreigns
 
 
@@ -33,27 +31,28 @@ export class RazaNewAdminRoutedComponent implements OnInit {
     private oFormBuilder: FormBuilder,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
-      nombre: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-      tamanyo: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
-    }); 
+      nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      tamanyo: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
+    });
   }
 
   onSubmit() {
-    console.log("onSubmit");
+    console.log("Aprentando boton!")
     this.oRazaSend = {
       id: this.oForm.value.id,
       nombre: this.oForm.value.nombre,
-      tamanyo: this.oForm.value.tamanyo,
+      tamanyo: this.oForm.value.tamanyo
     }
     if (this.oForm.valid) {
       this.oRazaService.newOne(this.oRazaSend).subscribe({
         next: (data: number) => {
+          
           //open bootstrap modal here
           this.modalTitle = "dogFriendly";
-          this.modalContent = "Raza" + data + " creada";
+          this.modalContent = "Raza de Perro  " + data + " creada";
           this.showModal(data);
         }
       })
@@ -67,10 +66,15 @@ export class RazaNewAdminRoutedComponent implements OnInit {
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
       console.log({id})
-      this.oRouter.navigate(['/admin/usuario/view/' + id])
+      this.oRouter.navigate(['/admin/raza/view/' + id])
     })
     this.myModal.show()
   }
+
+
+
+
+
 
   
 

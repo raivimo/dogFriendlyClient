@@ -23,12 +23,12 @@
                             formControlName="nombre" />
                         <div id="inputNombreFeedback" class="invalid-feedback"
                             *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength']">
-                            La longitud mínima es de 5 caracteres.
+                            La longitud mínima es de 2 caracteres.
                         </div>
 
                         <div id="inputNombreFeedback" class="invalid-feedback"
                             *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength']">
-                            La longitud máxima es de 10 caracteres.
+                            La longitud máxima es de 20 caracteres.
                         </div>
 
                         <div id="inputNombreFeedback" class="invalid-feedback"
@@ -41,7 +41,7 @@
                     <div class="mb-3 row">
                         <label for="inputDuracion" class="col-sm-2 col-form-label">Duracion</label>
                         <div class="col-sm-4 has-validation">
-                            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.duracion.dirty && !oForm.controls.duracion.errors?.['required'] &&
+                            <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.duracion.dirty && !oForm.controls.duracion.errors?.['required'] &&
                   oForm.controls.duracion.dirty && !oForm.controls.duracion.errors?.['minlength'] 
                     && oForm.controls.duracion.dirty && !oForm.controls.duracion.errors?.['maxlength'],
                     'is-invalid' :  oForm.controls.duracion.dirty &&  oForm.controls.duracion.errors?.['minlength'] 
@@ -50,13 +50,8 @@
                                 formControlName="duracion" />
 
                             <div id="inputDuracionFeedback" class="invalid-feedback"
-                                *ngIf="oForm.controls.duracion.dirty &&  oForm.controls.duracion.errors?.['minlength']">
-                                La longitud mínima es de 5 caracteres.
-                            </div>
-
-                            <div id="inputDuracionFeedback" class="invalid-feedback"
-                                *ngIf="oForm.controls.duracion.dirty &&  oForm.controls.duracion.errors?.['maxlength']">
-                                La longitud máxima es de 10 caracteres.
+                                *ngIf="oForm.controls.duracion.dirty &&  oForm.controls.duracion.errors?.['pattern']">
+                                Formato no adecucado.
                             </div>
 
                             <div id="inputDuracionFeedback" class="invalid-feedback"

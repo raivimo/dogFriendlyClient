@@ -80,6 +80,7 @@ export class PaseoEditAdminRoutedComponent implements OnInit {
       fecha: this.oForm.value.fecha,
       lugar: this.oForm.value.lugar,
       precio: this.oForm.value.precio,
+
       tipopaseo: {id:this.oForm.value.id_tipopaseo},
       usuario: { id: this.oForm.value.id_usuario },
       perro: { id: this.oForm.value.id_perro },
@@ -91,7 +92,7 @@ export class PaseoEditAdminRoutedComponent implements OnInit {
           
           //open bootstrap modal here
           this.modalTitle = "dogFriends";
-          this.modalContent = "Tipo de Paseo " + this.id + " actualizado";
+          this.modalContent = "Paseo " + this.id + " actualizado";
           this.showModal();
         }
       })
@@ -163,7 +164,7 @@ export class PaseoEditAdminRoutedComponent implements OnInit {
       },
       error: (error: any) => {
         this.usuarioDescription = "Usuario no encontrado";        
-        this.oForm.controls['id_tipopaseo'].setErrors({'incorrect': true});
+        this.oForm.controls['id_usuario'].setErrors({'incorrect': true});
       }
     })
   }
