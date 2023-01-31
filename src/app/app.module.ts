@@ -33,6 +33,41 @@ import { TipousuarioNewAdminRoutedComponent } from './component/application/tipo
 import { TipousuarioRemoveAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-remove-admin-routed/tipousuario-remove-admin-routed.component';
 import { TipousuarioViewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-view-admin-routed/tipousuario-view-admin-routed.component';
 import { TipousuarioDetailAdminUnroutedComponent } from './component/application/tipousuario/unrouted/admin/tipousuario-detail-admin-unrouted/tipousuario-detail-admin-unrouted.component';
+import { PerroEditAdminRoutedComponent } from './component/application/perro/routed/admin/perro-edit-admin-routed/perro-edit-admin-routed.component';
+import { PerroNewAdminRoutedComponent } from './component/application/perro/routed/admin/perro-new-admin-routed/perro-new-admin-routed.component';
+import { PerroPlistAdminRoutedComponent } from './component/application/perro/routed/admin/perro-plist-admin-routed/perro-plist-admin-routed.component';
+import { PerroRemoveAdminRoutedComponent } from './component/application/perro/routed/admin/perro-remove-admin-routed/perro-remove-admin-routed.component';
+import { PerroViewAdminRoutedComponent } from './component/application/perro/routed/admin/perro-view-admin-routed/perro-view-admin-routed.component';
+import { PerroDetailAdminUnroutedComponent } from './component/application/perro/unrouted/perro-detail-admin-unrouted/perro-detail-admin-unrouted.component';
+import { PerroService } from './service/perro.service';
+import { SessionService } from './service/session.service';
+import { TipousuarioService } from './service/tipousuario.service';
+import { UsuarioService } from './service/usuario.service';
+import { RazaService } from './service/raza.service';
+import { UsuarioFinderAdminUnroutedComponent } from './component/application/usuario/unrouted/admin/usuario-finder-admin-unrouted/usuario-finder-admin-unrouted.component';
+import { RazaEditAdminRoutedComponent } from './component/application/raza/routed/admin/raza-edit-admin-routed/raza-edit-admin-routed.component';
+import { RazaNewAdminRoutedComponent } from './component/application/raza/routed/admin/raza-new-admin-routed/raza-new-admin-routed.component';
+import { RazaPlistAdminRoutedComponent } from './component/application/raza/routed/admin/raza-plist-admin-routed/raza-plist-admin-routed.component';
+import { RazaRemoveAdminRoutedComponent } from './component/application/raza/routed/admin/raza-remove-admin-routed/raza-remove-admin-routed.component';
+import { RazaViewAdminRoutedComponent } from './component/application/raza/routed/admin/raza-view-admin-routed/raza-view-admin-routed.component';
+import { RazaFinderAdminUnroutedComponent } from './component/application/raza/unrouted/admin/raza-finder-admin-unrouted/raza-finder-admin-unrouted.component';
+import { RazaDetailAdminUnroutedComponent } from './component/application/raza/unrouted/admin/raza-detail-admin-unrouted/raza-detail-admin-unrouted.component';
+import { PaseoEditAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-edit-admin-routed/paseo-edit-admin-routed.component';
+import { PaseoNewAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-new-admin-routed/paseo-new-admin-routed.component';
+import { PaseoPlistAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-plist-admin-routed/paseo-plist-admin-routed.component';
+import { PaseoRemoveAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-remove-admin-routed/paseo-remove-admin-routed.component';
+import { PaseoViewAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-view-admin-routed/paseo-view-admin-routed.component';
+import { PaseoService } from './service/paseo.service';
+import { PaseoDetailAdminUnroutedComponent } from './component/application/paseo/unrouted/paseo-detail-admin-unrouted/paseo-detail-admin-unrouted.component';
+import { TipopaseoFinderAdminUnroutedComponent } from './component/application/tipopaseo/unrouted/tipopaseo-finder-admin-unrouted/tipopaseo-finder-admin-unrouted.component';
+import { PerroFinderAdminUnroutedComponent } from './component/application/perro/unrouted/perro-finder-admin-unrouted/perro-finder-admin-unrouted.component';
+import { TipopaseoEditAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-edit-admin-routed/tipopaseo-edit-admin-routed.component';
+import { TipopaseoNewAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-new-admin-routed/tipopaseo-new-admin-routed.component';
+import { TipopaseoPlistAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-plist-admin-routed/tipopaseo-plist-admin-routed.component';
+import { TipopaseoRemoveAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-remove-admin-routed/tipopaseo-remove-admin-routed.component';
+import { TipopaseoViewAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-view-admin-routed/tipopaseo-view-admin-routed.component';
+import { TipopaseoService } from './service/tipopaseo.service';
+import { TipopaseoDetailAdminUnroutedComponent } from './component/application/tipopaseo/unrouted/tipopaseo-detail-admin-unrouted/tipopaseo-detail-admin-unrouted.component';
 
 
 @NgModule({
@@ -48,23 +83,72 @@ import { TipousuarioDetailAdminUnroutedComponent } from './component/application
     UsuarioRemoveAdminRoutedComponent,
     UsuarioViewAdminRoutedComponent,
     UsuarioNewAdminRoutedComponent,
+    //Unrouted
+    UsuarioFinderAdminUnroutedComponent,
     UsuarioDetailAdminUnroutedComponent,
+
     //Tipousuario
     TipousuarioPlistAdminRoutedComponent,
     TipousuarioEditAdminRoutedComponent,
     TipousuarioNewAdminRoutedComponent,
     TipousuarioRemoveAdminRoutedComponent,
     TipousuarioViewAdminRoutedComponent,
+    //Unrouted
+    TipousuarioFinderAdminUnroutedComponent,
+    TipousuarioDetailAdminUnroutedComponent,
 
-    //
+    //Perro
+    PerroEditAdminRoutedComponent,
+    PerroNewAdminRoutedComponent,
+    PerroPlistAdminRoutedComponent,
+    PerroRemoveAdminRoutedComponent,
+    PerroViewAdminRoutedComponent,
+    //Unrouted
+    PerroDetailAdminUnroutedComponent,
+    PerroFinderAdminUnroutedComponent,
+
+    //Raza
+    RazaEditAdminRoutedComponent,
+    RazaNewAdminRoutedComponent,
+    RazaPlistAdminRoutedComponent,
+    RazaRemoveAdminRoutedComponent,
+    RazaViewAdminRoutedComponent,
+    //Unrouted
+    RazaFinderAdminUnroutedComponent,
+    RazaDetailAdminUnroutedComponent,
+
+    //Paseo
+    PaseoEditAdminRoutedComponent,
+    PaseoNewAdminRoutedComponent,
+    PaseoPlistAdminRoutedComponent,
+    PaseoRemoveAdminRoutedComponent,
+    PaseoViewAdminRoutedComponent,
+    //Unrouted
+    PaseoDetailAdminUnroutedComponent,
+
+    //TipoPaseo
+    TipopaseoEditAdminRoutedComponent,
+    TipopaseoNewAdminRoutedComponent,
+    TipopaseoPlistAdminRoutedComponent,
+    TipopaseoRemoveAdminRoutedComponent,
+    TipopaseoViewAdminRoutedComponent,
+    //Unrouted
+    TipopaseoFinderAdminUnroutedComponent,
+
+    PaginationUnroutedComponent,
+    GenerateComponent,
+
     FooterComponent,
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
-    TipousuarioFinderAdminUnroutedComponent,
-    PaginationUnroutedComponent,
-    GenerateComponent,
-    TipousuarioDetailAdminUnroutedComponent,
-   
+    TipopaseoDetailAdminUnroutedComponent,
+    
+
+
+
+
+
+  
   ],
   
   imports: [
@@ -82,6 +166,14 @@ import { TipousuarioDetailAdminUnroutedComponent } from './component/application
     CountService,
     GenerateService,
     MetadataService,
+    PerroService,
+    SessionService,
+    TipousuarioService,
+    UsuarioService,
+    RazaService,
+    PaseoService,
+    TipopaseoService
+    
     
   ],
   bootstrap: [AppComponent]

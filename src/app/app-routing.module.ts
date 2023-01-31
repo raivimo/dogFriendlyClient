@@ -14,6 +14,26 @@ import { TipousuarioEditAdminRoutedComponent } from './component/application/tip
 import { TipousuarioNewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-new-admin-routed/tipousuario-new-admin-routed.component';
 import { TipousuarioRemoveAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-remove-admin-routed/tipousuario-remove-admin-routed.component';
 import { TipousuarioViewAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-view-admin-routed/tipousuario-view-admin-routed.component';
+import { PerroEditAdminRoutedComponent } from './component/application/perro/routed/admin/perro-edit-admin-routed/perro-edit-admin-routed.component';
+import { PerroNewAdminRoutedComponent } from './component/application/perro/routed/admin/perro-new-admin-routed/perro-new-admin-routed.component';
+import { PerroPlistAdminRoutedComponent } from './component/application/perro/routed/admin/perro-plist-admin-routed/perro-plist-admin-routed.component';
+import { PerroRemoveAdminRoutedComponent } from './component/application/perro/routed/admin/perro-remove-admin-routed/perro-remove-admin-routed.component';
+import { PerroViewAdminRoutedComponent } from './component/application/perro/routed/admin/perro-view-admin-routed/perro-view-admin-routed.component';
+import { RazaEditAdminRoutedComponent } from './component/application/raza/routed/admin/raza-edit-admin-routed/raza-edit-admin-routed.component';
+import { RazaNewAdminRoutedComponent } from './component/application/raza/routed/admin/raza-new-admin-routed/raza-new-admin-routed.component';
+import { RazaPlistAdminRoutedComponent } from './component/application/raza/routed/admin/raza-plist-admin-routed/raza-plist-admin-routed.component';
+import { RazaRemoveAdminRoutedComponent } from './component/application/raza/routed/admin/raza-remove-admin-routed/raza-remove-admin-routed.component';
+import { RazaViewAdminRoutedComponent } from './component/application/raza/routed/admin/raza-view-admin-routed/raza-view-admin-routed.component';
+import { PaseoEditAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-edit-admin-routed/paseo-edit-admin-routed.component';
+import { PaseoNewAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-new-admin-routed/paseo-new-admin-routed.component';
+import { PaseoPlistAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-plist-admin-routed/paseo-plist-admin-routed.component';
+import { PaseoRemoveAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-remove-admin-routed/paseo-remove-admin-routed.component';
+import { PaseoViewAdminRoutedComponent } from './component/application/paseo/routed/admin/paseo-view-admin-routed/paseo-view-admin-routed.component';
+import { TipopaseoEditAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-edit-admin-routed/tipopaseo-edit-admin-routed.component';
+import { TipopaseoNewAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-new-admin-routed/tipopaseo-new-admin-routed.component';
+import { TipopaseoPlistAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-plist-admin-routed/tipopaseo-plist-admin-routed.component';
+import { TipopaseoRemoveAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-remove-admin-routed/tipopaseo-remove-admin-routed.component';
+import { TipopaseoViewAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-view-admin-routed/tipopaseo-view-admin-routed.component';
 /* import { SessionResolver } from './resolve/session.resolve'; */
 
 
@@ -29,14 +49,36 @@ const routes: Routes = [
   { path: 'admin/usuario/remove/:id', component: UsuarioRemoveAdminRoutedComponent},
   { path: 'admin/usuario/new', component: UsuarioNewAdminRoutedComponent},
   { path: 'admin/usuario/edit/:id', component: UsuarioEditAdminRoutedComponent},
-  { path: 'admin/tipousuario/plist', component: TipousuarioPlistAdminRoutedComponent },
   //TipoUsuario
   { path: 'admin/tipousuario/plist', component: TipousuarioPlistAdminRoutedComponent },
   { path: 'admin/tipousuario/view/:id', component: TipousuarioViewAdminRoutedComponent },
   { path: 'admin/tipousuario/remove/:id', component: TipousuarioRemoveAdminRoutedComponent},
   { path: 'admin/tipousuario/new', component: TipousuarioNewAdminRoutedComponent},
   { path: 'admin/tipousuario/edit/:id', component:TipousuarioEditAdminRoutedComponent},
-
+  //Perro
+  { path: 'admin/perro/plist', component: PerroPlistAdminRoutedComponent },
+  { path: 'admin/perro/view/:id', component: PerroViewAdminRoutedComponent },
+  { path: 'admin/perro/remove/:id', component: PerroRemoveAdminRoutedComponent},
+  { path: 'admin/perro/new', component: PerroNewAdminRoutedComponent},
+  { path: 'admin/perro/edit/:id', component:PerroEditAdminRoutedComponent},
+  //Raza
+  { path: 'admin/raza/plist', component: RazaPlistAdminRoutedComponent },
+  { path: 'admin/raza/view/:id', component: RazaViewAdminRoutedComponent },
+  { path: 'admin/raza/remove/:id', component: RazaRemoveAdminRoutedComponent},
+  { path: 'admin/raza/new', component: RazaNewAdminRoutedComponent},
+  { path: 'admin/raza/edit/:id', component:RazaEditAdminRoutedComponent},
+  //Paseo
+  { path: 'admin/paseo/plist', component: PaseoPlistAdminRoutedComponent },
+  { path: 'admin/paseo/view/:id', component: PaseoViewAdminRoutedComponent },
+  { path: 'admin/paseo/remove/:id', component: PaseoRemoveAdminRoutedComponent},
+  { path: 'admin/paseo/new', component: PaseoNewAdminRoutedComponent},
+  { path: 'admin/paseo/edit/:id', component:PaseoEditAdminRoutedComponent},
+  //TipoPaseo
+  { path: 'admin/tipopaseo/plist', component: TipopaseoPlistAdminRoutedComponent },
+  { path: 'admin/tipopaseo/view/:id', component: TipopaseoViewAdminRoutedComponent },
+  { path: 'admin/tipopaseo/remove/:id', component: TipopaseoRemoveAdminRoutedComponent},
+  { path: 'admin/tipopaseo/new', component: TipopaseoNewAdminRoutedComponent},
+  { path: 'admin/tipopaseo/edit/:id', component:TipopaseoEditAdminRoutedComponent},
 ];
 
 @NgModule({

@@ -36,7 +36,7 @@ export class TipousuarioNewAdminRoutedComponent implements OnInit {
   ngOnInit(): void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
-      nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(10)]]
+      nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]]
     });
   }
 
@@ -47,7 +47,6 @@ export class TipousuarioNewAdminRoutedComponent implements OnInit {
       nombre: this.oForm.value.nombre
     }
     if (this.oForm.valid) {
-   
       this.oTipoUsuarioService.newOne(this.oTipoUsuarioSend).subscribe({
         next: (data: number) => {
           

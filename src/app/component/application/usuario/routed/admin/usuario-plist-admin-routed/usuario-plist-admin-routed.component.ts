@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,8 @@ import { IPage } from 'src/app/model/generic-types-interface';
 })
 
 export class UsuarioPlistAdminRoutedComponent implements OnInit {
-
+  
+  @Output() closeEvent = new EventEmitter<number>();
   responseFromServer: IPage<IUsuario>;
   //
   strTermFilter: string = "";
@@ -84,5 +85,7 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
     }
     this.getPage();
   }
+
+
 
 }

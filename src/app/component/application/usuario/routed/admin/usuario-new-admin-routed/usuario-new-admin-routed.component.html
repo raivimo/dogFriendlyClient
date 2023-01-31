@@ -42,7 +42,8 @@
                                             && oForm.controls.apellido1.dirty && !oForm.controls.apellido1.errors?.['maxlength'],
                                             'is-invalid' :  oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['minlength']
                                             ||  oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['maxlength'] ||
-                                            oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['required']}" id="inputSurnombre" formcontrolname="apellido1">
+                                            oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['required']}"
+                                            id="inputApellido1" formcontrolname="apellido1">
                         <div id="inputApellido1Feedback" class="invalid-feedback" *ngIf="oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['minlength']">
                             La longitud mínima es de 5 caracteres.
                         </div>
@@ -63,14 +64,18 @@
                                             && oForm.controls.apellido2.dirty && !oForm.controls.apellido2.errors?.['maxlength'],
                                             'is-invalid' :  oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['minlength']
                                             ||  oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['maxlength'] ||
-                                            oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['required']}" id="inputApellido2" formcontrolname="apellido2">
-                        <div id="inputLastnombreFeedback" class="invalid-feedback" *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['minlength']">
+                                            oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['required']}"
+                                            id="inputApellido2" formcontrolname="apellido2">
+
+                        <div id="inputApellido2Feedback" class="invalid-feedback" *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['minlength']">
                             La longitud mínima es de 5 caracteres.
                         </div>
-                        <div id="inputLastnombreFeedback" class="invalid-feedback" *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['maxlength']">
+
+                        <div id="inputApellido2Feedback" class="invalid-feedback" *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['maxlength']">
                             La longitud máxima es de 10 caracteres.
                         </div>
-                        <div id="inputLastnombreFeedback" class="invalid-feedback" *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['required']">
+
+                        <div id="inputApellido2Feedback" class="invalid-feedback" *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['required']">
                             El campo es obligatorio.
                         </div>
                     </div>
@@ -82,10 +87,12 @@
                         <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.email.dirty && !oForm.controls.email.errors?.['required'] &&
                                           oForm.controls.email.dirty && !oForm.controls.email.errors?.['pattern'],
                                             'is-invalid' :  oForm.controls.email.dirty &&  oForm.controls.email.errors?.['pattern'] ||
-                                            oForm.controls.email.dirty &&  oForm.controls.email.errors?.['required']}" id="inputEmail" formcontrolname="email">
+                                            oForm.controls.email.dirty &&  oForm.controls.email.errors?.['required']}"
+                                            id="inputEmail" formcontrolname="email">
                         <div id="inputEmailFeedback" class="invalid-feedback" *ngIf="oForm.controls.email.dirty &&  oForm.controls.email.errors?.['pattern']">
                             El formato no es adecuado
                         </div>
+
                         <div id="inputEmailFeedback" class="invalid-feedback" *ngIf="oForm.controls.email.dirty &&  oForm.controls.email.errors?.['required']">
                             El campo es obligatorio.
                         </div>
@@ -98,7 +105,8 @@
                         <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
                                           oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['pattern'],
                                             'is-invalid' :  oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern'] ||
-                                            oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}" id="inputfechaNacimiento" formcontrolname="fechaNacimiento" id="inputfechaNacimiento" formcontrolname="fechaNacimiento">
+                                            oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}"
+                                            id="inputfechaNacimiento" formcontrolname="fechaNacimiento">
 
                         <div id="inputfechaNacimientoFeedback" class="invalid-feedback" *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern']">
                             Error format (dd-MM-yyyy)
@@ -123,13 +131,14 @@
                                             ||  oForm.controls.login.dirty &&  oForm.controls.login.errors?.['maxlength'] ||
                                             oForm.controls.login.dirty &&  oForm.controls.login.errors?.['required']}">
 
-                        <div class="invalid-feedback" *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['minlength']">
+                        <div id="inputLoginFeedback" class="invalid-feedback" *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['minlength']">
                             La longitud mínima es de 5 caracteres.
                         </div>
-                        <div class="invalid-feedback" *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['maxlength']">
+
+                        <div id="inputLoginFeedback" class="invalid-feedback" *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['maxlength']">
                             La longitud máxima es de 10 caracteres.
                         </div>
-                        <div class="invalid-feedback" *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['required']">
+                        <div id="inputLoginFeedback" class="invalid-feedback" *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['required']">
                             El campo es obligatorio.
                         </div>
                     </div>

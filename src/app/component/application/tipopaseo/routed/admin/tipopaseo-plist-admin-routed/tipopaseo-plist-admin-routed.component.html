@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+  
+        <h1 class="text-center mb-5">Lista de Tipos de Paseo</h1>
+  
+        <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
+          <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary mx-3">Generar Tipos de Paseo</a>
+          <a [routerLink]="['/admin/tipopaseo/new']" class="btn btn-primary mx-3">Alta de Tipos de Paseo</a>
+  
+          <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+          <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size"
+            (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
+        </div>
+  
+        <div class="col-md">
+          <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
+        </div>
+  
+        <div class="col-md text-end">
+          <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
+        </div>
+  
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th (click)="setOrder('id')">ID
+                <fa-icon *ngIf="sortField=='id'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='id'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('nombre')">Nombre
+                <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('apellido1')">Duracion
+                <fa-icon *ngIf="sortField=='duracion'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='duracion'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tipopaseo of responseFromServer.content">
+              <td>{{tipopaseo.id}}</td>
+              <td>{{tipopaseo.nombre}}</td>
+              <td>{{tipopaseo.duracion}}</td>
+                <td>
+                <div class="btn-group" role="group" aria-label="Herramientas">
+                  <button class="btn btn-sm btn-primary" [routerLink]="['/admin/tipopaseo/view', tipopaseo.id]">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-warning" [routerLink]="['/admin/tipopaseo/edit', tipopaseo.id]">
+                    <fa-icon [icon]="faUserPen"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-danger" [routerLink]="['/admin/tipopaseo/remove',tipopaseo.id]">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
