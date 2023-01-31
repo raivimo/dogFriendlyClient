@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormGroup,
-    FormBuilder,
-    Validators,
-    FormControl,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import {
-    ITipoUsuario,
-    ITipoUsuarioForm,
-    ITipoUsuarioSend,
-} from 'src/app/model/tipousuario-response-interface';
+import { ITipoUsuario, ITipoUsuarioForm, ITipoUsuarioSend } from 'src/app/model/tipousuario-response-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
+
 declare let bootstrap: any;
 @Component({
     selector: 'app-tipousuario-edit-admin-routed',
@@ -19,6 +11,7 @@ declare let bootstrap: any;
     styleUrls: ['./tipousuario-edit-admin-routed.component.css'],
 })
 export class TipousuarioEditAdminRoutedComponent implements OnInit {
+    
     id: number = 0;
     oTipoUsuario: ITipoUsuario = null;
     oTipoUsuarioForm: ITipoUsuarioForm = null;

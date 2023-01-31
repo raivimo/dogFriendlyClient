@@ -1,0 +1,104 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+  
+        <h1 class="text-center mb-5">Lista de Paseos</h1>
+  
+        <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
+          <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary mx-3">Generar Paseos</a>
+          <a [routerLink]="['/admin/paseo/new']" class="btn btn-primary mx-3">Alta de un nuevo Paseo</a>
+  
+          <app-search-unrouted [placeHolder]="'Buscar paseo'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+  
+          <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size"
+            (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
+        </div>
+  
+        <div class="col-md">
+          <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
+        </div>
+  
+  
+        <div class="col-md text-start">
+          <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
+          <button class="btn btn-outline-danger" *ngIf="id_tipopaseoFilter!=0" (click)="setFilterByTipopaseo(0)">
+            <i class="bi bi-x-circle"></i> Reset Tipo Paseo {{id_tipopaseoFilter}} filter</button>
+        </div>
+
+        <div class="col-md text-start">
+            <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
+            <button class="btn btn-outline-danger" *ngIf="id_usuarioFilter!=0" (click)="setFilterByUsuario(0)">
+              <i class="bi bi-x-circle"></i> Reset Usuario {{id_usuarioFilter}} filter</button>
+          </div>
+
+          <div class="col-md text-start">
+            <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
+            <button class="btn btn-outline-danger" *ngIf="id_perroFilter!=0" (click)="setFilterByPerro(0)">
+              <i class="bi bi-x-circle"></i> Reset perro {{id_perroFilter}} filter</button>
+          </div>
+  
+        <div class="col-md text-end">
+          <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
+        </div>
+  
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th (click)="setOrder('id')">ID
+                <fa-icon *ngIf="sortField=='id'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='id'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('nombre')">Fecha
+                <fa-icon *ngIf="sortField=='fecha' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='fecha' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('apellido1')">Lugar
+                <fa-icon *ngIf="sortField=='lugar' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='lugar' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('apellido2')">Precio
+                <fa-icon *ngIf="sortField=='precio' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='precio' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th>Tipo de Paseo</th>
+              <th>Usuario</th>
+              <th>Perro y Dueño</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let paseo of responseFromServer.content">
+              <td>{{paseo.id}}</td>
+              <td>{{paseo.fecha}}</td>
+              <td>{{paseo.lugar}}</td>
+              <td>{{paseo.precio}}</td>
+      
+              <td (click)="setFilterByTipopaseo(paseo.tipopaseo.id)">
+               {{paseo.tipopaseo.id}} -- {{paseo.tipopaseo.nombre}} </td>
+
+            <td (click)="setFilterByUsuario(paseo.usuario.id)">
+               {{paseo.usuario.id }} -- {{ paseo.usuario.nombre}}</td>
+
+              <td (click)="setFilterByPerro(paseo.perro.id)">
+              {{paseo.perro.id}} -- {{ paseo.perro.nombre}} -- {{paseo.perro.usuario.nombre}}</td>
+      
+            <td>    
+                <div class="btn-group" role="group" aria-label="Herramientas">
+                  <button class="btn btn-sm btn-primary" [routerLink]="['/admin/paseo/view', paseo.id]">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-warning" [routerLink]="['/admin/paseo/edit', paseo.id]">
+                    <fa-icon [icon]="faUserPen"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-danger" [routerLink]="['/admin/paseo/remove', paseo.id]">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

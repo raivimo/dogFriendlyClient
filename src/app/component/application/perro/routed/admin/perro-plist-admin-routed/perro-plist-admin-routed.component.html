@@ -1,0 +1,116 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+  
+        <h1 class="text-center mb-5">Lista de Perros</h1>
+  
+        <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
+          <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary mx-3">Generar Perros</a>
+          <a [routerLink]="['/admin/perro/new']" class="btn btn-primary mx-3">Alta de Perro</a>
+  
+          <app-search-unrouted [placeHolder]="'Buscar Perro'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+  
+          <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size"
+            (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
+        </div>
+  
+        <div class="col-md">
+          <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
+        </div>
+  
+  
+        <div class="col-md text-start">
+          <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
+          <button class="btn btn-outline-danger" *ngIf="id_UsuarioFilter!=0" (click)="setFilterByUsuario(0)">
+            <i class="bi bi-x-circle"></i> Reset Usuario {{id_UsuarioFilter}} filter</button>
+        </div>
+
+        <div class="col-md text-start">
+            <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
+            <button class="btn btn-outline-danger" *ngIf="id_RazaFilter!=0" (click)="setFilterByRaza(0)">
+              <i class="bi bi-x-circle"></i> Reset Raza {{id_RazaFilter}} filter</button>
+          </div>
+  
+        <div class="col-md text-end">
+          <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
+        </div>
+  
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th (click)="setOrder('id')">ID
+                <fa-icon *ngIf="sortField=='id'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='id'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('nombre')">Nombre
+                <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('fechaNacimiento')">Fecha de Nacimiento
+                <fa-icon *ngIf="sortField=='fechaNacimiento'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='fechaNacimiento'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('genero')">Genero
+                <fa-icon *ngIf="sortField=='genero' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='genero' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('peso')">Peso
+                <fa-icon *ngIf="sortField=='peso' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='peso' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('sociable')">Sociable
+                <fa-icon *ngIf="sortField=='sociable' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='sociable' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('puedeIrSuelto')">Puede Ir Suelto
+                <fa-icon *ngIf="sortField=='puedeIrSuelto' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='puedeIrSuelto' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th (click)="setOrder('esJugueton')">Es Jugueton
+                <fa-icon *ngIf="sortField=='esJugueton' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                <fa-icon *ngIf="sortField=='esJugueton' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+              </th>
+              <th>Dueño</th>
+              <th>Raza</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let perro of responseFromServer.content">
+              <td>{{perro.id}}</td>
+              <td>{{perro.nombre}}</td>
+              <td>{{perro.fechaNacimiento}}</td>
+              <td>{{perro.genero}}</td>
+              <td>{{perro.peso}}</td>
+              <td>{{perro.sociable}}</td>
+              <td>{{perro.puedeIrSuelto}}</td>
+              <td>{{perro.esJugueton}}</td>
+
+              <td (click)="setFilterByUsuario(perro.usuario.id)">
+                {{perro.usuario.id}}-{{perro.usuario.nombre}}</td>
+
+              <td (click)="setFilterByRaza(perro.raza.id)">
+                    {{perro.raza.id}}-{{perro.raza.nombre}}</td>
+
+
+              <td>
+                <div class="btn-group" role="group" aria-label="Herramientas">
+                  <button class="btn btn-sm btn-primary" [routerLink]="['/admin/perro/view', perro.id]">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-warning" [routerLink]="['/admin/perro/edit', perro.id]">
+                    <fa-icon [icon]="faUserPen"></fa-icon>
+                  </button>
+                  <button class="btn btn-sm btn-danger" [routerLink]="['/admin/perro/remove', perro.id]">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </div>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
