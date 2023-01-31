@@ -15,8 +15,6 @@ declare let bootstrap: any;
 })
 export class UsuarioNewAdminRoutedComponent implements OnInit {
 
- 
-  //id: number = 0;
   oUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;
   oUsuario2Send: IUsuario2Send = null;
@@ -35,11 +33,9 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
     private oUsuarioService: UsuarioService,
     private oTipousuarioService: TipousuarioService,
     private oFormBuilder: FormBuilder,
-  ) {
-    //this.id = oActivatedRoute.snapshot.params['id'];
-  }
+  ) {  }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
       nombre: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
@@ -48,12 +44,13 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
       email: ["", [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       fechaNacimiento: ["", [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]],
       login: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
+
       id_tipousuario: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     }); 
   }
 
   onSubmit() {
-    console.log("onSubmit");
+    console.log("apretando boton!");
     this.oUsuario2Send = {
       id: this.oForm.value.id,
       nombre: this.oForm.value.nombre,
@@ -62,9 +59,11 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
       email: this.oForm.value.email,
       fechaNacimiento: this.oForm.value.fechaNacimiento,
       login: this.oForm.value.login,
+
       tipousuario: { id: this.oForm.value.id_tipousuario }
     }
     if (this.oForm.valid) {
+
       this.oUsuarioService.newOne(this.oUsuario2Send).subscribe({
         next: (data: number) => {
           //open bootstrap modal here
