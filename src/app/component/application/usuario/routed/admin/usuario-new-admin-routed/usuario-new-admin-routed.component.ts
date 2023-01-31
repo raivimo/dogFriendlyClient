@@ -38,11 +38,11 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
   ngOnInit():void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
-      nombre: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
-      apellido1: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      apellido2: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      apellido1: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      apellido2: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       email: ["", [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      fechaNacimiento: ["", [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]],
+      fechaNacimiento: ["", [Validators.required, /* Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)] */]],
       login: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(10)]],
 
       id_tipousuario: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]

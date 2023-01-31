@@ -109,20 +109,20 @@
         <div class="mb-3 row">
           <label for="fechaNacimiento" class="col-sm-2 col-form-label" aria-placeholder="dd-mm-yyyy">Fecha de Nacimiento</label>
           <div class="col-sm-4 has-validation">
-            <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
+            <input type="date" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
             oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['pattern'],
               'is-invalid' :  oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern'] ||
-              oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}" id="inputfechaNacimiento"
-              formControlName="fechaNacimiento" id="inputfechaNacimiento" formControlName="fechaNacimiento">
+              oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}"
+              id="inputfechaNacimiento" formControlName="fechaNacimiento">
 
             <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern']">
-              Error format (dd-MM-yyyy)
+                Formato de entrada: (dd-MM-yyyy)
             </div>
 
             <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
               *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']">
-              Required
+              Campo obligatorio
             </div>
           </div>
         </div>

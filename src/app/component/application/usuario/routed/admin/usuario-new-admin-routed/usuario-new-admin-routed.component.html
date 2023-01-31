@@ -24,11 +24,11 @@
                 formControlName="nombre">
               <div id="inputNombreFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength']">
-                La longitud mínima es de 5 caracteres.
+                La longitud mínima es de 3 caracteres.
               </div>
               <div id="inputNombreFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength']">
-                La longitud máxima es de 10 caracteres.
+                La longitud máxima es de 20 caracteres.
               </div>
               <div id="inputNombreFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']">
@@ -49,11 +49,11 @@
                 formControlName="apellido1">
               <div id="inputApellido1Feedback" class="invalid-feedback"
                 *ngIf="oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['minlength']">
-                La longitud mínima es de 5 caracteres.
+                La longitud mínima es de 3 caracteres.
               </div>
               <div id="inputApellido1Feedback" class="invalid-feedback"
                 *ngIf="oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['maxlength']">
-                La longitud máxima es de 10 caracteres.
+                La longitud máxima es de 20 caracteres.
               </div>
               <div id="inputApellido1Feedback" class="invalid-feedback"
                 *ngIf="oForm.controls.apellido1.dirty &&  oForm.controls.apellido1.errors?.['required']">
@@ -74,11 +74,11 @@
                 formControlName="apellido2">
               <div id="inputLastnombreFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['minlength']">
-                La longitud mínima es de 5 caracteres.
+                La longitud mínima es de 3 caracteres.
               </div>
               <div id="inputLastnombreFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['maxlength']">
-                La longitud máxima es de 10 caracteres.
+                La longitud máxima es de 20 caracteres.
               </div>
               <div id="inputLastnombreFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.apellido2.dirty &&  oForm.controls.apellido2.errors?.['required']">
@@ -107,17 +107,17 @@
           </div>
   
           <div class="mb-3 row">
-            <label for="fechaNacimiento" class="col-sm-2 col-form-label" aria-placeholder="dd-mm-yyyy">Fecha de Nacimiento</label>
+            <label for="fechaNacimiento" class="col-sm-2 col-form-label" aria-placeholder="dd-MM-yyyy">Fecha de Nacimiento</label>
             <div class="col-sm-4 has-validation">
-              <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
+              <input type="date" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
               oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['pattern'],
                 'is-invalid' :  oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern'] ||
-                oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}" id="inputfechaNacimiento"
-                formControlName="fechaNacimiento" id="inputfechaNacimiento" formControlName="fechaNacimiento">
+                oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}"
+                id="inputfechaNacimiento" formControlName="fechaNacimiento">
   
               <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
                 *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern']">
-                Error format (dd-MM-yyyy)
+                Formato de entrada: (dd-MM-yyyy)
               </div>
   
               <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
@@ -142,11 +142,11 @@
   
               <div class="invalid-feedback"
                 *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['minlength']">
-                La longitud mínima es de 5 caracteres.
+                La longitud mínima es de 3 caracteres.
               </div>
               <div class="invalid-feedback"
                 *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['maxlength']">
-                La longitud máxima es de 10 caracteres.
+                La longitud máxima es de 20 caracteres.
               </div>
               <div class="invalid-feedback"
                 *ngIf="oForm.controls.login.dirty &&  oForm.controls.login.errors?.['required']">
