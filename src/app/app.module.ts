@@ -75,6 +75,7 @@ import { FacturaViewAdminRoutedComponent } from './component/application/factura
 import { FacturaRemoveAdminRoutedComponent } from './component/application/factura/routed/admin/factura-remove-admin-routed/factura-remove-admin-routed.component';
 import { FacturaService } from './service/factura.service';
 import { FacturaDetailAdminUnroutedComponent } from './component/application/factura/unrouted/factura-detail-admin-unrouted/factura-detail-admin-unrouted.component';
+import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo/unrouted/paseo-finder-admin-unrouted/paseo-finder-admin-unrouted.component';
 
 
 @NgModule({
@@ -158,6 +159,7 @@ import { FacturaDetailAdminUnroutedComponent } from './component/application/fac
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
     FacturaDetailAdminUnroutedComponent,
+    PaseoFinderAdminUnroutedComponent,
 
   ],
   

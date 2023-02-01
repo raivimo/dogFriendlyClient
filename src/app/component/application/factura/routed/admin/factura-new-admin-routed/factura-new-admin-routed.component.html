@@ -13,12 +13,12 @@
           </div>
   
           <div class="mb-3 row">
-            <label for="inputNombre" class="col-sm-2 col-form-label">Fecha</label>
+            <label for="inputNombre" class="col-sm-2 col-form-label" aria-placeholder="dd/mm/yyyy">Fecha</label>
             <div class="col-sm-4 has-validation">
-              <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['required'] &&
-                oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['minlength'] 
+              <input type="date" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['required'] &&
+                oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['pattern'] 
                 && oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['maxlength'],
-                'is-invalid' :  oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['minlength'] 
+                'is-invalid' :  oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['pattern'] 
                 ||  oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['maxlength'] ||  
                 oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['required']}"
                 id="inputFecha" formControlName="fecha">
@@ -34,17 +34,17 @@
           </div>
   
           <div class="mb-3 row">
-            <label for="inputIva" class="col-sm-2 col-form-label">IVA : </label>
+            <label for="inputIva" class="col-sm-2 col-form-label" aria-placeholder="21">IVA : </label>
             <div class="col-sm-4 has-validation">
-              <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['required'] &&
-              oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['minlength'] 
+              <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['required'] &&
+              oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['pattern'] 
                 && oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['maxlength'],
-                'is-invalid' :  oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['minlength'] 
+                'is-invalid' :  oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['pattern'] 
                 ||  oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['maxlength'] ||  
                 oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['required']}"
                 id="inputIva" formControlName="iva">
          
-              <div id="inputApellido1Feedback" class="invalid-feedback" *ngIf="oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['pattern']">
+              <div id="inputApellido1Feedback" class="invalid-feedback" *ngIf="oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['patternn']">
                 Formato no correcto
               </div>
 
@@ -59,9 +59,9 @@
             <label for="inputPagado" class="col-sm-2 col-form-label">Pagado</label>
             <div class="col-sm-4 has-validation">
               <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['required'] &&
-              oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['minlength'] 
+              oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['pattern'] 
                 && oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['maxlength'],
-                'is-invalid' :  oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['minlength'] 
+                'is-invalid' :  oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['pattern'] 
                 ||  oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['maxlength'] ||  
                 oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['required']}"
                 id="inputPagado" formControlName="pagado">
@@ -85,16 +85,11 @@
                 <span class="input-group-text">{{paseoDescription}}</span>
                 
                 <input type="text" class="form-control" formControlName="id_paseo" 
-  
-                (keyup)="updatePaseoDescription(oForm.controls.id_paseo.value)"
-  
-                [ngClass]="{'is-valid' :
-                     oForm.controls.id_paseo.dirty && !oForm.controls.id_paseo.errors?.['required'] &&
-                    !oForm.controls.id_paseo.errors?.['pattern'] && !oForm.controls.id_paseo.errors?.['incorrect'],
+                    (keyup)="updatePaseoDescription(oForm.controls.id_paseo.value)"
+                    [ngClass]="{'is-valid' : oForm.controls.id_paseo.dirty && !oForm.controls.id_paseo.errors?.['required'] &&
+                    !oForm.controls.id_paseo.errors?.['patternn'] && !oForm.controls.id_paseo.errors?.['incorrect'],
                     'is-invalid' :  (oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['required'] )
-                    ||
-                    ( oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['incorrect'])
-                  }">
+                    || (oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['incorrect'])}">
                 <button type="button" class="btn btn-primary" (click)="openModalFindPaseo()">Buscar</button>  
   
                 <div class="text-danger"
@@ -104,7 +99,7 @@
   
                 <div class="text-danger"
                   *ngIf="oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['pattern']">
-                  El campo ha de ser un entrero entre 1 y cuatro.
+                  El campo ha de ser un entrero entre 1 y 4.
                 </div>
               </div>
             </div>
@@ -126,9 +121,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-  
           {{modalContent}}
-  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
@@ -137,7 +130,7 @@
     </div>
   </div>
   
-  <div class="modal fade" id="findTipousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="findPaseo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -145,9 +138,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-  
-         <app-tipousuario-finder-admin-unrouted (closeEvent)="closePaseoModal($event)"></app-tipousuario-finder-admin-unrouted>
-  
+         <app-paseo-finder-admin-unrouted (closeEvent)="closePaseoModal($event)">
+         </app-paseo-finder-admin-unrouted>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>

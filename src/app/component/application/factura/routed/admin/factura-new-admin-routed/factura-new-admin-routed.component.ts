@@ -38,9 +38,9 @@ export class FacturaNewAdminRoutedComponent implements OnInit {
   ngOnInit(): void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
-      fecha: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+      fecha: ["", [Validators.required,]],
       iva: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
-      pagado: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+      pagado: ["", [Validators.required, /* Validators.pattern(/^\d{1,6}$/) */]],
 
       id_paseo: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     }); 
@@ -96,7 +96,7 @@ export class FacturaNewAdminRoutedComponent implements OnInit {
   updatePaseoDescription(id_paseo: number) {
     this.oPaseoService.getOne(id_paseo).subscribe({
       next: (data: IPaseo) => {      
-        this.paseoDescription = data.lugar;        
+        this.paseoDescription = data.fecha + " / " + data.lugar;        
       },
       error: (error: any) => {
         this.paseoDescription = "Paseo no encontrado";        
