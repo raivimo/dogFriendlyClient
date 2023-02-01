@@ -1,0 +1,25 @@
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{oFactura.id}}</td>
+        </tr>
+        <tr>
+            <td>Fecha</td>
+            <td>{{oFactura.fecha}}</td>
+        </tr>
+        <tr>
+            <td>IVA</td>
+            <td>{{oFactura.iva}}</td>
+        </tr>
+        <tr>
+            <td>Pagado</td>
+            <td>{{oFactura.pagado}}</td>
+        </tr>
+        <tr>
+            <td>Paseo</td>
+            <td>ID: {{oFactura.paseo.id}} DIA: {{oFactura.paseo.fecha}} / EN: {{oFactura.paseo.lugar}} / con el PERRITO: {{ oFactura.paseo.perro.nombre }}  / cuyo DUEÑO ES: {{oFactura.paseo.perro.usuario.nombre}}</td>
+        </tr>
+    </tbody>
+  </table>
+  

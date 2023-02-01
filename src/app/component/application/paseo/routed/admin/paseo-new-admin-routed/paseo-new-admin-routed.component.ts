@@ -46,7 +46,7 @@ export class PaseoNewAdminRoutedComponent implements OnInit {
     ngOnInit(): void {
       this.oForm = <FormGroup> this.oFormBuilder.group({
         id: [""],
-        fecha: ["", [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]],
+        fecha: ["", [Validators.required,/*  Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],
         lugar: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
         precio: ["", [Validators.required, Validators.required, Validators.pattern(/^\d{1,6}$/)]],
         

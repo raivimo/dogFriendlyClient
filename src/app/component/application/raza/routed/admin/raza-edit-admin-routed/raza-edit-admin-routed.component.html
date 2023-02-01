@@ -1,14 +1,26 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h1 class="text-center mb-5">Editar Raza</h1>
+            <h1 class="text-center mb-5">Editar Raza de Perro</h1>
 
-            <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
-
+            <form
+                novalidate
+                [formGroup]="oForm"
+                *ngIf="oForm"
+                (ngSubmit)="onSubmit()"
+            >
                 <div class="mb-3 row">
-                    <label for="inputID" class="col-sm-2 col-form-label">ID</label>
+                    <label for="inputID" class="col-sm-2 col-form-label"
+                        >ID</label
+                    >
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" id="inputID" formcontrolname="id" readonly>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="inputID"
+                            formControlName="id"
+                            readonly
+                        />
                     </div>
                 </div>
 
@@ -16,57 +28,81 @@
                     <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
                     <div class="col-sm-4 has-validation">
                         <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['required'] &&
-                                          oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['minlength']
-                                            && oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['maxlength'],
-                                            'is-invalid' :  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength']
-                                            ||  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength'] ||
-                                            oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']}"
-                                            id="inputNombre" formcontrolname="nombre">
+                            oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['minlength'] 
+                            && oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['maxlength'],
+                            'is-invalid' :  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength'] 
+                        ||  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength'] ||  
+                            oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']}"
+                            id="inputNombre" formControlName="nombre"/>
+
                         <div id="inputNombreFeedback" class="invalid-feedback" *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength']">
-                            La longitud mínima es de 5 caracteres.
+                            La longitud mínima es de 3 caracteres.
                         </div>
+
                         <div id="inputNombreFeedback" class="invalid-feedback" *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength']">
-                            La longitud máxima es de 10 caracteres.
+                            La longitud máxima es de 20 caracteres.
                         </div>
+
                         <div id="inputNombreFeedback" class="invalid-feedback" *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']">
                             El campo es obligatorio.
                         </div>
                     </div>
                 </div>
 
-                <div class="mb-3 row">
-                    <label for="inputTamanyo" class="col-sm-2 col-form-label">Tamaño</label>
-                    <div class="col-sm-4 has-validation">
-                        <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.tamanyo.dirty && !oForm.controls.tamanyo.errors?.['required'] &&
-                                          oForm.controls.tamanyo.dirty && !oForm.controls.tamanyo.errors?.['minlength']
-                                            && oForm.controls.tamanyo.dirty && !oForm.controls.tamanyo.errors?.['maxlength'],
-                                            'is-invalid' :  oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['minlength']
-                                            ||  oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['maxlength'] ||
-                                            oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['required']}"
-                                            id="inputTamanyo" formcontrolname="tamanyo">
-                        <div id="inputTamanyoFeedback" class="invalid-feedback" *ngIf="oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['minlength']">
-                            La longitud mínima es de 5 caracteres.
-                        </div>
-                        <div id="inputTamanyoFeedback" class="invalid-feedback" *ngIf="oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['maxlength']">
-                            La longitud máxima es de 10 caracteres.
-                        </div>
-                        <div id="inputTamanyoFeedback" class="invalid-feedback" *ngIf="oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['required']">
-                            El campo es obligatorio.
+                    <div class="mb-3 row">
+                        <label for="inputTamanyo" class="col-sm-2 col-form-label">Tamaño</label>
+                        <div class="col-sm-4 has-validation">
+                            <input type="text" class="form-control"
+                                [ngClass]="{'is-valid' : oForm.controls.tamanyo.dirty && !oForm.controls.tamanyo.errors?.['required'] &&
+                                oForm.controls.tamanyo.dirty && !oForm.controls.tamanyo.errors?.['minlength'] 
+                                && oForm.controls.tamanyo.dirty && !oForm.controls.tamanyo.errors?.['maxlength'],
+                                'is-invalid' :  oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['minlength'] 
+                                ||  oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['maxlength'] ||  
+                                 oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['required']}"
+                                id="inputTamanyo" formControlName="tamanyo"/>
+
+                            <div id="inputTamanyoFeedback" class="invalid-feedback" *ngIf="oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['minlength']">
+                                La longitud mínima es de 3 caracteres.
+                            </div>
+
+                            <div id="inputTamanyoFeedback" class="invalid-feedback" *ngIf="oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['maxlength']">
+                                La longitud máxima es de 20 caracteres.
+                            </div>
+
+                            <div id="inputTamanyoFeedback" class="invalid-feedback" *ngIf="oForm.controls.tamanyo.dirty &&  oForm.controls.tamanyo.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-        </form>
 
+                    <div>
+                        <button type="submit" class="btn btn-primary">
+                            Guardar
+                        </button>
+                    </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
 
+<div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          {{modalContent}}
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
-
-
-            
 

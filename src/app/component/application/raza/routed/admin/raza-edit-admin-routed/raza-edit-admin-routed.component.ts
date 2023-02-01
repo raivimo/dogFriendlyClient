@@ -32,7 +32,7 @@ export class RazaEditAdminRoutedComponent implements OnInit {
       this.id = oActivatedRoute.snapshot.params['id'];
     }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getOne();
   }
 
@@ -44,44 +44,56 @@ export class RazaEditAdminRoutedComponent implements OnInit {
 
             this.oForm = <FormGroup>this.oFormBuilder.group({
                 id: [data.id, [Validators.required]],
-                nombre: [data.nombre,[Validators.required,Validators.minLength(3),Validators.maxLength(10),]],
-                tamanyo: [data.tamanyo,[Validators.required,Validators.minLength(3),Validators.maxLength(10),]],
+                nombre: [data.nombre,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+                tamanyo: [data.tamanyo,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
             });
         },
     });
 }
 
-  onSubmit() {
-    console.log("onSubmit");
+onSubmit() {
+    console.log('onSubmit');
     this.oRazaSend = {
-      id: this.oForm.value.id,
-      nombre: this.oForm.value.nombre,
-      tamanyo: this.oForm.value.tamanyo,
-    }
-    if (this.oForm.valid) {
-      this.oRazaService.newOne(this.oRazaSend).subscribe({
-        next: (data: number) => {
-          //open bootstrap modal here
-          this.modalTitle = "dogFriendly";
-          this.modalContent = "Raza" + data + " creada";
-          this.showModal(data);
-        }
-      })
-    }
-  }
+        id: this.oForm.value.id,
+        nombre: this.oForm.value.nombre,
+        tamanyo: this.oForm.value.tamanyo
+    };
 
-  showModal = (id: number) => {
-    this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), { //pasar el myModal como parametro
-      keyboard: false
-    })
+    if (this.oForm.valid) {
+        console.log('is valid');
+        this.oRazaService
+            .updateOne(this.oRazaSend)
+            .subscribe({
+                next: (data: number) => {
+                    //open bootstrap modal here
+                    this.modalTitle = 'dogFriends';
+                    this.modalContent =
+                        'Raza de perro ' + this.id + ' actualizado';
+                    this.showModal();
+                },
+            });
+    }
+}
+
+showModal = () => {
+    this.myModal = new bootstrap.Modal(
+        document.getElementById(this.mimodal),
+        {
+            //pasar el myModal como parametro
+            keyboard: false,
+        }
+    );
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      console.log({id})
-      this.oRouter.navigate(['/admin/usuario/view/' + id])
-    })
-    this.myModal.show()
-  }
+        this.oRouter.navigate(['/admin/raza/view', this.id]);
+    });
+    this.myModal.show();
+};
+
+
+
+}
 
   
 
-}
+

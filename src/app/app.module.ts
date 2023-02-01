@@ -68,6 +68,14 @@ import { TipopaseoRemoveAdminRoutedComponent } from './component/application/tip
 import { TipopaseoViewAdminRoutedComponent } from './component/application/tipopaseo/routed/admin/tipopaseo-view-admin-routed/tipopaseo-view-admin-routed.component';
 import { TipopaseoService } from './service/tipopaseo.service';
 import { TipopaseoDetailAdminUnroutedComponent } from './component/application/tipopaseo/unrouted/tipopaseo-detail-admin-unrouted/tipopaseo-detail-admin-unrouted.component';
+import { FacturaEditAdminRoutedComponent } from './component/application/factura/routed/admin/factura-edit-admin-routed/factura-edit-admin-routed.component';
+import { FacturaNewAdminRoutedComponent } from './component/application/factura/routed/admin/factura-new-admin-routed/factura-new-admin-routed.component';
+import { FacturaPlistAdminRoutedComponent } from './component/application/factura/routed/admin/factura-plist-admin-routed/factura-plist-admin-routed.component';
+import { FacturaViewAdminRoutedComponent } from './component/application/factura/routed/admin/factura-view-admin-routed/factura-view-admin-routed.component';
+import { FacturaRemoveAdminRoutedComponent } from './component/application/factura/routed/admin/factura-remove-admin-routed/factura-remove-admin-routed.component';
+import { FacturaService } from './service/factura.service';
+import { FacturaDetailAdminUnroutedComponent } from './component/application/factura/unrouted/factura-detail-admin-unrouted/factura-detail-admin-unrouted.component';
+import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo/unrouted/paseo-finder-admin-unrouted/paseo-finder-admin-unrouted.component';
 
 
 @NgModule({
@@ -134,21 +142,25 @@ import { TipopaseoDetailAdminUnroutedComponent } from './component/application/t
     TipopaseoViewAdminRoutedComponent,
     //Unrouted
     TipopaseoFinderAdminUnroutedComponent,
+    TipopaseoDetailAdminUnroutedComponent,
 
+    //Factura
+    FacturaEditAdminRoutedComponent,
+    FacturaNewAdminRoutedComponent,
+    FacturaPlistAdminRoutedComponent,
+    FacturaViewAdminRoutedComponent,
+    FacturaRemoveAdminRoutedComponent,
+    //Unrouted
+
+    //Shared
     PaginationUnroutedComponent,
     GenerateComponent,
-
     FooterComponent,
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
-    TipopaseoDetailAdminUnroutedComponent,
-    
+    FacturaDetailAdminUnroutedComponent,
+    PaseoFinderAdminUnroutedComponent,
 
-
-
-
-
-  
   ],
   
   imports: [
@@ -172,8 +184,8 @@ import { TipopaseoDetailAdminUnroutedComponent } from './component/application/t
     UsuarioService,
     RazaService,
     PaseoService,
-    TipopaseoService
-    
+    TipopaseoService,
+    FacturaService
     
   ],
   bootstrap: [AppComponent]

@@ -42,19 +42,19 @@ export class PerroNewAdminRoutedComponent implements OnInit {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
       nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      fechaNacimiento: ["", [Validators.required, Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/)]],
+      fechaNacimiento: ["", [Validators.required, /* Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],
       genero: ["", [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
       imagen: [""],
       peso: ["", [Validators.required, Validators.pattern(/^\d{1,4}$/)]],
-      sociable: ["", [Validators.required,Validators.pattern(/^\d{0,1}$/)]],
+      sociable: ["", [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
       puedeIrSuelto: ["", [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
       esJugueton: ["", [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
       id_raza: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
       id_usuario: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
-    }
-  
-    
+  }
+
+
   onSubmit() {
     console.log("onSubmit");
     this.oPerroSend = {
@@ -68,13 +68,13 @@ export class PerroNewAdminRoutedComponent implements OnInit {
       puedeIrSuelto: this.oForm.value.puedeIrSuelto,
       esJugueton: this.oForm.value.esJugueton,
 
-      raza: { id:this.oForm.value.id_raza },
-      usuario: { id:this.oForm.value.id_usuario }
+      raza: { id: this.oForm.value.id_raza },
+      usuario: { id: this.oForm.value.id_usuario }
     }
     if (this.oForm.valid) {
       this.oPerroService.newOne(this.oPerroSend).subscribe({
         next: (data: number) => {
-          
+
           //open bootstrap modal here
           this.modalTitle = "dogFriends";
           this.modalContent = "Perro " + data + " creado";
@@ -84,14 +84,14 @@ export class PerroNewAdminRoutedComponent implements OnInit {
     }
   }
 
-  showModal = (id:number) => {
+  showModal = (id: number) => {
     this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), { //pasar el myModal como parametro
       keyboard: false
     })
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      
-      this.oRouter.navigate(['/admin/perro/view' + id])
+      console.log({id})
+      this.oRouter.navigate(['/admin/perro/view/' + id])
     })
     this.myModal.show()
   }
@@ -124,24 +124,24 @@ export class PerroNewAdminRoutedComponent implements OnInit {
 
   updateUsuarioDescription(id_usuario: number) {
     this.oUsuarioService.getOne(id_usuario).subscribe({
-      next: (data: IUsuario) => {      
-        this.usuarioDescription = data.nombre;        
+      next: (data: IUsuario) => {
+        this.usuarioDescription = data.nombre;
       },
       error: (error: any) => {
-        this.usuarioDescription = "Usuario no encontrado";        
-        this.oForm.controls['id_usuario'].setErrors({'incorrect': true});
+        this.usuarioDescription = "Usuario no encontrado";
+        this.oForm.controls['id_usuario'].setErrors({ 'incorrect': true });
       }
     })
   }
 
   updateRazaDescription(id_raza: number) {
     this.oRazaService.getOne(id_raza).subscribe({
-      next: (data: IRaza) => {      
-        this.razaDescription = data.nombre;        
+      next: (data: IRaza) => {
+        this.razaDescription = data.nombre;
       },
       error: (error: any) => {
-        this.usuarioDescription = "Raza no encontrado";        
-        this.oForm.controls['id_raza'].setErrors({'incorrect': true});
+        this.usuarioDescription = "Raza no encontrado";
+        this.oForm.controls['id_raza'].setErrors({ 'incorrect': true });
       }
     })
   }

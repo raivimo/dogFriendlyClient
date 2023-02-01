@@ -44,8 +44,8 @@ export class TipopaseoEditAdminRoutedComponent implements OnInit {
 
             this.oForm = <FormGroup>this.oFormBuilder.group({
                 id: [data.id, [Validators.required]],
-                nombre: [data.nombre,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]],
-                duracion: [data.duracion,[Validators.required,Validators.minLength(3),Validators.maxLength(10)]]
+                nombre: [data.nombre,[Validators.required,Validators.minLength(3),Validators.maxLength(20)]],
+                duracion: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
             });
         },
     });

@@ -32,7 +32,7 @@ export class TipopaseoNewAdminRoutedComponent implements OnInit {
   ngOnInit(): void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
-      nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       duracion: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
   }
