@@ -163,9 +163,9 @@ export class GenerateComponent implements OnInit {
   }
 
 
-  generateTiposDeUsuario() {
+  generateTiposDeUsuario(n:number):void {
     this.bLoading = true;
-    this.oGenerateService.generateTiposDeUsuario().subscribe(
+    this.oGenerateService.generateTiposDeUsuario(n).subscribe(
       (num: number) => {
         this.strResult = "Ahora hay " + num + " tipos de producto";
         this.bLoading = false;

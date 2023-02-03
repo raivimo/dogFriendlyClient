@@ -20,7 +20,7 @@ export class GenerateService {
     return this.http.post<number>(baseURL + '/usuario/generate/' + n, { amount: n }, httpOptions);
   }
 
-  generateTiposDeUsuario(): Observable<number> {
+  generateTiposDeUsuario(n:number): Observable<number> {
     return this.http.post<number>(baseURL + '/tipousuario/generate', "", httpOptions);
   }
 
