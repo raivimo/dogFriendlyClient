@@ -1,1 +1,149 @@
-<p>factura-edit-admin-routed works!</p>
+<div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center mb-5">Edit de Factura</h1>
+  
+        <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
+  
+          <div class="mb-3 row">
+            <label for="inputID" class="col-sm-2 col-form-label">ID</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="inputID" formControlName="id" readonly>
+            </div>
+          </div>
+  
+          <div class="mb-3 row">
+            <label for="inputNombre" class="col-sm-2 col-form-label" aria-placeholder="dd/mm/yyyy">Fecha</label>
+            <div class="col-sm-4 has-validation">
+              <input type="date" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['required'] &&
+                oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['pattern'] 
+                && oForm.controls.fecha.dirty && !oForm.controls.fecha.errors?.['maxlength'],
+                'is-invalid' :  oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['pattern'] 
+                ||  oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['maxlength'] ||  
+                oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['required']}"
+                id="inputFecha" formControlName="fecha">
+             
+              <div id="inputFechaFeedback" class="invalid-feedback" *ngIf="oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['pattern']">
+                Formato de entrada: dd-MM-yyyy
+              </div>
+
+              <div id="inputFechaFeedback" class="invalid-feedback" *ngIf="oForm.controls.fecha.dirty &&  oForm.controls.fecha.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+            </div>
+          </div>
+  
+          <div class="mb-3 row">
+            <label for="inputIva" class="col-sm-2 col-form-label" aria-placeholder="21">IVA : </label>
+            <div class="col-sm-4 has-validation">
+              <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['required'] &&
+              oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['pattern'] 
+                && oForm.controls.iva.dirty && !oForm.controls.iva.errors?.['maxlength'],
+                'is-invalid' :  oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['pattern'] 
+                ||  oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['maxlength'] ||  
+                oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['required']}"
+                id="inputIva" formControlName="iva">
+         
+              <div id="inputApellido1Feedback" class="invalid-feedback" *ngIf="oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['patternn']">
+                Formato no correcto
+              </div>
+
+              <div id="inputApellido1Feedback" class="invalid-feedback"
+                *ngIf="oForm.controls.iva.dirty &&  oForm.controls.iva.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+            </div>
+          </div>
+  
+          <div class="mb-3 row">
+            <label for="inputPagado" class="col-sm-2 col-form-label">Pagado</label>
+            <div class="col-sm-4 has-validation">
+              <input type="text" class="form-control" [ngClass]="{'is-valid' : oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['required'] &&
+              oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['pattern'] 
+                && oForm.controls.pagado.dirty && !oForm.controls.pagado.errors?.['maxlength'],
+                'is-invalid' :  oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['pattern'] 
+                ||  oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['maxlength'] ||  
+                oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['required']}"
+                id="inputPagado" formControlName="pagado">
+
+              <div id="inputLastnombreFeedback" class="invalid-feedback"
+                *ngIf="oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['pattern']">
+                Formato no correcto
+              </div>
+         
+              <div id="inputLastnombreFeedback" class="invalid-feedback"
+                *ngIf="oForm.controls.pagado.dirty &&  oForm.controls.pagado.errors?.['required']">
+                El campo es obligatorio.
+              </div>
+            </div>
+          </div>
+  
+          <div class="mb-3 row">
+            <label for="inputPaseo" class="col-sm-2 col-form-label">Paseo</label>
+            <div class="col-sm-6 has-validation">
+              <div class="input-group">
+                <span class="input-group-text">{{paseoDescription}}</span>
+                
+                <input type="text" class="form-control" formControlName="id_paseo" 
+                    (keyup)="updatePaseoDescription(oForm.controls.id_paseo.value)"
+                    [ngClass]="{'is-valid' : oForm.controls.id_paseo.dirty && !oForm.controls.id_paseo.errors?.['required'] &&
+                    !oForm.controls.id_paseo.errors?.['patternn'] && !oForm.controls.id_paseo.errors?.['incorrect'],
+                    'is-invalid' :  (oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['required'] )
+                    || (oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['incorrect'])}">
+                <button type="button" class="btn btn-primary" (click)="openModalFindPaseo()">Buscar</button>  
+  
+                <div class="text-danger"
+                  *ngIf="oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['required']">
+                  El campo es obligatorio.
+                </div>
+  
+                <div class="text-danger"
+                  *ngIf="oForm.controls.id_paseo.dirty &&  oForm.controls.id_paseo.errors?.['pattern']">
+                  El campo ha de ser un entrero entre 1 y 4.
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{modalContent}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="findPaseo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <app-paseo-finder-admin-unrouted (closeEvent)="closePaseoModal($event)">
+         </app-paseo-finder-admin-unrouted>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

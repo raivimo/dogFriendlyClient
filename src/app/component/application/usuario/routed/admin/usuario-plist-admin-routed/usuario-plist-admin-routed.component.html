@@ -19,12 +19,12 @@
           (eePage)="setPage($event)"></app-pagination-unrouted>
       </div>
 
-
+<!-- 
       <div class="col-md text-start">
         <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
         <button class="btn btn-outline-danger" *ngIf="id_tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">
           <i class="bi bi-x-circle"></i> Reset tipousuario {{id_tipousuarioFilter}} filter</button>
-      </div>
+      </div> -->
 
       <div class="col-md text-end">
         <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
@@ -53,6 +53,10 @@
               <fa-icon *ngIf="sortField=='email' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
               <fa-icon *ngIf="sortField=='email' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
             </th>
+            <th (click)="setOrder('fechaNacimiento')">Fecha de Nacimiento
+              <fa-icon *ngIf="sortField=='fechaNacimiento' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+              <fa-icon *ngIf="sortField=='fechaNacimiento' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+            </th>
             <th (click)="setOrder('login')">Login
               <fa-icon *ngIf="sortField=='login' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
               <fa-icon *ngIf="sortField=='login' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
@@ -68,7 +72,9 @@
             <td>{{usuario.apellido1}}</td>
             <td>{{usuario.apellido2}}</td>
             <td>{{usuario.email}}</td>
+            <td>{{usuario.fechaNacimiento}}</td>
             <td>{{usuario.login}}</td>
+
             <td (click)="setFilterByTipousuario(usuario.tipousuario.id)">
               {{usuario.tipousuario.id}}-{{usuario.tipousuario.nombre}}</td>
             <td>

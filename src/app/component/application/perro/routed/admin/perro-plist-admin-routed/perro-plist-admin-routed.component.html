@@ -20,17 +20,6 @@
         </div>
   
   
-        <div class="col-md text-start">
-          <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
-          <button class="btn btn-outline-danger" *ngIf="id_UsuarioFilter!=0" (click)="setFilterByUsuario(0)">
-            <i class="bi bi-x-circle"></i> Reset Usuario {{id_UsuarioFilter}} filter</button>
-        </div>
-
-        <div class="col-md text-start">
-            <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
-            <button class="btn btn-outline-danger" *ngIf="id_RazaFilter!=0" (click)="setFilterByRaza(0)">
-              <i class="bi bi-x-circle"></i> Reset Raza {{id_RazaFilter}} filter</button>
-          </div>
   
         <div class="col-md text-end">
           <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
