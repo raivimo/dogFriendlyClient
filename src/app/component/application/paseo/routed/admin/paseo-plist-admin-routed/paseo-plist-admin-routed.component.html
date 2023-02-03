@@ -21,19 +21,16 @@
   
   
         <div class="col-md text-start">
-          <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
           <button class="btn btn-outline-danger" *ngIf="id_tipopaseoFilter!=0" (click)="setFilterByTipopaseo(0)">
             <i class="bi bi-x-circle"></i> Reset Tipo Paseo {{id_tipopaseoFilter}} filter</button>
         </div>
 
         <div class="col-md text-start">
-            <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
             <button class="btn btn-outline-danger" *ngIf="id_usuarioFilter!=0" (click)="setFilterByUsuario(0)">
               <i class="bi bi-x-circle"></i> Reset Usuario {{id_usuarioFilter}} filter</button>
           </div>
 
           <div class="col-md text-start">
-            <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
             <button class="btn btn-outline-danger" *ngIf="id_perroFilter!=0" (click)="setFilterByPerro(0)">
               <i class="bi bi-x-circle"></i> Reset perro {{id_perroFilter}} filter</button>
           </div>
