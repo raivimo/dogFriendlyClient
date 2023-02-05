@@ -76,6 +76,7 @@ import { FacturaRemoveAdminRoutedComponent } from './component/application/factu
 import { FacturaService } from './service/factura.service';
 import { FacturaDetailAdminUnroutedComponent } from './component/application/factura/unrouted/factura-detail-admin-unrouted/factura-detail-admin-unrouted.component';
 import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo/unrouted/paseo-finder-admin-unrouted/paseo-finder-admin-unrouted.component';
+import { HttpOptionsService } from './service/httpoptions.service';
 
 
 @NgModule({
@@ -174,12 +175,15 @@ import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo
   providers: [
     CryptoService,
     DecodeService,
+    SessionService,
+    HttpOptionsService,
+
     PaginationService,
     CountService,
     GenerateService,
     MetadataService,
+
     PerroService,
-    SessionService,
     TipousuarioService,
     UsuarioService,
     RazaService,

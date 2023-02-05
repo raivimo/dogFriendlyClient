@@ -54,6 +54,8 @@ const routes: Routes = [
   { path: 'admin/usuario/remove/:id', component: UsuarioRemoveAdminRoutedComponent},
   { path: 'admin/usuario/new', component: UsuarioNewAdminRoutedComponent},
   { path: 'admin/usuario/edit/:id', component: UsuarioEditAdminRoutedComponent},
+ 
+  
   //TipoUsuario
   { path: 'admin/tipousuario/plist', component: TipousuarioPlistAdminRoutedComponent },
   { path: 'admin/tipousuario/view/:id', component: TipousuarioViewAdminRoutedComponent },
@@ -66,6 +68,8 @@ const routes: Routes = [
   { path: 'admin/perro/remove/:id', component: PerroRemoveAdminRoutedComponent},
   { path: 'admin/perro/new', component: PerroNewAdminRoutedComponent},
   { path: 'admin/perro/edit/:id', component:PerroEditAdminRoutedComponent},
+  { path: 'admin/perro/plist/usuario/:id', component: UsuarioEditAdminRoutedComponent},
+  
   //Raza
   { path: 'admin/raza/plist', component: RazaPlistAdminRoutedComponent },
   { path: 'admin/raza/view/:id', component: RazaViewAdminRoutedComponent },

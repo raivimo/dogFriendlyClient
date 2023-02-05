@@ -3,10 +3,10 @@
 
     <div class="col">
 
-    
 
-        <div class="d-flex flex-row justify-content-center">
-          <div class="card p-5" style="width: 25rem;">
+
+      <div class="d-flex flex-row justify-content-center">
+        <div class="card p-5" style="width: 25rem;">
           <form style="width:fit-content" [formGroup]="oFormularioLogin">
 
             <div class="d-flex flex-row align-items-center justify-content-start ">
@@ -15,8 +15,8 @@
 
             <!-- login input -->
             <div class="form-outline mb-4">
-              <label class="form-label" for="login">Login</label>
-              <input type="text" id="login" class="form-control" placeholder="Enter a login" name="login"
+              <label class="form-label" for="login">Nombre de Usuario</label>
+              <input type="text" id="login" class="form-control" placeholder="Introduce Login" name="login"
                 formControlName="login" />
 
             </div>
@@ -32,10 +32,10 @@
               <button type="button" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;"
                 (click)="login()">Login</button>
             </div>
-
+            {{username}}
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-warning" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                (click)="loginAsAdmin()">Login as admin</button>
+              <button (click)="loginAsAdmin()" type="button" class="btn btn-warning"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login as admin</button>
             </div>
 
           </form>
