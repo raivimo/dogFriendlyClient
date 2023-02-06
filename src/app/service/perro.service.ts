@@ -24,7 +24,7 @@ export class PerroService {
         .set("page", page)
         .set("size", size);
       if (id_usuario != 0) {
-        params = params.set("tipousuario", id_usuario);
+        params = params.set("usuario", id_usuario);
       }
       if (id_raza != 0) {
         params = params.set("raza", id_raza);

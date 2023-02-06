@@ -76,8 +76,10 @@
               <td>{{perro.puedeIrSuelto}}</td>
               <td>{{perro.esJugueton}}</td>
 
-              <td (click)="setFilterByUsuario(perro.usuario.id)">
-                {{perro.usuario.id}}-{{perro.usuario.nombre}}</td>
+              <td><a [routerLink]="['/admin', 'perro', 'plist', 'usuario', perro.usuario.id]"> {{perro.usuario.nombre}}</a></td>
+
+            <!--   <td (click)="setFilterByUsuario(perro.usuario.id)">
+                {{perro.usuario.id}}-{{perro.usuario.nombre}}</td> -->
 
               <td (click)="setFilterByRaza(perro.raza.id)">
                     {{perro.raza.id}}-{{perro.raza.nombre}}</td>

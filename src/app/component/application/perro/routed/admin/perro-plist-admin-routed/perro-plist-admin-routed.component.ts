@@ -38,7 +38,7 @@ export class PerroPlistAdminRoutedComponent implements OnInit {
     private oPerroService: PerroService,
     private oActivatedRoute: ActivatedRoute,
   ) {
-    this.id_usuario = this.oActivatedRoute.snapshot.params['id_usuario'];
+    this.id_UsuarioFilter = this.oActivatedRoute.snapshot.params['id_usuario'];
    }
 
   ngOnInit(): void {
