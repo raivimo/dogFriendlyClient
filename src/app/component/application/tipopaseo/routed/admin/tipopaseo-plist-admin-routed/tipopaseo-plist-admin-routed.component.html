@@ -37,6 +37,7 @@
                 <fa-icon *ngIf="sortField=='duracion'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
                 <fa-icon *ngIf="sortField=='duracion'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
               </th>
+              <th>Nº de Paseos</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -45,6 +46,10 @@
               <td>{{tipopaseo.id}}</td>
               <td>{{tipopaseo.nombre}}</td>
               <td>{{tipopaseo.duracion}}</td>
+
+              <td  *ngIf="tipopaseo.paseos==0">{{tipopaseo.paseos}}</td>
+              <td *ngIf="tipopaseo.paseos>0"><a [routerLink]="['/admin', 'tipopaseo', 'plist' , 'paseo', tipopaseo.id]">{{tipopaseo.paseos}}</a></td>
+
                 <td>
                 <div class="btn-group" role="group" aria-label="Herramientas">
                   <button class="btn btn-sm btn-primary" [routerLink]="['/admin/tipopaseo/view', tipopaseo.id]">

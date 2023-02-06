@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { IPage } from 'src/app/model/generic-types-interface';
 import { IPerro } from 'src/app/model/perro-interface';
@@ -11,6 +12,8 @@ import { PerroService } from 'src/app/service/perro.service';
   styleUrls: ['./perro-plist-admin-routed.component.css']
 })
 export class PerroPlistAdminRoutedComponent implements OnInit {
+
+  id_usuario: number = null;
   
   responseFromServer: IPage<IPerro>;
   //
@@ -32,8 +35,11 @@ export class PerroPlistAdminRoutedComponent implements OnInit {
   faArrowDown = faArrowDown;
 
   constructor(
-    private oPerroService: PerroService
-  ) { }
+    private oPerroService: PerroService,
+    private oActivatedRoute: ActivatedRoute,
+  ) {
+    this.id_usuario = this.oActivatedRoute.snapshot.params['id_usuario'];
+   }
 
   ngOnInit(): void {
     this.getPage();

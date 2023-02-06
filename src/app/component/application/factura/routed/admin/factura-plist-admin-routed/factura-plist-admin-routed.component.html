@@ -49,6 +49,7 @@
                 <fa-icon *ngIf="sortField=='apellido2' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
                 <fa-icon *ngIf="sortField=='apellido2' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
               </th>
+              <th>Usuario</th>
               <th>Paseo</th>
               <th>Acciones</th>
             </tr>
@@ -59,10 +60,13 @@
               <td>{{factura.fecha}}</td>
               <td>{{factura.iva}}</td>
               <td>{{factura.pagado}}</td>
+              <td>{{factura.paseo.usuario.nombre}}</td>
+              
+              
 
               <td (click)="setFilterByPaseo(factura.paseo.id)">
                 ID: {{factura.paseo.id}} DIA: {{factura.paseo.fecha}} / EN: {{factura.paseo.lugar}} / con el PERRITO: {{ factura.paseo.perro.nombre }} / cuyo DUEÑO ES: {{factura.paseo.perro.usuario.nombre}}</td>
-              <td>
+              <td>                
 
                 <div class="btn-group" role="group" aria-label="Herramientas">
                   <button class="btn btn-sm btn-primary" [routerLink]="['/admin/factura/view',factura.id]">

@@ -39,13 +39,19 @@
               <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
               <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
             </th>
+
+            <th>Nº Usuarios</th>
             <th>Acciones</th>
           </tr>
         </thead>
+          
         <tbody>
           <tr *ngFor="let tipousuario of responseFromServer.content">
             <td>{{tipousuario.id}}</td>
             <td>{{tipousuario.nombre}}</td>
+
+            <td  *ngIf="tipousuario.usuarios==0">{{tipousuario.usuarios}}</td>
+            <td *ngIf="tipousuario.usuarios>0"><a [routerLink]="['/admin', 'tipousuario', 'plist' , 'usuario', tipousuario.id]">{{tipousuario.usuarios}}</a></td>
           
               <div class="btn-group" role="group" aria-label="Herramientas">
                 <button class="btn btn-sm btn-primary" [routerLink]="['/admin/tipousuario/view',tipousuario.id]">

@@ -19,6 +19,7 @@ export interface ITipoPaseo {
     id:              number;
     nombre:          string;
     duracion:        number;
+    paseos:          number;
 }
 
 export interface ITipoPaseoForm {

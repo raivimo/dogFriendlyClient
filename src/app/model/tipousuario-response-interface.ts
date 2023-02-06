@@ -18,6 +18,7 @@ export interface TipousuarioResponse {
 export interface ITipoUsuario {
     id:              number;
     nombre:          string;
+    usuarios:        number;
 }
 
 export interface ITipoUsuarioForm {

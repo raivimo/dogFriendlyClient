@@ -61,6 +61,7 @@
               <th>Tipo de Paseo</th>
               <th>Usuario</th>
               <th>Perro y Dueño</th>
+              <th>Facturas</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -74,12 +75,16 @@
               <td (click)="setFilterByTipopaseo(paseo.tipopaseo.id)">
                {{paseo.tipopaseo.id}} -- {{paseo.tipopaseo.nombre}} </td>
 
-            <td (click)="setFilterByUsuario(paseo.usuario.id)">
+             <td (click)="setFilterByUsuario(paseo.usuario.id)">
                {{paseo.usuario.id }} -- {{ paseo.usuario.nombre}}</td>
 
               <td (click)="setFilterByPerro(paseo.perro.id)">
               {{paseo.perro.id}} -- {{ paseo.perro.nombre}} -- {{paseo.perro.usuario.nombre}}</td>
-      
+              
+            <td  *ngIf="paseo.facturas==0">{{paseo.facturas}}</td>
+            <td *ngIf="paseo.facturas>0"><a [routerLink]="['/admin', 'paseo', 'plist' , 'factura', paseo.id]">{{paseo.facturas}}</a></td>
+              
+
             <td>    
                 <div class="btn-group" role="group" aria-label="Herramientas">
                   <button class="btn btn-sm btn-primary" [routerLink]="['/admin/paseo/view', paseo.id]">
