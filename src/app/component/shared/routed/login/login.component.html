@@ -1,14 +1,10 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center align-items-center m-5">
-
     <div class="col">
-
-
-
       <div class="d-flex flex-row justify-content-center">
+
         <div class="card p-5" style="width: 25rem;">
           <form style="width:fit-content" [formGroup]="oFormularioLogin">
-
             <div class="d-flex flex-row align-items-center justify-content-start ">
               <p class="lead fw-normal my-5">LOGIN</p>
             </div>
@@ -18,7 +14,6 @@
               <label class="form-label" for="login">Nombre de Usuario</label>
               <input type="text" id="login" class="form-control" placeholder="Introduce Login" name="login"
                 formControlName="login" />
-
             </div>
 
             <!-- Password input -->
@@ -36,6 +31,11 @@
             <div class="text-center text-lg-start mt-4 pt-2">
               <button (click)="loginAsAdmin()" type="button" class="btn btn-warning"
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">Login as admin</button>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button (click)="loginAsUser()" type="button" class="btn btn-warning"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login as User</button>
             </div>
 
           </form>

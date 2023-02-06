@@ -63,8 +63,12 @@ export class LoginComponent implements OnInit {
   }
 
   loginAsAdmin() {
-    console.log("loginAsAdmin");
     this.oFormularioLogin.controls.login.setValue("admin");
+    this.oFormularioLogin.controls.password.setValue("andamio");
+  }
+
+  loginAsUser() {
+    this.oFormularioLogin.controls.login.setValue("raimon");
     this.oFormularioLogin.controls.password.setValue("andamio");
   }
 
