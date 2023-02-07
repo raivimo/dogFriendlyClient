@@ -4,7 +4,6 @@ import { Pageable, Sort } from "./shared-interface";
 import { IUsuario } from "./usuario-interface";
 import { IRaza } from "./raza-interface";
 
-
 export interface PerroResponse {
     content:          IPerro[];
     pageable:         Pageable;
@@ -18,8 +17,6 @@ export interface PerroResponse {
     size:             number;
     empty:            boolean;
 }
-
-
 
 export interface IPerro {
     id:         number;

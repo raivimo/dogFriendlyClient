@@ -18,6 +18,17 @@
           <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
             (eePage)="setPage($event)"></app-pagination-unrouted>
         </div>
+
+        <div class="col-md text-start">
+          <button class="btn btn-outline-danger" *ngIf="id_UsuarioFilter!=0" (click)="setFilterByUsuario(0)">
+            <i class="bi bi-x-circle"></i> Reset Usuario {{id_UsuarioFilter}} filter</button>
+        </div>
+
+        <div class="col-md text-start">
+          <button class="btn btn-outline-danger" *ngIf="id_RazaFilter!=0" (click)="setFilterByRaza(0)">
+            <i class="bi bi-x-circle"></i> Reset Raza {{id_RazaFilter}} filter</button>
+        </div>
+  
   
   
   

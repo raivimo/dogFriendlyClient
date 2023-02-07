@@ -13,7 +13,6 @@ import { PerroService } from 'src/app/service/perro.service';
 })
 export class PerroPlistAdminRoutedComponent implements OnInit {
 
-  id_usuario: number = null;
   
   responseFromServer: IPage<IPerro>;
   //
