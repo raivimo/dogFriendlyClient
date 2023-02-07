@@ -3,7 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './component/shared/routed/home/home.component';
 import { LoginComponent } from './component/shared/routed/login/login.component';
 import { MenuComponent } from './component/shared/unrouted/menu/menu.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -78,12 +77,16 @@ import { FacturaDetailAdminUnroutedComponent } from './component/application/fac
 import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo/unrouted/paseo-finder-admin-unrouted/paseo-finder-admin-unrouted.component';
 import { HttpOptionsService } from './service/httpoptions.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { HomeAdminRoutedComponent } from './component/shared/routed/home/admin/home-admin-routed/home-admin-routed.component';
+import { HomeUserRoutedComponent } from './component/shared/routed/home/user/home-user-routed/home-user-routed.component';
+import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/home-guess-routed/home-guess-routed.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeAdminRoutedComponent,
+    HomeUserRoutedComponent,
     LoginComponent,
     LogoutComponent,
     MenuComponent,
@@ -162,6 +165,9 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     DropdownRegisterPageComponent,
     FacturaDetailAdminUnroutedComponent,
     PaseoFinderAdminUnroutedComponent,
+    HomeAdminRoutedComponent,
+    HomeUserRoutedComponent,
+    HomeGuessRoutedComponent,
 
   ],
   

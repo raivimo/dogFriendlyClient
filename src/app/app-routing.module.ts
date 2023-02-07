@@ -1,4 +1,3 @@
-import { HomeComponent } from './component/shared/routed/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/shared/routed/login/login.component';
@@ -39,12 +38,16 @@ import { FacturaNewAdminRoutedComponent } from './component/application/factura/
 import { FacturaPlistAdminRoutedComponent } from './component/application/factura/routed/admin/factura-plist-admin-routed/factura-plist-admin-routed.component';
 import { FacturaRemoveAdminRoutedComponent } from './component/application/factura/routed/admin/factura-remove-admin-routed/factura-remove-admin-routed.component';
 import { FacturaViewAdminRoutedComponent } from './component/application/factura/routed/admin/factura-view-admin-routed/factura-view-admin-routed.component';
+import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/home-guess-routed/home-guess-routed.component';
 /* import { SessionResolver } from './resolve/session.resolve'; */
+import { HomeAdminRoutedComponent } from './component/shared/routed/home/admin/home-admin-routed/home-admin-routed.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeGuessRoutedComponent },
+  { path: 'home', component: HomeGuessRoutedComponent },
+  { path: 'home/admin', component: HomeAdminRoutedComponent },
+
   { path: 'login', component: LoginComponent },  
   { path: 'logout', component: LogoutComponent },  
   { path: 'admin/random/load', component: GenerateComponent},
