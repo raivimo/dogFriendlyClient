@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { IPage } from 'src/app/model/generic-types-interface';
@@ -13,7 +13,7 @@ import { PerroService } from 'src/app/service/perro.service';
 })
 export class PerroPlistAdminRoutedComponent implements OnInit {
 
-  
+  @Output() closeEvent = new EventEmitter<number>();
   responseFromServer: IPage<IPerro>;
   //
   strTermFilter: string = "";
@@ -36,9 +36,7 @@ export class PerroPlistAdminRoutedComponent implements OnInit {
   constructor(
     private oPerroService: PerroService,
     private oActivatedRoute: ActivatedRoute,
-  ) {
-    this.id_UsuarioFilter = this.oActivatedRoute.snapshot.params['id_usuario'];
-   }
+  ) {   }
 
   ngOnInit(): void {
     this.getPage();

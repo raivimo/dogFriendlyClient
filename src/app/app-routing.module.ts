@@ -68,7 +68,7 @@ const routes: Routes = [
   { path: 'admin/perro/remove/:id', component: PerroRemoveAdminRoutedComponent},
   { path: 'admin/perro/new', component: PerroNewAdminRoutedComponent},
   { path: 'admin/perro/edit/:id', component:PerroEditAdminRoutedComponent},
-  { path: 'admin/perro/plist/usuario/:id', component: PerroPlistAdminRoutedComponent},
+/*   { path: 'admin/perro/plist/usuario/:id', component: PerroPlistAdminRoutedComponent}, */
   
   //Raza
   { path: 'admin/raza/plist', component: RazaPlistAdminRoutedComponent },

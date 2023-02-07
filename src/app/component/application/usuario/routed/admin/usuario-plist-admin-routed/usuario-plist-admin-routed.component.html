@@ -79,7 +79,7 @@
               {{usuario.tipousuario.id}}-{{usuario.tipousuario.nombre}}</td>
 
             <td  *ngIf="usuario.perros==0">{{usuario.perros}}</td>
-            <td *ngIf="usuario.perros>0"><a [routerLink]="['/admin', 'perro', 'plist' , 'usuario', usuario.id]">{{usuario.perros}}</a></td>
+            <td *ngIf="usuario.perros>0"><!-- <a [routerLink]="['/admin', 'perro', 'plist' , 'usuario', usuario.id]">{{usuario.perros}}</a> -->{{usuario.perros}}</td>
             <td>
               <div class="btn-group" role="group" aria-label="Herramientas">
                 <button class="btn btn-sm btn-primary" [routerLink]="['/admin/usuario/view',usuario.id]">
