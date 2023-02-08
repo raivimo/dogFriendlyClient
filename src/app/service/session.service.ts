@@ -35,6 +35,8 @@ export class SessionService {
         }
     }
 
+ 
+
     getToken(): string {
         return localStorage.getItem("token");
     }

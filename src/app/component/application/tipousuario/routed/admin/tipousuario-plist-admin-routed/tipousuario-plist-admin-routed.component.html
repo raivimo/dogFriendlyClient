@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <div class="row">
     <div class="col">
 
@@ -51,7 +51,9 @@
             <td>{{tipousuario.nombre}}</td>
 
             <td  *ngIf="tipousuario.usuarios==0">{{tipousuario.usuarios}}</td>
-            <td *ngIf="tipousuario.usuarios>0"><!-- <a [routerLink]="['/admin', 'tipousuario', 'plist' , 'usuario', tipousuario.id]">{{tipousuario.usuarios}}</a> -->{{tipousuario.usuarios}}</td>
+            <td *ngIf="tipousuario.usuarios>0"> -->
+              <!-- <a [routerLink]="['/admin', 'tipousuario', 'plist' , 'usuario', tipousuario.id]">{{tipousuario.usuarios}}</a> -->
+            <!--   {{tipousuario.usuarios}}</td>
           
               <div class="btn-group" role="group" aria-label="Herramientas">
                 <button class="btn btn-sm btn-primary" [routerLink]="['/admin/tipousuario/view',tipousuario.id]">
@@ -72,3 +74,103 @@
     </div>
   </div>
 </div>
+
+ -->
+<body class="g-sidenav-show  bg-gray-200">
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Escribe aqui</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Sign In</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col">
+          <div class="card mt-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-center text-capitalize ps-3">Lista de Tipos de usuario</h6>
+
+                <app-search-unrouted [placeHolder]="'Buscar Tipo de Usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+                <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size"
+                  (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
+              </div>
+            </div>
+
+          <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">John Michael</h6>
+                            <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0">Manager</p>
+                        <p class="text-xs text-secondary mb-0">Organization</p>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                      </td>
+                      <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                          Edit
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div> 
+  </main>
+    
+       
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+ 
+</body>

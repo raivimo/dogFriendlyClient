@@ -41,12 +41,15 @@ import { FacturaViewAdminRoutedComponent } from './component/application/factura
 import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/home-guess-routed/home-guess-routed.component';
 /* import { SessionResolver } from './resolve/session.resolve'; */
 import { HomeAdminRoutedComponent } from './component/shared/routed/home/admin/home-admin-routed/home-admin-routed.component';
+import { HomeUserRoutedComponent } from './component/shared/routed/home/user/home-user-routed/home-user-routed.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeGuessRoutedComponent },
   { path: 'home', component: HomeGuessRoutedComponent },
   { path: 'home/admin', component: HomeAdminRoutedComponent },
+  { path: 'home/user', component: HomeUserRoutedComponent },
+
 
   { path: 'login', component: LoginComponent },  
   { path: 'logout', component: LogoutComponent },  
