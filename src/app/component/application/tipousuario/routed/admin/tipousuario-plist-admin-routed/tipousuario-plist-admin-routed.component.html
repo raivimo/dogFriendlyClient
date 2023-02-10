@@ -39,7 +39,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let tipousuario of responseFromServer.content">
-                      <td class="ps-2"> {{tipousuario.id}} </td>
+                      <td> {{tipousuario.id}} </td>
                       <td> {{tipousuario.nombre}} </td>
                       <td class="align-middle text-center text-sm" *ngIf="tipousuario.usuarios == 0"> {{tipousuario.usuarios}} </td>
                       <td class="align-middle text-center text-sm" *ngIf="tipousuario.usuarios > 0"> {{tipousuario.usuarios}} </td>
