@@ -1,101 +1,107 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row">
     <div class="col">
+      <div class="card mt-4">
+        <div class="card-header p-0 position-relative mt-n4 z-index-2">
 
-      <h1 class="text-center mb-5">Lista de Usuarios</h1>
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3">
+            <h3 class="text-white text-center">Lista de Usuarios</h3>
 
-      <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
-        <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary mx-3">Generar Usuarios</a>
-        <a [routerLink]="['/admin/usuario/new']" class="btn btn-primary mx-3">Alta de usuario</a>
+            <div class="col-12 d-flex justify-content-center align-items-center px-3 py-3">
+              <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary btn-sm px-3 me-3 text-sm">Generar Usuarios</a>
+              <a [routerLink]="['/admin/usuario/new']" class="btn btn-primary btn-sm px-3 ms-2 me-3 text-sm">Alta de Usuario</a>
 
-        <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+              <app-search-unrouted [placeHolder]="'Buscar usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+            </div>
 
-        <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size"
-          (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
-      </div>
-
-      <div class="col-md">
-        <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
-          (eePage)="setPage($event)"></app-pagination-unrouted>
-      </div>
-
-
-      <div class="col-md text-start">
-        <button class="btn btn-outline-danger" *ngIf="id_tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">
-          <i class="bi bi-x-circle"></i> Reset Tipo de Usuario {{id_tipousuarioFilter}} filter</button>
-      </div>
-
-      <div class="col-md text-end">
-        <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
-      </div>
-
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th (click)="setOrder('id')">ID
-              <fa-icon *ngIf="sortField=='id'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='id'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('nombre')">Name
-              <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('apellido1')">Apellido1
-              <fa-icon *ngIf="sortField=='apellido1'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='apellido1'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('apellido2')">Apellido2
-              <fa-icon *ngIf="sortField=='apellido2' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='apellido2' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('email')">Email
-              <fa-icon *ngIf="sortField=='email' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='email' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('fechaNacimiento')">Fecha de Nacimiento
-              <fa-icon *ngIf="sortField=='fechaNacimiento' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='fechaNacimiento' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('login')">Login
-              <fa-icon *ngIf="sortField=='login' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='login' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th>Tipo de Usuario</th>
-            <th>Perros</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let usuario of responseFromServer.content">
-            <td>{{usuario.id}}</td>
-            <td>{{usuario.nombre}}</td>
-            <td>{{usuario.apellido1}}</td>
-            <td>{{usuario.apellido2}}</td>
-            <td>{{usuario.email}}</td>
-            <td>{{usuario.fechaNacimiento}}</td>
-            <td>{{usuario.login}}</td>
-
-            <td (click)="setFilterByTipousuario(usuario.tipousuario.id)">
-              {{usuario.tipousuario.id}}-{{usuario.tipousuario.nombre}}</td>
-
-            <td  *ngIf="usuario.perros==0">{{usuario.perros}}</td>
-            <td *ngIf="usuario.perros>0"><!-- <a [routerLink]="['/admin', 'perro', 'plist' , 'usuario', usuario.id]">{{usuario.perros}}</a> -->{{usuario.perros}}</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Herramientas">
-                <button class="btn btn-sm btn-primary" [routerLink]="['/admin/usuario/view',usuario.id]">
-                  <fa-icon [icon]="faEye"></fa-icon>
-                </button>
-                <button class="btn btn-sm btn-warning" [routerLink]="['/admin/usuario/edit',usuario.id]">
-                  <fa-icon [icon]="faUserPen"></fa-icon>
-                </button>
-                <button class="btn btn-sm btn-danger" [routerLink]="['/admin/usuario/remove',usuario.id]">
-                  <fa-icon [icon]="faTrash"></fa-icon>
-                </button>
+            <div class="col-sm px-4">
+              <app-pagination-unrouted [nPage]="responseFromServer.number + 1"
+                [nTotalPages]="responseFromServer.totalPages" (eePage)="setPage($event)"></app-pagination-unrouted>
+              <div class="col-12 d-flex">
+                <app-dropdown-register-page [PageSize]="responseFromServer.size" (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
+                <button class="btn btn-info btn-sm mx-4  text-center" *ngIf="id_tipousuarioFilter!=0" (click)="setFilterByTipousuario(0)">
+                   Reset Tipo de Usuario {{id_tipousuarioFilter}} filter</button>
+                <h5 class="col text-white text-end px-4 py-3">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+          
+          </div>
+        </div>
+
+        <div class="card-body px-0 ">
+          <div class="table-responsive">
+            <table class="table table-striped align-items-center">
+              <thead>
+                <tr>
+                  <th (click)="setOrder('id')" class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7">id
+                    <fa-icon *ngIf="sortField=='id'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='id'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th (click)="setOrder('nombre')" class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">Nombre
+                    <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th (click)="setOrder('apellido1')" class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Apellido1
+                    <fa-icon *ngIf="sortField=='apellido1'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='apellido1'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th (click)="setOrder('apellido2')" class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Apellido2
+                    <fa-icon *ngIf="sortField=='apellido2' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='apellido2' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th (click)="setOrder('email')" class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Email
+                    <fa-icon *ngIf="sortField=='email' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='email' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th (click)="setOrder('fechaNacimiento')"class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Fecha de Nacimiento
+                    <fa-icon *ngIf="sortField=='fechaNacimiento' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='fechaNacimiento' &&sortDirection=='desc'"[icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th (click)="setOrder('login')"class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Login
+                    <fa-icon *ngIf="sortField=='login' &&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
+                    <fa-icon *ngIf="sortField=='login' &&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Tipo de Usuario</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Perros</th>
+                  <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Acciones
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let usuario of responseFromServer.content">
+                  <td class="ps-2">{{usuario.id}}</td>
+                  <td class="align-middle text-center text-sm">{{usuario.nombre}}</td>
+                  <td class="align-middle text-center text-sm">{{usuario.apellido1}}</td>
+                  <td class="align-middle text-center text-sm">{{usuario.apellido2}}</td>
+                  <td class="align-middle text-center text-sm">{{usuario.email}}</td>
+                  <td class="align-middle text-center text-sm">{{usuario.fechaNacimiento}}</td>
+                  <td class="align-middle text-center text-sm">{{usuario.login}}</td>
+
+                  <td class="align-middle text-center text-sm" (click)="setFilterByTipousuario(usuario.tipousuario.id)">
+                    {{usuario.tipousuario.id}}-{{usuario.tipousuario.nombre}}</td>
+
+                  <td class="align-middle text-center text-sm" *ngIf="usuario.perros==0">{{usuario.perros}}</td>
+                  <td class="align-middle text-center text-sm" *ngIf="usuario.perros>0">
+                    <!-- <a [routerLink]="['/admin', 'perro', 'plist' , 'usuario', usuario.id]">{{usuario.perros}}</a> -->{{usuario.perros}}
+                  </td>
+                  <td class="align-middle text-center">
+                    <button class="btn btn-sm btn-primary m-1" [routerLink]="['/admin/usuario/view',usuario.id]">
+                      <fa-icon [icon]="faEye"></fa-icon>
+                    </button>
+                    <button class="btn btn-sm btn-warning m-1" [routerLink]="['/admin/usuario/edit',usuario.id]">
+                      <fa-icon [icon]="faUserPen"></fa-icon>
+                    </button>
+                    <button class="btn btn-sm btn-danger m-1" [routerLink]="['/admin/usuario/remove',usuario.id]">
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

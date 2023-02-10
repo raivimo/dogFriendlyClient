@@ -165,9 +165,10 @@ import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/h
     DropdownRegisterPageComponent,
     FacturaDetailAdminUnroutedComponent,
     PaseoFinderAdminUnroutedComponent,
+
     HomeAdminRoutedComponent,
-    HomeUserRoutedComponent,
-    HomeGuessRoutedComponent,
+/*     HomeUserRoutedComponent,
+    HomeGuessRoutedComponent, */
 
   ],
   
@@ -197,7 +198,7 @@ import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/h
     PaseoService,
     TipopaseoService,
     FacturaService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    /* { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true} */
     
   ],
   bootstrap: [AppComponent]
