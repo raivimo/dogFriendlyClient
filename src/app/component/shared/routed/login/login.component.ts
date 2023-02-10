@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         next: (data: string) => {
           localStorage.setItem("token", data);
           this.oSessionService.emit(new EmitEvent(Events.login, data));
-          this.oRouter.navigate(['/home'])
+          this.oRouter.navigate(['/home/admin'])
         },
         error: (error: HttpErrorResponse) => {
           console.log(error.status, error.statusText);
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         next: (data: string) => {
           localStorage.setItem("token", data);
           this.oSessionService.emit(new EmitEvent(Events.login, data));
-          this.oRouter.navigate(['/home']);
+          this.oRouter.navigate(['/home/user']);
         },
         error: (error: HttpErrorResponse) => {
           console.log(error.status, error.statusText);
