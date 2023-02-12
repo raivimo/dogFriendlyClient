@@ -1,21 +1,21 @@
-import { IUsuario2Form, IUsuario2Send } from '../../../../../../model/usuario-interface';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IUsuario } from 'src/app/model/usuario-interface';
-import { UsuarioService } from 'src/app/service/usuario.service';
-import { ITipoUsuario } from '../../../../../../model/tipousuario-response-interface';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
+import { IUsuario, IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
-
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 declare let bootstrap: any;
-@Component({
-  selector: 'app-usuario-edit-admin-routed',
-  templateUrl: './usuario-edit-admin-routed.component.html',
-  styleUrls: ['./usuario-edit-admin-routed.component.css']
-})
-export class UsuarioEditAdminRoutedComponent implements OnInit {
 
+@Component({
+  selector: 'app-usuario-edit-user-routed',
+  templateUrl: './usuario-edit-user-routed.component.html',
+  styleUrls: ['./usuario-edit-user-routed.component.css']
+})
+
+
+export class UsuarioEditUserRoutedComponent implements OnInit {
   id: number = 0;
   oUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;

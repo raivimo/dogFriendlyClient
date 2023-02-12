@@ -35,6 +35,10 @@ export class SessionService {
         }
     }
 
+    getUserId(): Observable<number> {
+       return this.oHttpClient.get<number>(this.sURL + "/getUserID", {withCredentials:true});
+    }
+
  
 
     getToken(): string {

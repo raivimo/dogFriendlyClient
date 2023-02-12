@@ -80,6 +80,9 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { HomeAdminRoutedComponent } from './component/shared/routed/home/admin/home-admin-routed/home-admin-routed.component';
 import { HomeUserRoutedComponent } from './component/shared/routed/home/user/home-user-routed/home-user-routed.component';
 import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/home-guess-routed/home-guess-routed.component';
+import { UsuarioEditUserRoutedComponent } from './component/application/usuario/routed/user/usuario-edit-user-routed/usuario-edit-user-routed.component';
+import { UsuarioNewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-new-user-routed/usuario-new-user-routed.component';
+import { UsuarioViewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-view-user-routed/usuario-view-user-routed.component';
 
 
 @NgModule({
@@ -168,7 +171,10 @@ import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/h
 
     HomeAdminRoutedComponent,
     HomeUserRoutedComponent,
-    HomeGuessRoutedComponent,
+    UsuarioEditUserRoutedComponent,
+    UsuarioNewUserRoutedComponent,
+    UsuarioViewUserRoutedComponent,
+   /*  HomeGuessRoutedComponent, */
 
   ],
   
