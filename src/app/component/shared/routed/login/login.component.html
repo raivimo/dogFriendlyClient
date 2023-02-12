@@ -1,46 +1,58 @@
-<div class="container-fluid">
-  <div class="row d-flex justify-content-center align-items-center m-5">
+<body class="bg-gray-200">
+  <main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-4 col-md-8 col-12 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">dogFriendly</h4>
+                  <div class="row mt-3">
+                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Iniciar Sesion</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
 
-    <div class="col">
+                <form role="form" class="text-start" [formGroup]="oFormularioLogin">
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label" for="login"></label>
+                    <input type="text" id="login" class="form-control" placeholder="Login" name="login"
+                      formControlName="login"/>
+                  </div>
+      
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label" for="password"></label>
+                    <input type="password" id="password" class="form-control" placeholder="Introduce password" name="password"
+                      formControlName="password" />
+                  </div>
 
-    
+                  <div class="text-center">
+                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2" (click)="login()">Entrar</button>
+                  </div>
+                <div class="text-center text-lg-start my-4 mb-2">
+                  <button (click)="loginAsAdmin()" type="button" class="btn btn-sm btn-outline-info">Admin</button>
+                  <button (click)="loginAsUser()" type="button" class="btn btn-sm btn-outline-info" style="margin-left: 1.5em;">User</button>
+                </div>
+                  
 
-        <div class="d-flex flex-row justify-content-center">
-          <div class="card p-5" style="width: 25rem;">
-          <form style="width:fit-content" [formGroup]="oFormularioLogin">
-
-            <div class="d-flex flex-row align-items-center justify-content-start ">
-              <p class="lead fw-normal my-5">LOGIN</p>
+                  <p class="mt-4 text-sm text-center">
+                    ¿No tienes cuenta? <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Registrarse!</a>
+                  </p>
+                </form>
+              </div>
             </div>
-
-            <!-- login input -->
-            <div class="form-outline mb-4">
-              <label class="form-label" for="login">Login</label>
-              <input type="text" id="login" class="form-control" placeholder="Enter a login" name="login"
-                formControlName="login" />
-
-            </div>
-
-            <!-- Password input -->
-            <div class="form-outline mb-3">
-              <label class="form-label" for="password">Password</label>
-              <input type="password" id="password" class="form-control" placeholder="Enter password" name="password"
-                formControlName="password" />
-            </div>
-
-            <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                (click)="login()">Login</button>
-            </div>
-
-            <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-warning" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                (click)="loginAsAdmin()">Login as admin</button>
-            </div>
-
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </main>
+</body>
+
+
+
+
+
+

@@ -13,7 +13,7 @@ export class SessionService {
 
     private entityURL = '/session';
     sURL: string = `${baseURL}${this.entityURL}`;
-    subject = new Subject<any>();
+    subject = new Subject<EmitEvent>();
 
     constructor(
         private oCryptoService: CryptoService,
@@ -35,20 +35,19 @@ export class SessionService {
         }
     }
 
+    getUserId(): Observable<number> {
+       return this.oHttpClient.get<number>(this.sURL + "/getUserID", {withCredentials:true});
+    }
+
+ 
+
     getToken(): string {
         return localStorage.getItem("token");
     }
 
-
-
-
     check(): Observable<String> {
         return this.oHttpClient.get<String>(this.sURL, httpOptions)
     }
-
-
-
-
     
     isSessionActive(): Boolean {
         let strToken: string = localStorage.getItem("token");

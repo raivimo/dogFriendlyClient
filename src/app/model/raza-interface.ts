@@ -19,6 +19,7 @@ export interface IRaza{
     id:              number;
     nombre:          string;
     tamanyo:         string;
+    perros:          number;
 }
 
 export interface IRazaForm{

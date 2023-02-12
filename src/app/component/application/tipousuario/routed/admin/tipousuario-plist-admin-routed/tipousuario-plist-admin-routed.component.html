@@ -1,68 +1,68 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col">
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col">
+          <div class="card mt-4">
+            <div class="card-header p-0 position-relative mt-n4 z-index-2">
 
-      <h1 class="text-center mb-5">Lista de Tipos de Usuario</h1>
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3">
+                <h4 class="text-white text-center">Lista de tipo usuario</h4>
 
-      <div class="col-md text-end d-flex justify-content-center align-items-center mb-3 ">
-        <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary mx-3">Generar Tipos de Usuarios</a>
-        <a [routerLink]="['/admin/tipousuario/new']" class="btn btn-primary mx-3">Alta de Tipo de Usuario</a>
+                <div class="col-12 d-flex justify-content-center align-items-center px-3 py-3">
+                  <a [routerLink]="['/../../admin/random/load']" class="btn btn-primary btn-sm mx-3 text-sm">Generar Tipos de Usuarios</a>
+                  <a [routerLink]="['/admin/tipousuario/new']" class="btn btn-primary btn-sm mx-3 text-sm">Alta de Tipo de Usuario</a>
 
-        <app-search-unrouted [placeHolder]="'Buscar Tipo de Usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+                  <app-search-unrouted [placeHolder]="'Buscar Tipo de Usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
+                </div>
 
-        <app-dropdown-register-page class="mx-2" [PageSize]="responseFromServer.size"
-          (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
-      </div>
+                <div class="col-sm px-4">
+                  <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+                    (eePage)="setPage($event)"></app-pagination-unrouted>
+                  <div class="col-12 d-flex">
+                    <app-dropdown-register-page [PageSize]="responseFromServer.size" (eeRpp)="this.setRpp($event)"></app-dropdown-register-page>
+                    <h5 class="col text-white text-end px-4 py-3">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
+                  </div>
+                </div>
 
-      <div class="col-md">
-        <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
-          (eePage)="setPage($event)"></app-pagination-unrouted>
-      </div>
-
-
-      <div class="col-md text-start">
-        <h5 class="text-muted" *ngIf="strTermFilter!=''">Filtrando por {{strTermFilter}} (borrar para resetear)</h5>
-      </div>
-
-      <div class="col-md text-end">
-        <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
-      </div>
-
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th (click)="setOrder('id')">ID
-              <fa-icon *ngIf="sortField=='id'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='id'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th (click)="setOrder('nombre')">Nombre
-              <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
-              <fa-icon *ngIf="sortField=='nombre'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
-            </th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tipousuario of responseFromServer.content">
-            <td>{{tipousuario.id}}</td>
-            <td>{{tipousuario.nombre}}</td>
-          
-              <div class="btn-group" role="group" aria-label="Herramientas">
-                <button class="btn btn-sm btn-primary" [routerLink]="['/admin/tipousuario/view',tipousuario.id]">
-                  <fa-icon [icon]="faEye"></fa-icon>
-                </button>
-                <button class="btn btn-sm btn-warning" [routerLink]="['/admin/tipousuario/edit',tipousuario.id]">
-                  <fa-icon [icon]="faUserPen"></fa-icon>
-                </button>
-                <button class="btn btn-sm btn-danger" [routerLink]="['/admin/tipousuario/remove',tipousuario.id]">
-                  <fa-icon [icon]="faTrash"></fa-icon>
-                </button>
               </div>
+            </div>
 
-          </tr>
-        </tbody>
-      </table>
-      
+          <div class="card-body px-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table table-striped align-items-center">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7">id </th>
+                      <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">Nombre</th>
+                      <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Nº Usuarios</th>
+                      <th class="text-center text-uppercase text-secondary text-sm font-weight-bolder opacity-7">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let tipousuario of responseFromServer.content">
+                      <td> {{tipousuario.id}} </td>
+                      <td> {{tipousuario.nombre}} </td>
+                      <td class="align-middle text-center text-sm" *ngIf="tipousuario.usuarios == 0"> {{tipousuario.usuarios}} </td>
+                      <td class="align-middle text-center text-sm" *ngIf="tipousuario.usuarios > 0"> {{tipousuario.usuarios}} </td>
+
+                      <td class="align-middle text-center">
+                        <button class="btn btn-sm btn-primary m-1" [routerLink]="['/admin/tipousuario/view',tipousuario.id]">
+                          <fa-icon [icon]="faEye"></fa-icon>
+                        </button>
+                        <button class="btn btn-sm btn-warning m-1" [routerLink]="['/admin/tipousuario/edit',tipousuario.id]">
+                          <fa-icon [icon]="faUserPen"></fa-icon>
+                        </button>
+                        <button class="btn btn-sm btn-danger m-1" [routerLink]="['/admin/tipousuario/remove',tipousuario.id]">
+                          <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+    </div> 
+    
+       

@@ -9,24 +9,17 @@ export class MetadataService {
 
   constructor() { }
 
-  // TODO: crear tipo entity, tipo operation y tipo system
-
-  //pruebas:
-
-
-
   public getIcon(strIcon: string): string {
     switch (true) {
       case strIcon == "system": return "fas fa-shopping-basket";
       //-- entities  
       case strIcon == "usuario": return "fas fa-user";
       case strIcon == "tipousuario": return "fas fa-user-tag";
-      case strIcon == "producto": return "fas fa-gift";
-      case strIcon == "tipoproducto": return "fas fa-tag";
-      case strIcon == "compra": return "fas fa-cash-register";
+      case strIcon == "perro": return "fas fa-dog";
+      case strIcon == "raza": return "fas fa-tag";
+      case strIcon == "paseo": return "fas fa-walking";
       case strIcon == "factura": return "fas fa-file-invoice-dollar";
-      case strIcon == "carrito": return "fas fa-shopping-cart";
-      case strIcon == "informe": return "fas fa-file-alt";
+      case strIcon == "tipopaseo": return "fas fa-walking";
       //-- operations
       case strIcon == "view": return "fas fa-eye";
       case strIcon == "plist": return "fas fa-list";

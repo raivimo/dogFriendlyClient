@@ -15,6 +15,7 @@ export interface IUsuario {
     login:         string;
     fechaNacimiento: string;
     tipousuario:   ITipoUsuario;
+    perros: number;
 }
 
 export interface IUsuario2Form {

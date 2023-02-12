@@ -17,7 +17,9 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
   responseFromServer: IPage<IUsuario>;
   //
   strTermFilter: string = "";
+
   id_tipousuarioFilter: number = 0;
+
   numberOfElements: number = 5;
   pageSize: number = 5;
   page: number = 0;
@@ -34,7 +36,7 @@ export class UsuarioPlistAdminRoutedComponent implements OnInit {
     private oUsuarioService: UsuarioService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPage();
   }
 

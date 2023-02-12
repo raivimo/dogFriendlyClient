@@ -40,6 +40,7 @@
                 <fa-icon *ngIf="sortField=='apellido1'&&sortDirection=='asc'" [icon]="faArrowUp"></fa-icon>
                 <fa-icon *ngIf="sortField=='apellido1'&&sortDirection=='desc'" [icon]="faArrowDown"></fa-icon>
               </th>
+              <th>Nº de Perros</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -48,6 +49,9 @@
               <td>{{raza.id}}</td>
               <td>{{raza.nombre}}</td>
               <td>{{raza.tamanyo}}</td>
+
+              <td  *ngIf="raza.perros==0">{{raza.perros}}</td>
+              <td *ngIf="raza.perros>0"><a [routerLink]="['/admin', 'raza', 'plist' , 'perro', raza.id]">{{raza.perros}}</a></td>
             
                 <td>
                 <div class="btn-group" role="group" aria-label="Herramientas">

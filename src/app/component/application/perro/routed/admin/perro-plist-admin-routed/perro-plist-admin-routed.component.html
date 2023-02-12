@@ -18,8 +18,16 @@
           <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
             (eePage)="setPage($event)"></app-pagination-unrouted>
         </div>
-  
-  
+
+        <div class="col-md text-start">
+          <button class="btn btn-outline-danger" *ngIf="id_UsuarioFilter!=0" (click)="setFilterByUsuario(0)">
+            <i class="bi bi-x-circle"></i> Reset Usuario {{id_UsuarioFilter}} filter</button>
+        </div>
+
+        <div class="col-md text-start">
+          <button class="btn btn-outline-danger" *ngIf="id_RazaFilter!=0" (click)="setFilterByRaza(0)">
+            <i class="bi bi-x-circle"></i> Reset Raza {{id_RazaFilter}} filter</button>
+        </div>
   
         <div class="col-md text-end">
           <h5 class="text-muted">Total de registros en la consulta {{responseFromServer.totalElements}}</h5>
@@ -75,13 +83,13 @@
               <td>{{perro.sociable}}</td>
               <td>{{perro.puedeIrSuelto}}</td>
               <td>{{perro.esJugueton}}</td>
+              <!-- <td><a [routerLink]="['/admin', 'perro', 'plist', 'usuario', perro.usuario.id]"> {{perro.usuario.nombre}}</a>{{perro.usuario.nombre}}</td> -->
 
               <td (click)="setFilterByUsuario(perro.usuario.id)">
                 {{perro.usuario.id}}-{{perro.usuario.nombre}}</td>
 
               <td (click)="setFilterByRaza(perro.raza.id)">
                     {{perro.raza.id}}-{{perro.raza.nombre}}</td>
-
 
               <td>
                 <div class="btn-group" role="group" aria-label="Herramientas">

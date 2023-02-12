@@ -1,8 +1,19 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col">
-            <h1 class="text-center mb-5">Vista del Tipo Usuario con id={{id}}</h1>
-            <app-tipousuario-detail-admin-unrouted [id]="id"></app-tipousuario-detail-admin-unrouted>          
+      <div class="col">
+        <div class="card mt-4">
+          <div class="card-header p-0 position-relative mt-n4 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3">
+              <h4 class="text-white text-center pb-2">Vista del tipo usuario con id: {{id}}</h4>
+            </div>
+            </div>
+                <app-tipousuario-detail-admin-unrouted [id]="id"></app-tipousuario-detail-admin-unrouted>
+          </div>
         </div>
     </div>
 </div>
+
+
+
+
+

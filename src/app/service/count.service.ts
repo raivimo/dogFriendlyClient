@@ -12,9 +12,9 @@ import { baseURL, httpOptions } from 'src/environments/environment';
 export class CountService {
   constructor(private http: HttpClient) { }
 
-  /*   getCountProductos(): Observable<number> {
-      return this.http.get<number>(baseURL + '/producto/count', httpOptions);
-    } */
+    getCountPerros(): Observable<number> {
+      return this.http.get<number>(baseURL + '/perro/count', httpOptions);
+    }
 
   getCountUsuarios(): Observable<number> {
     return this.http.get<number>(baseURL + '/usuario/count', httpOptions);
@@ -25,20 +25,20 @@ export class CountService {
   }
 
 
-/*   getCountTiposProducto(): Observable<number> {
-    return this.http.get<number>(baseURL + '/tipoproducto/count', httpOptions);
+  getCountTiposPaseo(): Observable<number> {
+    return this.http.get<number>(baseURL + '/tipopaseo/count', httpOptions);
   }
 
-  getCountCompras(): Observable<number> {
-    return this.http.get<number>(baseURL + '/compra/count', httpOptions);
+  getCountPaseos(): Observable<number> {
+    return this.http.get<number>(baseURL + '/paseo/count', httpOptions);
   }
 
   getCountFacturas(): Observable<number> {
     return this.http.get<number>(baseURL + '/factura/count', httpOptions);
   }
 
-  getCountCarritos(): Observable<number> {
-    return this.http.get<number>(baseURL + '/carrito/count', httpOptions);
-  }  */
+  getCountRazas(): Observable<number> {
+    return this.http.get<number>(baseURL + '/raza/count', httpOptions);
+  } 
 
 }

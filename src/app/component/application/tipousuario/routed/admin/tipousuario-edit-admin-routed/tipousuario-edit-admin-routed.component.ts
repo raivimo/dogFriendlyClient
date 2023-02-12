@@ -11,7 +11,7 @@ declare let bootstrap: any;
     styleUrls: ['./tipousuario-edit-admin-routed.component.css'],
 })
 export class TipousuarioEditAdminRoutedComponent implements OnInit {
-    
+
     id: number = 0;
     oTipoUsuario: ITipoUsuario = null;
     oTipoUsuarioForm: ITipoUsuarioForm = null;
@@ -49,7 +49,7 @@ export class TipousuarioEditAdminRoutedComponent implements OnInit {
                         [
                             Validators.required,
                             Validators.minLength(3),
-                            Validators.maxLength(10),
+                            Validators.maxLength(20),
                         ],
                     ],
                 });

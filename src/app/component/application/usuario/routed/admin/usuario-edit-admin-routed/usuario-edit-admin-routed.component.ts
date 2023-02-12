@@ -1,5 +1,5 @@
 import { IUsuario2Form, IUsuario2Send } from '../../../../../../model/usuario-interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUsuario } from 'src/app/model/usuario-interface';
@@ -51,9 +51,9 @@ export class UsuarioEditAdminRoutedComponent implements OnInit {
         console.log(data);
         this.oForm = <FormGroup>this.oFormBuilder.group({
           id: [data.id, [Validators.required]],
-          nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-          apellido1: [data.apellido1, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-          apellido2: [data.apellido2, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+          apellido1: [data.apellido1, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+          apellido2: [data.apellido2, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
           email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
           login: [data.login, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
           fechaNacimiento: [data.fechaNacimiento, [Validators.required, /* Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],

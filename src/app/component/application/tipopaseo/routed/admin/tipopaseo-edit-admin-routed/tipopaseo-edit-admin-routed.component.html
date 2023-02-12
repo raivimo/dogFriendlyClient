@@ -1,9 +1,14 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col">
-            <h1 class="text-center mb-5">Editar Tipo de Paseo</h1>
+      <div class="col">
+        <div class="card mt-4">
+          <div class="card-header p-0 position-relative mt-n4 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3">
+              <h4 class="text-white text-center pb-2">Editar Tipo de Paseo</h4>
+            </div>
+            
 
-            <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
+            <form class="mx-3" novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
                 <div class="mb-3 row">
                     <label for="inputID" class="col-sm-2 col-form-label">ID</label>
                     <div class="col-sm-2">

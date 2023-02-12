@@ -33,21 +33,114 @@
                 </div>
               </td>
             </tr>
+            
             <tr>
               <th><i [ngClass]="oMetadataService.getIcon('usuario')"></i> Tipos de Usuario</th>
               <td class="text-center">{{nTiposDeUsuario}}</td>
               <td class="text-center">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-                  <button type="button" class="btn btn-success mx-2" (click)="generateTiposDeUsuario()"><i
+                  <button type="button" class="btn btn-success mx-2" (click)="generateTiposDeUsuario(2)"><i
                       [ngClass]="oMetadataService.getIcon('random')"></i>
-                    2</button>
+                    1</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th><i [ngClass]="oMetadataService.getIcon('perro')"></i> Perros</th>
+              <td class="text-center">{{nPerros}}</td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                  <button type="button" class="btn btn-success mx-2" (click)="generatePerros(10)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="bLoading"></span>
+                    10</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generatePerros(100)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    100</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generatePerros(1000)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    1000</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th><i [ngClass]="oMetadataService.getIcon('perro')"></i> Razas</th>
+              <td class="text-center">{{nRazas}}</td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                  <button type="button" class="btn btn-success mx-2" (click)="generateRazas(10)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="bLoading"></span>
+                    10</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generateRazas(100)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    100</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generateRazas(1000)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    1000</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th><i [ngClass]="oMetadataService.getIcon('paseo')"></i> Paseo</th>
+              <td class="text-center">{{nPaseos}}</td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                  <button type="button" class="btn btn-success mx-2" (click)="generatePaseos(10)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="bLoading"></span>
+                    10</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generatePaseos(100)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    100</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generatePaseos(1000)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    1000</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th><i [ngClass]="oMetadataService.getIcon('tipopaseo')"></i> Tipo de Paseo</th>
+              <td class="text-center">{{nTiposPaseo}}</td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                  <button type="button" class="btn btn-success mx-2" (click)="generateTiposPaseo(10)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="bLoading"></span>
+                    10</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generateTiposPaseo(100)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    100</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generateTiposPaseo(1000)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    1000</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th><i [ngClass]="oMetadataService.getIcon('factura')"></i> Facturas </th>
+              <td class="text-center">{{nFacturas}}</td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                  <button type="button" class="btn btn-success mx-2" (click)="generateFacturas(10)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="bLoading"></span>
+                    10</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generateFacturas(100)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    100</button>
+                  <button type="button" class="btn btn-success mx-2" (click)="generateFacturas(1000)"><i
+                      [ngClass]="oMetadataService.getIcon('random')"></i>
+                    1000</button>
                 </div>
               </td>
             </tr>
            
-            
-            
-          
           </tbody>
         </table>
         <div class="row justify-content-center">

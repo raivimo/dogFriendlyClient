@@ -3,10 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './component/shared/routed/home/home.component';
 import { LoginComponent } from './component/shared/routed/login/login.component';
 import { MenuComponent } from './component/shared/unrouted/menu/menu.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UsuarioPlistAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-plist-admin-routed/usuario-plist-admin-routed.component';
 import { UsuarioViewAdminRoutedComponent } from './component/application/usuario/routed/admin/usuario-view-admin-routed/usuario-view-admin-routed.component';
 import { TipousuarioPlistAdminRoutedComponent } from './component/application/tipousuario/routed/admin/tipousuario-plist-admin-routed/tipousuario-plist-admin-routed.component';
@@ -76,12 +75,21 @@ import { FacturaRemoveAdminRoutedComponent } from './component/application/factu
 import { FacturaService } from './service/factura.service';
 import { FacturaDetailAdminUnroutedComponent } from './component/application/factura/unrouted/factura-detail-admin-unrouted/factura-detail-admin-unrouted.component';
 import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo/unrouted/paseo-finder-admin-unrouted/paseo-finder-admin-unrouted.component';
+import { HttpOptionsService } from './service/httpoptions.service';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { HomeAdminRoutedComponent } from './component/shared/routed/home/admin/home-admin-routed/home-admin-routed.component';
+import { HomeUserRoutedComponent } from './component/shared/routed/home/user/home-user-routed/home-user-routed.component';
+import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/home-guess-routed/home-guess-routed.component';
+import { UsuarioEditUserRoutedComponent } from './component/application/usuario/routed/user/usuario-edit-user-routed/usuario-edit-user-routed.component';
+import { UsuarioNewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-new-user-routed/usuario-new-user-routed.component';
+import { UsuarioViewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-view-user-routed/usuario-view-user-routed.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeAdminRoutedComponent,
+    HomeUserRoutedComponent,
     LoginComponent,
     LogoutComponent,
     MenuComponent,
@@ -161,6 +169,13 @@ import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo
     FacturaDetailAdminUnroutedComponent,
     PaseoFinderAdminUnroutedComponent,
 
+    HomeAdminRoutedComponent,
+    HomeUserRoutedComponent,
+    UsuarioEditUserRoutedComponent,
+    UsuarioNewUserRoutedComponent,
+    UsuarioViewUserRoutedComponent,
+   /*  HomeGuessRoutedComponent, */
+
   ],
   
   imports: [
@@ -174,18 +189,22 @@ import { PaseoFinderAdminUnroutedComponent } from './component/application/paseo
   providers: [
     CryptoService,
     DecodeService,
+    SessionService,
+    HttpOptionsService,
+
     PaginationService,
     CountService,
     GenerateService,
     MetadataService,
+
     PerroService,
-    SessionService,
     TipousuarioService,
     UsuarioService,
     RazaService,
     PaseoService,
     TipopaseoService,
-    FacturaService
+    FacturaService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     
   ],
   bootstrap: [AppComponent]

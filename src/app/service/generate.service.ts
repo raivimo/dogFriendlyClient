@@ -12,33 +12,33 @@ import { baseURL, httpOptions } from 'src/environments/environment';
 export class GenerateService {
   constructor(private http: HttpClient) { }  
 
-/*   generateProductos(n: number): Observable<number> {
-    return this.http.post<number>(baseURL + '/producto/generate/' + n, { amount: n }, httpOptions);
-  } */
+  generateTiposPaseo(n: number): Observable<number> {
+    return this.http.post<number>(baseURL + '/tipopaseo/generate/' + n, { amount: n }, httpOptions);
+  }
 
   generateUsuarios(n: number): Observable<number> {
     return this.http.post<number>(baseURL + '/usuario/generate/' + n, { amount: n }, httpOptions);
   }
 
-  generateTiposDeUsuario(): Observable<number> {
+  generateTiposDeUsuario(n:number): Observable<number> {
     return this.http.post<number>(baseURL + '/tipousuario/generate', "", httpOptions);
   }
 
-/*
-  generateTiposDeProductos(n: number): Observable<number> {
-    return this.http.post<number>(baseURL + '/tipoproducto/generate/' + n, { amount: n }, httpOptions);
+
+  generatePaseos(n: number): Observable<number> {
+    return this.http.post<number>(baseURL + '/paseo/generate/' + n, { amount: n }, httpOptions);
   }
 
   generateFacturas(n: number): Observable<number> {
     return this.http.post<number>(baseURL + '/factura/generate/' + n, { amount: n }, httpOptions);
   }
 
-  generateCompras(n: number): Observable<number> {
-    return this.http.post<number>(baseURL + '/compra/generate/' + n, { amount: n }, httpOptions);
+  generateRazas(n: number): Observable<number> {
+    return this.http.post<number>(baseURL + '/raza/generate/' + n, { amount: n }, httpOptions);
   }
 
-  generateCarritos(n: number): Observable<number> {
-    return this.http.post<number>(baseURL + '/carrito/generate/' + n, { amount: n }, httpOptions);
-  } */
+  generatePerros(n: number): Observable<number> {
+    return this.http.post<number>(baseURL + '/perro/generate/' + n, { amount: n }, httpOptions);
+  }
 
 }

@@ -27,6 +27,7 @@ export interface IPaseo {
     tipopaseo:       ITipoPaseo;
     usuario:         IUsuario;
     perro:           IPerro;
+    facturas:        number;
 }
 
 export interface IPaseoForm {
