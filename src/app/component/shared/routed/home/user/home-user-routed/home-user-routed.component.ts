@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Events, SessionService } from 'src/app/service/session.service';
-import { IUser } from '../../../../../../model/session-interface';
+import { IUsuario } from 'src/app/model/usuario-interface';
+import { UsuarioService } from 'src/app/service/usuario.service';
+import { async, waitForAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-home-user-routed',
@@ -9,38 +11,48 @@ import { IUser } from '../../../../../../model/session-interface';
 })
 export class HomeUserRoutedComponent implements OnInit {
 
-  strUserName: string = "";
+  strId: number = null;
+  strUsername: string = "";
+  strUsertype: string = "";
 
-  id_sesion: number;
-  oUsuario: IUser = null;
-
+  oUsuario: IUsuario = null;
 
   constructor(
-    private oSessionService: SessionService
+    private oSessionService: SessionService,
+    private oUsuarioService: UsuarioService,
   ) {
-    this.strUserName = oSessionService.getUserName();
-    if(this.strUserName){
-      this.oSessionService.getUserId().subscribe({
-        next: (n: number) => {
-          this.id_sesion = n
-        }
-      })
-   }
+    this.strUsername = oSessionService.getUserName();
+    if (this.strUsername) {
+      this.getUserID();
+    }
   }
 
-  ngOnInit(): void {
-        this.oSessionService.on(
-      Events.login, (data: any) => {
-        this.strUserName = this.oSessionService.getUserName();
-      });
-    this.oSessionService.on(
-      Events.logout, (data: any) => {
-        this.strUserName = '';
-      });
+  ngOnInit() {
   }
 
 
-  
+  async getUserID() {
+    this.oSessionService.getUserId().subscribe({
+      next: (n: number) => {
+        this.strId = n
+        this.getUser()
+      }
+    })
+  }
+
+
+  getUser() {
+    this.oUsuarioService.getOne(this.strId).subscribe({
+      next: (data: IUsuario) => {
+        this.oUsuario = data;
+      }
+    })
+  }
+
+
+
+
+
 
 
 

@@ -46,7 +46,7 @@ import { HomeUserRoutedComponent } from './component/shared/routed/home/user/hom
 
 const routes: Routes = [
   { path: '', component: HomeGuessRoutedComponent },
-  { path: 'home', component: HomeUserRoutedComponent },
+  { path: 'home', component: HomeGuessRoutedComponent },
   { path: 'home/admin', component: HomeUserRoutedComponent },
   { path: 'home/user', component: HomeUserRoutedComponent },
 

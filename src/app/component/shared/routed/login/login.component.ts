@@ -14,7 +14,6 @@ import { EmitEvent, Events, SessionService } from 'src/app/service/session.servi
 
 export class LoginComponent implements OnInit {
 
-  
   username: string = ""
   oFormularioLogin: FormGroup<IUser>;
 
@@ -49,6 +48,7 @@ export class LoginComponent implements OnInit {
         }
       }
     )
+
     this.oSessionService.login(this.oFormularioLogin.get('login')!.value, this.oFormularioLogin.get('password')!.value)
       .subscribe({
         next: (data: string) => {

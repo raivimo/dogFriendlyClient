@@ -4,10 +4,13 @@ import { filter, map, Observable, Subscription, Subject } from 'rxjs';
 import { CryptoService } from './crypto.service';
 import { DecodeService } from './decode.service';
 import { baseURL, httpOptions } from 'src/environments/environment';
+import { IUsuario } from '../model/usuario-interface';
 
 @Injectable({
     providedIn: 'root'
 })
+
+
 
 export class SessionService {
 
@@ -39,6 +42,8 @@ export class SessionService {
        return this.oHttpClient.get<number>(this.sURL + "/getUserID", {withCredentials:true});
     }
 
+
+
  
 
     getToken(): string {
@@ -67,7 +72,7 @@ export class SessionService {
         localStorage.removeItem("token");
     }
 
-    on(event: Events, action: any): Subscription {
+/*     on(event: Events, action: any): Subscription {
         return this.subject
             .pipe(
                 filter((e: EmitEvent) => {
@@ -78,7 +83,18 @@ export class SessionService {
                 })
             )
             .subscribe(action);
-    }
+    } */
+
+    on(event: Events): Observable<String> {
+      return this.subject.pipe(
+          filter((e: EmitEvent) => {
+              return e.event === event;
+          }),
+          map((e: EmitEvent) => {
+              return e.token;
+          })
+      )
+  }
 
     emit(event: EmitEvent) {
         this.subject.next(event);
@@ -87,9 +103,11 @@ export class SessionService {
 
 }
 
+
+
 export class EmitEvent {
-    constructor(public name: any, public value?: any) { }
-}
+    constructor(public event: Events, public token?: string) { }
+  }
 
 // this works like a communication channel
 export enum Events {
