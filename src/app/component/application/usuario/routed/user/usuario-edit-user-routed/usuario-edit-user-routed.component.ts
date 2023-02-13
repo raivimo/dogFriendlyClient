@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
@@ -17,7 +17,7 @@ declare let bootstrap: any;
 
 export class UsuarioEditUserRoutedComponent implements OnInit {
   id: number = 0;
-  oUsuario: IUsuario = null;
+  @Input() oUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;
   oUsuario2Send: IUsuario2Send = null;
   oForm: FormGroup<IUsuario2Form>;
@@ -35,13 +35,11 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     private oUsuarioService: UsuarioService,
     private oFormBuilder: FormBuilder,
     private oTipousuarioService: TipousuarioService
-  ) {
-    this.id = oActivatedRoute.snapshot.params['id'];
-  }
+  ) { }
 
   ngOnInit() {
+    this.id = this.oUsuario.id;
     this.getOne();
-    
   }
 
   getOne() {

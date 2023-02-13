@@ -1,44 +1,22 @@
-<div class="card card-plain h-100">
-    <div class="card-header pb-0 p-3">
-        <h6 class="mb-0">Acciones</h6>
-    </div>
-    <div class="card-body p-3">
-        <h6 class="text-uppercase text-body text-xs font-weight-bolder">Añadir un perro a mi cuenta</h6>
-       <!--  <table class="table table-bordered table-striped">
+    <div class="container">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Genero</th>
-                    <th>Peso</th>
-                    <th>Sociable</th>
-                    <th>Puede Ir Suelto</th>
-                    <th >Es Jugueton</th>
-                    <th>Raza</th>
+                    <th class="text-sm" >Nombre</th>
+                    <th class="text-sm">Peso</th>
+                    <th class="text-sm">Raza</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let perro of responseFromServer.content">
-                    <td>{{perro.id}}</td>
                     <td>{{perro.nombre}}</td>
-                    <td>{{perro.fechaNacimiento}}</td>
-                    <td>{{perro.genero}}</td>
-                    <td>{{perro.peso}}</td>
-                    <td>{{perro.sociable}}</td>
-                    <td>{{perro.puedeIrSuelto}}</td>
-                    <td>{{perro.esJugueton}}</td>
-                    <td><a [routerLink]="['/admin', 'perro', 'plist', 'usuario', perro.usuario.id]"> {{perro.usuario.nombre}}</a>{{perro.usuario.nombre}}</td>
-
-                
-
-           
-
+                    <td>{{perro.peso}} Kg</td>
+                    <td>{{perro.raza.nombre}}</td>
                 </tr>
+                
             </tbody>
         </table>
- -->
-
-
+            <h5 class="text-muted text-sm text-capitalized">Total perros: {{responseFromServer.totalElements}}</h5>
+            <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
     </div>
-</div>

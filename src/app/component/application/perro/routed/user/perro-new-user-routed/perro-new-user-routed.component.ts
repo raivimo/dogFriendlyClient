@@ -18,6 +18,7 @@ declare let bootstrap: any;
 })
 export class PerroNewUserRoutedComponent implements OnInit {
 
+  @Output() actualizaPerros = new EventEmitter<number>();
   @Input() oUsuario: IUsuario;
 
   responseFromServer: IPage<IPerro>;

@@ -2,8 +2,7 @@
     <div class="card-body p-3">
         <h6 class="text-uppercase text-body text-xs font-weight-bolder">Añadir un perro a mi cuenta</h6>
         <form #myForm="ngForm" novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit(); myForm.resetForm()">
-
-            <div class="form-horizontal">
+            <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="inputNombre" class="col-sm-4 control-label text-xs">Nombre</label>
@@ -107,6 +106,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
 
                 <div class="col-sm-6">
                     <div class="form-group my-1">
@@ -153,7 +154,7 @@
                         <label for="inputRaza" class="col-sm-4 control-label text-xs">Raza</label>
                         <div class="has-validation col-sm-8">
                             <div class="input-group">
-                                
+
                                 <input type="text" class="form-control" formControlName="id_raza"
                                     (keyup)="updateRazaDescription(oForm.controls.id_raza.value)" [ngClass]="{'is-valid' :
                                    oForm.controls.id_raza.dirty && !oForm.controls.id_raza.errors?.['required'] &&
@@ -162,7 +163,8 @@
                                     ||
                                        ( oForm.controls.id_raza.dirty &&  oForm.controls.id_raza.errors?.['incorrect'])
                                       }">
-                                <button type="button" class="btn btn-primary btn-sm mx-1 " (click)="openModalFindRaza()">Buscar</button>
+                                <button type="button" class="btn btn-primary btn-sm mx-1 "
+                                    (click)="openModalFindRaza()">Buscar</button>
                                 <div class="text-danger"
                                     *ngIf="oForm.controls.id_raza.dirty &&  oForm.controls.id_raza.errors?.['required']">
                                     El campo es obligatorio.
@@ -176,11 +178,11 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary btn-sm border-radius-xl mt-1" data-bs-dismiss="modal">Guardar</button>
+                    <button type="submit" class="btn btn-primary btn-sm border-radius-xl mt-1"
+                        data-bs-dismiss="modal">Guardar</button>
                 </div>
             </div>
         </form>
-
     </div>
 </div>
 
@@ -193,7 +195,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body"> {{modalContent}}  </div>
+            <div class="modal-body"> {{modalContent}} </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
             </div>
