@@ -5,6 +5,7 @@ import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
 import { IUsuario, IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { Output, EventEmitter } from '@angular/core';
 
 declare let bootstrap: any;
 
@@ -16,6 +17,7 @@ declare let bootstrap: any;
 
 
 export class UsuarioEditUserRoutedComponent implements OnInit {
+  
   id: number = 0;
   @Input() oUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;
@@ -79,11 +81,12 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       console.log("is valid")
       this.oUsuarioService.updateOne(this.oUsuario2Send).subscribe({
         next: (data: number) => {
+          alert("Usuario actualizado")
           
           //open bootstrap modal here
-          this.modalTitle = "dogFriends";
+        /*   this.modalTitle = "dogFriends";
           this.modalContent = "Usuario " + this.id + " actualizado";
-          this.showModal();
+          this.showModal(); */
         }
       })
     }
@@ -95,7 +98,10 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     })
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      this.oRouter.navigate(['/admin/usuario/view', this.id])
+      /* this.oRouter.navigate(['/admin/usuario/view', this.id])
+
+      EMITIR EVENTO PARA ACTUALIZAR PADRE
+       */
     })
     this.myModal.show()
   }
@@ -126,6 +132,9 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       }
     })
   }
+
+
+
 
 
 }

@@ -17,14 +17,15 @@
                             <p class="mb-0 text-xs">{{usuario.email}}</p>
                         </div>
                     </td>
-                    <td>Contratar</td>
+                    <td class="text-sm text-uppercase">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Contratar <br>paseo</button></td>
                 </tr>
             </tbody>
         </table>
         <div class="container d-flex">
             <app-pagination-unrouted [nPage]="responseFromServer.number + 1"
                 [nTotalPages]="responseFromServer.totalPages" (eePage)="setPage($event)"></app-pagination-unrouted>
-            <h5 class="text-muted text-sm text-capitalized ms-5">Total perros: {{responseFromServer.totalElements}}
+            <h5 class="text-muted text-sm text-capitalized ms-5">Total paseadores: {{responseFromServer.totalElements}}
             </h5>
         </div>
     </div>

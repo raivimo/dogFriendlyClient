@@ -18,8 +18,8 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
 
   id_tipousuarioFilter: number = 3;
 
-  numberOfElements: number = 5;
-  pageSize: number = 5;
+  numberOfElements: number = 4;
+  pageSize: number = 4;
   page: number = 0;
   sortField: string = "";
   sortDirection: string = "";

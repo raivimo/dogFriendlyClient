@@ -6,6 +6,7 @@ import { RazaService } from '../../../../../../service/raza.service';
 import { IRaza } from 'src/app/model/raza-interface';
 import { PerroService } from '../../../../../../service/perro.service';
 import { IPerro } from '../../../../../../model/perro-interface';
+import { IUsuario2Send } from '../../../../../../model/usuario-interface';
 
 declare let bootstrap: any;
 
@@ -16,6 +17,8 @@ declare let bootstrap: any;
 })
 
 export class HomeUserRoutedComponent implements OnInit {
+
+  editUserHijo: IUsuario2Send;
 
   strId: number = null;
   strUsername: string = "";
@@ -71,23 +74,18 @@ export class HomeUserRoutedComponent implements OnInit {
     this.myModal.show()
   }
 
+  openModalEditUser(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("editUser"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
+  }
+
   closeNewPerroModal() {
     this.myModal.hide();
   }
 
 
-  /*    updatePerroDescription(id_perro: number) {
-       this.oPerroService.getOne(id_perro).subscribe({
-         next: (data: IPerro) => {      
-           this.perroDescription = data.nombre;        
-         },
-         error: (error: any) => {
-           this.perroDescription = "TipoUsuario not found";        
-           this.oForm.controls['id_tipousuario'].setErrors({'incorrect': true});
-         }
-       })
-     }
-  */
 
 
 
