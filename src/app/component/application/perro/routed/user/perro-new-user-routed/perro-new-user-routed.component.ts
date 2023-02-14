@@ -118,8 +118,6 @@ export class PerroNewUserRoutedComponent implements OnInit {
     this.myModal.hide();
   }
 
-
-
   updateRazaDescription(id_raza: number) {
     this.oRazaService.getOne(id_raza).subscribe({
       next: (data: IRaza) => {
@@ -131,6 +129,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
       }
     })
   }
+
 
 
 }

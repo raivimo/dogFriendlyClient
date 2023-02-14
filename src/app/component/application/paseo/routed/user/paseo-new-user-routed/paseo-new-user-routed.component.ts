@@ -74,7 +74,6 @@ export class PaseoNewUserRoutedComponent implements OnInit {
       perro: { id: this.oForm.value.id_perro }
     }
     if (this.oForm.valid) {
-
       this.oPaseoService.newOne(this.oPaseoSend).subscribe({
         next: (data: number) => {
 

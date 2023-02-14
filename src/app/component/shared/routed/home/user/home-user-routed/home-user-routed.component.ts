@@ -84,10 +84,7 @@ export class HomeUserRoutedComponent implements OnInit {
   }
 
   closeEditUserModal(): void {
-    this.myModal = new bootstrap.Modal(document.getElementById("editUser"), { //pasar el myModal como parametro
-      keyboard: false
-    })
-    this.myModal.show()
+    this.myModal.hide();
   }
 
 

@@ -92,6 +92,7 @@ import { PaseoNewUserRoutedComponent } from './component/application/paseo/route
 import { PaseoPlistUserRoutedComponent } from './component/application/paseo/routed/user/paseo-plist-user-routed/paseo-plist-user-routed.component';
 import { PerroNewUserRoutedComponent } from './component/application/perro/routed/user/perro-new-user-routed/perro-new-user-routed.component';
 import { PaseadorPlistUserRoutedComponent } from './component/application/usuario/routed/user/paseador-plist-user-routed/paseador-plist-user-routed.component';
+import { PerroFinderUserUnroutedComponent } from './component/application/perro/unrouted/perro-finder-user-unrouted/perro-finder-user-unrouted.component';
 
 
 @NgModule({
@@ -192,6 +193,7 @@ import { PaseadorPlistUserRoutedComponent } from './component/application/usuari
     PaseoPlistUserRoutedComponent,
     PerroNewUserRoutedComponent,
     PaseadorPlistUserRoutedComponent,
+    PerroFinderUserUnroutedComponent,
    /*  HomeGuessRoutedComponent, */
 
   ],

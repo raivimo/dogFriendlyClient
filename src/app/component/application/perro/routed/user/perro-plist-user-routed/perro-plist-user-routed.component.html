@@ -19,6 +19,6 @@
         <div class="container d-flex">
             <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
             (eePage)="setPage($event)"></app-pagination-unrouted>
-            <h5 class="text-muted text-sm text-capitalized ms-5">Total perros: {{responseFromServer.totalElements}}</h5>
+            <!-- <h5 class="text-muted text-sm text-capitalized ms-5">Total perros: {{responseFromServer.totalElements}}</h5> -->
         </div>
     </div>

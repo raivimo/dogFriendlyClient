@@ -94,7 +94,6 @@
                 <label for="inputTipopaseo" class="col-sm-2 col-form-label">Tipo de Paseo</label>
                 <div class="col-sm-6 has-validation">
                     <div class="input-group">
-                        <span class="input-group-text">{{tipopaseoDescription}}</span>
 
                         <input type="text" class="form-control" formControlName="id_tipopaseo"
                             (keyup)="updateTipopaseoDescription(oForm.controls.id_tipopaseo.value)"
@@ -120,40 +119,10 @@
             </div>
 
             <div class="mb-3 row">
-                <label for="inputUsuario" class="col-sm-2 col-form-label">Usuario</label>
-                <div class="col-sm-6 has-validation">
-                    <div class="input-group">
-                        <span class="input-group-text">{{usuarioDescription}}</span>
-
-                        <input type="text" class="form-control" formControlName="id_usuario"
-                            (keyup)="updateUsuarioDescription(oForm.controls.id_usuario.value)"
-                            [ngClass]="{'is-valid' :
-                            oForm.controls.id_usuario.dirty && !oForm.controls.id_usuario.errors?.['required'] &&
-                            !oForm.controls.id_usuario.errors?.['pattern'] && !oForm.controls.id_usuario.errors?.['incorrect'],
-                            'is-invalid' :  (oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['required'] )
-                            || ( oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['incorrect'])}">
-                        <button type="button" class="btn btn-primary" (click)="openModalFindUsuario()">Buscar</button>
-
-                        <div class="text-danger"
-                            *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['required']">
-                            El campo es obligatorio.
-                        </div>
-
-                        <div class="text-danger"
-                            *ngIf="oForm.controls.id_usuario.dirty &&  oForm.controls.id_usuario.errors?.['pattern']">
-                            El campo ha de ser un entrero entre 1 y cuatro.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="mb-3 row">
                 <label for="inputPerro" class="col-sm-2 col-form-label">Perro</label>
                 <div class="col-sm-6 has-validation">
                     <div class="input-group">
-                        <span class="input-group-text">{{perroDescription}}</span>
-
+                        
                         <input type="text" class="form-control" formControlName="id_perro"
                             (keyup)="updatePerroDescription(oForm.controls.id_perro.value)"
                             [ngClass]="{'is-valid' :
@@ -177,7 +146,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Guardar</button>
             </div>
         </form>
     </div>
@@ -193,9 +162,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 {{modalContent}}
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
@@ -213,8 +180,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <app-tipopaseo-finder-admin-unrouted
-                    (closeEvent)="closeTipopaseoModal($event)"></app-tipopaseo-finder-admin-unrouted>
+                <app-tipopaseo-finder-admin-unrouted (closeEvent)="closeTipopaseoModal($event)"></app-tipopaseo-finder-admin-unrouted>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
@@ -250,8 +216,7 @@
             </div>
             <div class="modal-body">
 
-                <app-perro-finder-admin-unrouted
-                    (closeEvent)="closePerroModal($event)"></app-perro-finder-admin-unrouted>
+                <app-perro-finder-user-unrouted  (closeEvent)="closePerroModal($event)"></app-perro-finder-user-unrouted>
 
             </div>
             <div class="modal-footer">
