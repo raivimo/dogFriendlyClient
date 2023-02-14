@@ -83,7 +83,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
       console.log(this.oPerroSend + "llega")
       this.oPerroService.newOne(this.oPerroSend).subscribe({
         next: (data: number) => {
-
+          this.oPerroService.perroObervable.emit();
           //open bootstrap modal here
           this.modalTitle = "dogFriends";
           this.modalContent = "Perro " + data + " creado";
@@ -91,6 +91,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
         }
       })
     }
+    this.ngOnInit();
   }
 
   showModal = (id: number) => {

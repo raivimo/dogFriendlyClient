@@ -2,6 +2,7 @@
     <div class="card-body p-3">
         <h6 class="text-uppercase text-center text-body font-weight-bolder">Añadir un perro a mi cuenta</h6>
         <form #myForm="ngForm" novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit(); myForm.resetForm()">
+            
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">

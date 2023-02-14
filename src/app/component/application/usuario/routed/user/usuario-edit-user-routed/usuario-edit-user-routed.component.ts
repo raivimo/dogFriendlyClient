@@ -82,7 +82,6 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       console.log("is valid")
       this.oUsuarioService.updateOne(this.oUsuario2Send).subscribe({
         next: (data: any) => {
-          alert("Usuario actualizado")
           this.oUsuarioService.usuarioObservale.emit(data);
           console.log(data);
           

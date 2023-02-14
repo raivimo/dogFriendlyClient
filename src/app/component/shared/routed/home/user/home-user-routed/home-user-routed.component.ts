@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Events, SessionService } from 'src/app/service/session.service';
+import { EmitEvent, Events, SessionService } from 'src/app/service/session.service';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { RazaService } from '../../../../../../service/raza.service';
-import { IRaza } from 'src/app/model/raza-interface';
 import { PerroService } from '../../../../../../service/perro.service';
-import { IPerro } from '../../../../../../model/perro-interface';
-import { IUsuario2Send } from '../../../../../../model/usuario-interface';
+import { Router } from '@angular/router';
 
 declare let bootstrap: any;
 
@@ -35,7 +33,8 @@ export class HomeUserRoutedComponent implements OnInit {
     private oSessionService: SessionService,
     private oUsuarioService: UsuarioService,
     private oPerroService: PerroService,
-    private oRazaService: RazaService
+    private oRazaService: RazaService,
+    protected oRouter: Router,
   ) {
     this.strUsername = oSessionService.getUserName();
     if (this.strUsername) {
@@ -46,6 +45,12 @@ export class HomeUserRoutedComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  logout() {
+    this.oSessionService.logout();
+    this.oSessionService.emit(new EmitEvent(Events.logout, ""));
+    this.oRouter.navigate(['/login']);
+  }
 
   async getUserID() {
     this.oSessionService.getUserId().subscribe({
@@ -67,6 +72,13 @@ export class HomeUserRoutedComponent implements OnInit {
 
   openModalNewPerro(): void {
     this.myModal = new bootstrap.Modal(document.getElementById("newPerro"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
+  }
+
+  openModalRemovePerro(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("removePerro"), { //pasar el myModal como parametro
       keyboard: false
     })
     this.myModal.show()

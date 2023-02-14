@@ -32,6 +32,11 @@ export class PerroPlistUserRoutedComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
+    this.oPerroService.perroObervable.subscribe({
+      next: (data ) => {
+        this.getPage();
+      }
+    })
     this.id_UsuarioFilter = this.oUsuario.id;
     this.getPage();
   }
