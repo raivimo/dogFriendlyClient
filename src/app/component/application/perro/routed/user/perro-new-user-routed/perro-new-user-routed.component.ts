@@ -91,7 +91,6 @@ export class PerroNewUserRoutedComponent implements OnInit {
         }
       })
     }
-    this.ngOnInit();
   }
 
   showModal = (id: number) => {
