@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IPage } from 'src/app/model/generic-types-interface';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
+declare let bootstrap: any;
 
 @Component({
   selector: 'app-paseador-plist-user-routed',
@@ -10,6 +11,14 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   styleUrls: ['./paseador-plist-user-routed.component.css']
 })
 export class PaseadorPlistUserRoutedComponent implements OnInit {
+
+  
+  mimodal: string = "miModal";
+  myModal: any;
+  modalTitle: string = "";
+  modalContent: string = "";
+
+  perroDescription: string = "";
 
   @Output() closeEvent = new EventEmitter<number>();
   responseFromServer: IPage<IUsuario>;
@@ -80,5 +89,20 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
     }
     this.getPage();
   }
+
+  openModalNewPaseo(){
+    this.myModal = new bootstrap.Modal(document.getElementById("newPaseo"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
+  }
+
+  closeNewPaseoModal(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("editUser"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
+  }
+
 
 }

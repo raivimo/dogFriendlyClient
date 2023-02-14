@@ -10,8 +10,6 @@ import { IUsuario } from '../model/usuario-interface';
     providedIn: 'root'
 })
 
-
-
 export class SessionService {
 
     private entityURL = '/session';
@@ -42,9 +40,6 @@ export class SessionService {
        return this.oHttpClient.get<number>(this.sURL + "/getUserID", {withCredentials:true});
     }
 
-
-
- 
 
     getToken(): string {
         return localStorage.getItem("token");

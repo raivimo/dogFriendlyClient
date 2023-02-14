@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IUsuario } from 'src/app/model/usuario-interface';
+import { Events, UsuarioService } from '../../../../../../service/usuario.service';
+import { faDiagramNext } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-usuario-view-user-routed',
@@ -10,9 +13,31 @@ export class UsuarioViewUserRoutedComponent implements OnInit {
 
   @Input() oUsuario: IUsuario;
 
-  constructor() { }
+  constructor(private oUsuarioService: UsuarioService) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit() {  
+      this.oUsuarioService.usuarioObservale.subscribe({
+        next: (data) => {
+          this.oUsuarioService.getOne(data).subscribe({
+            next: (data2) => {
+              this.oUsuario = data2;
+
+            }
+          })
+        }
+      })  
+      
+      
+      }
+      
+
+
+ 
+
+
+
+
+
+
 
 }

@@ -4,8 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
 import { IUsuario, IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { EmitEvent, Events, UsuarioService } from 'src/app/service/usuario.service';
 import { Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 declare let bootstrap: any;
 
@@ -17,7 +18,7 @@ declare let bootstrap: any;
 
 
 export class UsuarioEditUserRoutedComponent implements OnInit {
-  
+
   id: number = 0;
   @Input() oUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;
@@ -36,7 +37,7 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     private oActivatedRoute: ActivatedRoute,
     private oUsuarioService: UsuarioService,
     private oFormBuilder: FormBuilder,
-    private oTipousuarioService: TipousuarioService
+    private oTipousuarioService: TipousuarioService,
   ) { }
 
   ngOnInit() {
@@ -80,8 +81,10 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     if (this.oForm.valid) {
       console.log("is valid")
       this.oUsuarioService.updateOne(this.oUsuario2Send).subscribe({
-        next: (data: number) => {
+        next: (data: any) => {
           alert("Usuario actualizado")
+          this.oUsuarioService.usuarioObservale.emit(data);
+          console.log(data);
           
           //open bootstrap modal here
         /*   this.modalTitle = "dogFriends";
@@ -89,6 +92,8 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
           this.showModal(); */
         }
       })
+      
+
     }
   }
 

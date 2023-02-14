@@ -18,8 +18,6 @@ declare let bootstrap: any;
 
 export class HomeUserRoutedComponent implements OnInit {
 
-  editUserHijo: IUsuario2Send;
-
   strId: number = null;
   strUsername: string = "";
   strUsertype: string = "";
@@ -83,6 +81,13 @@ export class HomeUserRoutedComponent implements OnInit {
 
   closeNewPerroModal() {
     this.myModal.hide();
+  }
+
+  closeEditUserModal(): void {
+    this.myModal = new bootstrap.Modal(document.getElementById("editUser"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
   }
 
 
