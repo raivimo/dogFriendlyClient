@@ -1,1 +1,26 @@
-<p>usuario-view-user-routed works!</p>
+    <div class="card-body p-3">
+        <h2 class="text-dark text-capitalize">{{oUsuario.nombre}} </h2><br>
+        <h2 class="text-dark text-capitalize">{{oUsuario.apellido1}} {{oUsuario.apellido2}} </h2>
+
+        <hr class="horizontal gray-light my-4">
+        <ul class="list-group">
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nombre:</strong>
+                {{oUsuario.nombre }}</li>
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Primer Apellido:</strong>
+                {{oUsuario.apellido1}}</li>
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Segundo Apellido:</strong>
+                {{oUsuario.apellido2}}</li>
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">E-Mail:</strong>
+                {{oUsuario.email}}</li>
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Fecha de Nacimiento:</strong>
+                {{oUsuario.fechaNacimiento}}</li>
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Login:</strong>
+                {{oUsuario.login}}</li>
+
+            <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Tipo de Usuario:</strong>
+                {{oUsuario.tipousuario.nombre}}</li>
+
+            <!-- <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Perros:</strong>
+                {{oUsuario.perros}}</li> -->
+        </ul>
+    </div>

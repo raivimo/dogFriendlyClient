@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { baseURL, httpOptions } from "src/environments/environment";
 import { IPage } from "../model/generic-types-interface";
 import { IPerro, IPerroSend } from '../model/perro-interface';
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,9 @@ export class PerroService {
 
     private entityURL = '/perro';
     url: string = ""
+
+     perroObervable = new EventEmitter<IPerro>(); 
+
   
     constructor(private oHttp: HttpClient) {
       this.url = `${baseURL}${this.entityURL}`;

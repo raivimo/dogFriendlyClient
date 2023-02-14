@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
 import { IUsuario, IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { EmitEvent, Events, UsuarioService } from 'src/app/service/usuario.service';
+import { Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 declare let bootstrap: any;
 
@@ -16,8 +18,9 @@ declare let bootstrap: any;
 
 
 export class UsuarioEditUserRoutedComponent implements OnInit {
+
   id: number = 0;
-  oUsuario: IUsuario = null;
+  @Input() oUsuario: IUsuario = null;
   oUsuario2Form: IUsuario2Form = null;
   oUsuario2Send: IUsuario2Send = null;
   oForm: FormGroup<IUsuario2Form>;
@@ -34,14 +37,12 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     private oActivatedRoute: ActivatedRoute,
     private oUsuarioService: UsuarioService,
     private oFormBuilder: FormBuilder,
-    private oTipousuarioService: TipousuarioService
-  ) {
-    this.id = oActivatedRoute.snapshot.params['id'];
-  }
+    private oTipousuarioService: TipousuarioService,
+  ) { }
 
   ngOnInit() {
+    this.id = this.oUsuario.id;
     this.getOne();
-    
   }
 
   getOne() {
@@ -80,14 +81,18 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     if (this.oForm.valid) {
       console.log("is valid")
       this.oUsuarioService.updateOne(this.oUsuario2Send).subscribe({
-        next: (data: number) => {
+        next: (data: any) => {
+          this.oUsuarioService.usuarioObservale.emit(data);
+          console.log(data);
           
           //open bootstrap modal here
-          this.modalTitle = "dogFriends";
+        /*   this.modalTitle = "dogFriends";
           this.modalContent = "Usuario " + this.id + " actualizado";
-          this.showModal();
+          this.showModal(); */
         }
       })
+      
+
     }
   }
 
@@ -97,7 +102,10 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     })
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      this.oRouter.navigate(['/admin/usuario/view', this.id])
+      /* this.oRouter.navigate(['/admin/usuario/view', this.id])
+
+      EMITIR EVENTO PARA ACTUALIZAR PADRE
+       */
     })
     this.myModal.show()
   }
@@ -128,6 +136,9 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       }
     })
   }
+
+
+
 
 
 }

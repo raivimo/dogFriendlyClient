@@ -1,0 +1,227 @@
+<div class="card card-plain h-100">
+    <div class="card-body p-3">
+        <h6 class="text-uppercase text-center text-body font-weight-bolder">Añadir un perro a mi cuenta</h6>
+        <form #myForm="ngForm" novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit(); myForm.resetForm()">
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="inputNombre" class="col-sm-4 control-label text-xs">Nombre</label>
+                        <div class="col-sm-8 has-validation">
+                            <input type="text" class="form-control col-sm-8" [ngClass]="{'is-valid' : oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['required'] &&
+                    oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['minlength'] 
+                    && oForm.controls.nombre.dirty && !oForm.controls.nombre.errors?.['maxlength'],
+                    'is-invalid' :  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength'] 
+                    ||  oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength'] ||  
+                    oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']}" id="inputNombre"
+                                formControlName="nombre">
+                            <div id="inputNombreFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['minlength']">
+                                La longitud mínima es de 5 caracteres.
+                            </div>
+                            <div id="inputNombreFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['maxlength']">
+                                La longitud máxima es de 10 caracteres.
+                            </div>
+                            <div id="inputNombreFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.nombre.dirty &&  oForm.controls.nombre.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-1">
+                        <label for="inputfechaNacimiento" class="col-sm-4 control-label text-xs"
+                            aria-placeholder="dd-mm-yyyy">Fecha de Nacimiento</label>
+                        <div class="has-validation col-sm-8">
+                            <input type="date" class="form-control" [ngClass]="{'is-valid' : oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['required'] &&
+                        oForm.controls.fechaNacimiento.dirty && !oForm.controls.fechaNacimiento.errors?.['pattern'],
+                         'is-invalid' :  oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern'] ||
+                         oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']}"
+                                id="inputfechaNacimiento" formControlName="fechaNacimiento">
+                            <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['pattern']">
+                                Formato de entrada: (dd-MM-yyyy)
+                            </div>
+                            <div id="inputfechaNacimientoFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.fechaNacimiento.dirty &&  oForm.controls.fechaNacimiento.errors?.['required']">
+                                Campo obligatorio
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-1">
+                        <label for="inputGenero" class="col-sm-4 control-label text-xs">Genero</label>
+                        <div class="has-validation col-sm-8">
+                            <input type="number" class="form-control col-12" [ngClass]="{'is-valid' : oForm.controls.genero.dirty && !oForm.controls.genero.errors?.['required'] &&
+                       oForm.controls.genero.dirty && !oForm.controls.genero.errors?.['pattern'],
+                        'is-invalid' :  oForm.controls.genero.dirty &&  oForm.controls.genero.errors?.['pattern'] ||
+                           oForm.controls.genero.dirty &&  oForm.controls.genero.errors?.['required']}"
+                                id="inputGenero" formControlName="genero">
+                            <div id="inputGeneroFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.genero.dirty &&  oForm.controls.genero.errors?.['pattern']">
+                                Elige 0 para Hermbra, 1 para Macho
+                            </div>
+                            <div id="inputGeneroFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.genero.dirty &&  oForm.controls.genero.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-1">
+                        <label for="inputPeso" class="col-sm-4 control-label text-xs">Peso</label>
+                        <div class="has-validation col-sm-8">
+                            <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.peso.dirty && !oForm.controls.peso.errors?.['required'] &&
+                     oForm.controls.peso.dirty && !oForm.controls.peso.errors?.['pattern'],
+                    'is-invalid' :  oForm.controls.peso.dirty &&  oForm.controls.peso.errors?.['pattern'] ||
+                      oForm.controls.peso.dirty &&  oForm.controls.peso.errors?.['required']}" id="inputPeso"
+                                formControlName="peso">
+                            <div id="inputPesoFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.peso.dirty &&  oForm.controls.peso.errors?.['pattern']">
+                                El formato no es adecuado
+                            </div>
+                            <div id="inputPesoFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.peso.dirty &&  oForm.controls.peso.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-1">
+                        <label for="inputSociable" class="col-sm-4 control-label text-xs">Sociable</label>
+                        <div class="has-validation col-sm-8">
+                            <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.sociable.dirty && !oForm.controls.sociable.errors?.['required'] &&
+                        oForm.controls.sociable.dirty && !oForm.controls.sociable.errors?.['pattern'],
+                        'is-invalid' :  oForm.controls.sociable.dirty &&  oForm.controls.sociable.errors?.['pattern'] ||
+                         oForm.controls.sociable.dirty &&  oForm.controls.sociable.errors?.['required']}"
+                                id="inputSociable" formControlName="sociable">
+                            <div id="inputSociableFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.sociable.dirty &&  oForm.controls.sociable.errors?.['pattern']">
+                                El formato no es adecuado
+                            </div>
+                            <div id="inputSociableFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.sociable.dirty &&  oForm.controls.sociable.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group my-1">
+                        <label for="inputPuedeIrSuelto" class="col-sm-4 control-label text-xs">Puede ir Suelto</label>
+                        <div class="has-validation col-sm-8">
+                            <input type="number" class="form-control" [ngClass]="{'is-valid' : oForm.controls.puedeIrSuelto.dirty && !oForm.controls.puedeIrSuelto.errors?.['required'] &&
+                            oForm.controls.puedeIrSuelto.dirty && !oForm.controls.puedeIrSuelto.errors?.['pattern'],
+                            'is-invalid' :  oForm.controls.puedeIrSuelto.dirty &&  oForm.controls.puedeIrSuelto.errors?.['pattern'] ||
+                            oForm.controls.puedeIrSuelto.dirty &&  oForm.controls.puedeIrSuelto.errors?.['required']}"
+                                id="inputPuedeIrSuelto" formControlName="puedeIrSuelto">
+                            <div id="inputPuedeIrSueltoFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.puedeIrSuelto.dirty &&  oForm.controls.puedeIrSuelto.errors?.['pattern']">
+                                El formato no es adecuado
+                            </div>
+                            <div id="inputPuedeIrSueltoFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.puedeIrSuelto.dirty &&  oForm.controls.puedeIrSuelto.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group my-1">
+                        <label for="inputEsJugueton" class="col-sm-4 control-label text-xs">Es Juguetón</label>
+                        <div class="has-validation  col-sm-8">
+                            <input type="number" class="form-control"
+                                [ngClass]="{'is-valid' : oForm.controls.esJugueton.dirty && !oForm.controls.esJugueton.errors?.['required'] &&
+                                  oForm.controls.esJugueton.dirty && !oForm.controls.esJugueton.errors?.['pattern'],
+                                    'is-invalid' :  oForm.controls.esJugueton.dirty &&  oForm.controls.esJugueton.errors?.['pattern'] ||
+                                    oForm.controls.esJugueton.dirty &&  oForm.controls.esJugueton.errors?.['required']}" id="inputEsJugueton"
+                                formControlName="esJugueton">
+                            <div id="inputEsJuguetonFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.esJugueton.dirty &&  oForm.controls.esJugueton.errors?.['pattern']">
+                                El formato no es adecuado
+                            </div>
+                            <div id="inputEsJuguetonFeedback" class="invalid-feedback"
+                                *ngIf="oForm.controls.esJugueton.dirty &&  oForm.controls.esJugueton.errors?.['required']">
+                                El campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group my-1">
+                        <label for="inputRaza" class="col-sm-4 control-label text-xs">Raza</label>
+                        <div class="has-validation col-sm-8">
+                            <div class="input-group">
+
+                                <input type="text" class="form-control" formControlName="id_raza"
+                                    (keyup)="updateRazaDescription(oForm.controls.id_raza.value)" [ngClass]="{'is-valid' :
+                                   oForm.controls.id_raza.dirty && !oForm.controls.id_raza.errors?.['required'] &&
+                                   !oForm.controls.id_raza.errors?.['pattern'] && !oForm.controls.id_raza.errors?.['incorrect'],
+                                    'is-invalid' :  (oForm.controls.id_raza.dirty &&  oForm.controls.id_raza.errors?.['required'] )
+                                    ||
+                                       ( oForm.controls.id_raza.dirty &&  oForm.controls.id_raza.errors?.['incorrect'])
+                                      }">
+                                <button type="button" class="btn btn-primary btn-sm mx-1 "
+                                    (click)="openModalFindRaza()">Buscar</button>
+                                <div class="text-danger"
+                                    *ngIf="oForm.controls.id_raza.dirty &&  oForm.controls.id_raza.errors?.['required']">
+                                    El campo es obligatorio.
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="oForm.controls.id_raza.dirty &&  oForm.controls.id_raza.errors?.['pattern']">
+                                    El campo ha de ser un entrero entre 1 y cuatro.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm border-radius-xl mt-1" data-bs-dismiss="modal" >Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Modelo Modal -->
+<div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"> {{modalContent}} </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modelo Modal -->
+
+
+
+
+<!-- Modal Raza -->
+<div class="modal fade" id="findRaza" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-raza-finder-admin-unrouted (closeEvent)="closeRazaModal($event)"></app-raza-finder-admin-unrouted>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Raza -->

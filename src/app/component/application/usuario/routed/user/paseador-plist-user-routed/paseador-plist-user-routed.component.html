@@ -1,0 +1,72 @@
+<!-- PLIST PASEADORES FILTRADO POR EL USUARIO EN SESION -->
+<div class="card-body p-3">
+    <table class="table table-striped">
+        <tbody class="align-items-center px-0 mb-2 pt-0">
+            <tr *ngFor="let usuario of responseFromServer.content">
+                <td>
+                    <div class="avatar me-3">
+                        <img src="../assets/img/kal-visuals-square.jpg" alt="kal" class="border-radius-lg shadow">
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex align-items-start flex-column justify-content-center">
+                        <h6> {{usuario.nombre}}</h6>
+                        <p class="mb-0 text-xs">{{usuario.email}}</p>
+                    </div>
+                </td>
+                <td class="text-sm text-uppercase">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="openModalNewPaseo()">Contratar <br>paseo</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container d-flex">
+        <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+            (eePage)="setPage($event)"></app-pagination-unrouted>
+        <h5 class="text-muted text-sm text-capitalized ms-5">Total paseadores: {{responseFromServer.totalElements}}
+        </h5>
+    </div>
+</div>
+<!-- PLIST PASEADORES FILTRADO POR EL USUARIO EN SESION -->
+
+
+
+ <!-- Modelo Modal -->
+ <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{modalContent}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modelo Modal -->
+
+
+
+<!-- Modal newPaseo -->
+<div class="modal fade" id="newPaseo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <app-paseo-new-user-routed ></app-paseo-new-user-routed>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal newPaseo -->

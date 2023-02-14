@@ -1,11 +1,20 @@
-import { IUsuario2Form, IUsuario2Send } from '../model/usuario-interface';
+import { IUsuario2Send } from '../model/usuario-interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseURL } from 'src/environments/environment';
 import { IUsuario } from '../model/usuario-interface';
 import { IPage } from '../model/generic-types-interface';
 import { httpOptions } from '../../environments/environment';
+
+export enum Events {
+  UsuarioEditAdminRoutedComponent,
+  UsuarioEditUserRoutedComponent
+}
+
+export class EmitEvent {
+  constructor(public event: Events, public oUsuarioActualizado: IUsuario) { }
+}
 
 
 @Injectable({
@@ -16,6 +25,8 @@ export class UsuarioService {
 
   private entityURL = '/usuario';
   url: string = ""
+
+  usuarioObservale = new EventEmitter<IUsuario>(); 
 
   constructor(private oHttp: HttpClient) {
     this.url = `${baseURL}${this.entityURL}`;
@@ -36,8 +47,8 @@ export class UsuarioService {
         params = params.set("sort", strSortField);
       }
     }
-    const { withCredentials, headers} = httpOptions
-    return this.oHttp.get<IPage<IUsuario>>(this.url, {headers: headers, withCredentials, params: params });
+    const { withCredentials, headers } = httpOptions
+    return this.oHttp.get<IPage<IUsuario>>(this.url, { headers: headers, withCredentials, params: params });
   }
 
   getOne(id: number): Observable<IUsuario> {
@@ -53,8 +64,16 @@ export class UsuarioService {
   }
 
 
-  newOne(oUsuario2Send: IUsuario2Send): Observable<number> {       
+  newOne(oUsuario2Send: IUsuario2Send): Observable<number> {
     return this.oHttp.post<number>(this.url, oUsuario2Send, httpOptions);
   }
+
+
+
+
+
+
+
+
 
 }

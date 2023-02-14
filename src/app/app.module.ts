@@ -83,6 +83,16 @@ import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/h
 import { UsuarioEditUserRoutedComponent } from './component/application/usuario/routed/user/usuario-edit-user-routed/usuario-edit-user-routed.component';
 import { UsuarioNewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-new-user-routed/usuario-new-user-routed.component';
 import { UsuarioViewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-view-user-routed/usuario-view-user-routed.component';
+import { PerroViewUserRoutedComponent } from './component/application/perro/routed/user/perro-view-user-routed/perro-view-user-routed.component';
+import { PerroRemoveUserRoutedComponent } from './component/application/perro/routed/user/perro-remove-user-routed/perro-remove-user-routed.component';
+import { PerroEditUserRoutedComponent } from './component/application/perro/routed/user/perro-edit-user-routed/perro-edit-user-routed.component';
+import { PerroPlistUserRoutedComponent } from './component/application/perro/routed/user/perro-plist-user-routed/perro-plist-user-routed.component';
+import { PaseoEditUserAdminComponent } from './component/application/paseo/routed/user/paseo-edit-user-admin/paseo-edit-user-admin.component';
+import { PaseoNewUserRoutedComponent } from './component/application/paseo/routed/user/paseo-new-user-routed/paseo-new-user-routed.component';
+import { PaseoPlistUserRoutedComponent } from './component/application/paseo/routed/user/paseo-plist-user-routed/paseo-plist-user-routed.component';
+import { PerroNewUserRoutedComponent } from './component/application/perro/routed/user/perro-new-user-routed/perro-new-user-routed.component';
+import { PaseadorPlistUserRoutedComponent } from './component/application/usuario/routed/user/paseador-plist-user-routed/paseador-plist-user-routed.component';
+import { PerroFinderUserUnroutedComponent } from './component/application/perro/unrouted/perro-finder-user-unrouted/perro-finder-user-unrouted.component';
 
 
 @NgModule({
@@ -174,6 +184,16 @@ import { UsuarioViewUserRoutedComponent } from './component/application/usuario/
     UsuarioEditUserRoutedComponent,
     UsuarioNewUserRoutedComponent,
     UsuarioViewUserRoutedComponent,
+    PerroViewUserRoutedComponent,
+    PerroRemoveUserRoutedComponent,
+    PerroEditUserRoutedComponent,
+    PerroPlistUserRoutedComponent,
+    PaseoEditUserAdminComponent,
+    PaseoNewUserRoutedComponent,
+    PaseoPlistUserRoutedComponent,
+    PerroNewUserRoutedComponent,
+    PaseadorPlistUserRoutedComponent,
+    PerroFinderUserUnroutedComponent,
    /*  HomeGuessRoutedComponent, */
 
   ],
