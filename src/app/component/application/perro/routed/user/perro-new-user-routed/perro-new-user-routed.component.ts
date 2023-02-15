@@ -23,10 +23,10 @@ export class PerroNewUserRoutedComponent implements OnInit {
 
   responseFromServer: IPage<IPerro>;
 
-
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
   oPerroSend: IPerroSend = null;
+  oPerroSendDefault: IPerroSend = null;
   oForm: FormGroup<IPerroForm>;
   // modal
   mimodal: string = "miModal";
@@ -44,13 +44,16 @@ export class PerroNewUserRoutedComponent implements OnInit {
     private oFormBuilder: FormBuilder,
     private oUsuarioService: UsuarioService,
     private oRazaService: RazaService
-  ) { }
+  ) { 
+    //Pasamos los valores por defecto para la el formulario
+    this.oPerroSendDefault.usuario.id = this.oUsuario.id
+  }
 
   ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
       nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      fechaNacimiento: ["", [Validators.required, /* Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],
+      fechaNacimiento: ["", [Validators.required,]],
       genero: ["", [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
       imagen: [""],
       peso: ["", [Validators.required, Validators.pattern(/^\d{1,4}$/)]],
@@ -91,7 +94,6 @@ export class PerroNewUserRoutedComponent implements OnInit {
         }
       })
     }
-    this.ngOnInit();
   }
 
   showModal = (id: number) => {

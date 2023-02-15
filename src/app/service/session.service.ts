@@ -40,6 +40,15 @@ export class SessionService {
        return this.oHttpClient.get<number>(this.sURL + "/getUserID", {withCredentials:true});
     }
 
+    getUsertype(): string {
+        if (!this.isSessionActive()) {
+            return "";
+        } else {
+            let token: string = localStorage.getItem("token");
+            return this.oDecodeService.decode(token).usertype;
+        }
+    }
+
 
     getToken(): string {
         return localStorage.getItem("token");
