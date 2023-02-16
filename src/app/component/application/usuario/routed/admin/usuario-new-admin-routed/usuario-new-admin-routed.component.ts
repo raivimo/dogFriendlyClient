@@ -63,6 +63,7 @@ export class UsuarioNewAdminRoutedComponent implements OnInit {
       tipousuario: { id: this.oForm.value.id_tipousuario }
     }
     if (this.oForm.valid) {
+      console.log("Llega")
       this.oUsuarioService.newOne(this.oUsuario2Send).subscribe({
         next: (data: number) => {
           //open bootstrap modal here

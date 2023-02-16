@@ -22,6 +22,8 @@ export class PerroNewUserRoutedComponent implements OnInit {
   @Input() oUsuario: IUsuario;
 
   responseFromServer: IPage<IPerro>;
+  
+  
 
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
@@ -63,8 +65,8 @@ export class PerroNewUserRoutedComponent implements OnInit {
       id_raza: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
       id_usuario: [this.oUsuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
-  }
 
+  }
 
   onSubmit() {
     console.log("onSubmit");
@@ -87,10 +89,6 @@ export class PerroNewUserRoutedComponent implements OnInit {
       this.oPerroService.newOne(this.oPerroSend).subscribe({
         next: (data: number) => {
           this.oPerroService.perroObervable.emit();
-          //open bootstrap modal here
-          this.modalTitle = "dogFriends";
-          this.modalContent = "Perro " + data + " creado";
-          /* this.showModal(data); */
         }
       })
     }
