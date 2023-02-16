@@ -22,7 +22,8 @@ export class PerroNewUserRoutedComponent implements OnInit {
   @Input() oUsuario: IUsuario;
 
   responseFromServer: IPage<IPerro>;
-
+  
+  oPerroSendDefault: IPerroSend = null;
 
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
@@ -50,7 +51,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
       nombre: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      fechaNacimiento: ["", [Validators.required, /* Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],
+      fechaNacimiento: ["", [Validators.required,]],
       genero: ["", [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
       imagen: [""],
       peso: ["", [Validators.required, Validators.pattern(/^\d{1,4}$/)]],
@@ -60,8 +61,8 @@ export class PerroNewUserRoutedComponent implements OnInit {
       id_raza: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
       id_usuario: [this.oUsuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
-  }
 
+  }
 
   onSubmit() {
     console.log("onSubmit");
@@ -84,10 +85,6 @@ export class PerroNewUserRoutedComponent implements OnInit {
       this.oPerroService.newOne(this.oPerroSend).subscribe({
         next: (data: number) => {
           this.oPerroService.perroObervable.emit();
-          //open bootstrap modal here
-          this.modalTitle = "dogFriends";
-          this.modalContent = "Perro " + data + " creado";
-          /* this.showModal(data); */
         }
       })
     }
