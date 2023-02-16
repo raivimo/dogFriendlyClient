@@ -46,10 +46,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
     private oFormBuilder: FormBuilder,
     private oUsuarioService: UsuarioService,
     private oRazaService: RazaService
-  ) { 
-    //Pasamos los valores por defecto para la el formulario
-    this.oPerroSendDefault.usuario.id = this.oUsuario.id
-  }
+  ) { }
 
   ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
