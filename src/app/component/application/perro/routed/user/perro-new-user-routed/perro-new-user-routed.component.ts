@@ -23,11 +23,12 @@ export class PerroNewUserRoutedComponent implements OnInit {
 
   responseFromServer: IPage<IPerro>;
   
-  oPerroSendDefault: IPerroSend = null;
+  
 
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
   oPerroSend: IPerroSend = null;
+  oPerroSendDefault: IPerroSend = null;
   oForm: FormGroup<IPerroForm>;
   // modal
   mimodal: string = "miModal";
@@ -45,7 +46,10 @@ export class PerroNewUserRoutedComponent implements OnInit {
     private oFormBuilder: FormBuilder,
     private oUsuarioService: UsuarioService,
     private oRazaService: RazaService
-  ) { }
+  ) { 
+    //Pasamos los valores por defecto para la el formulario
+    this.oPerroSendDefault.usuario.id = this.oUsuario.id
+  }
 
   ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
