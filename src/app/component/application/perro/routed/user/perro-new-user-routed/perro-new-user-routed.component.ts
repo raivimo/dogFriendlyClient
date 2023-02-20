@@ -22,12 +22,12 @@ export class PerroNewUserRoutedComponent implements OnInit {
   @Input() oUsuario: IUsuario;
 
   responseFromServer: IPage<IPerro>;
-  
-  oPerroSendDefault: IPerroSend = null;
+
 
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
   oPerroSend: IPerroSend = null;
+  oPerroSendDefault: IPerroSend = null;
   oForm: FormGroup<IPerroForm>;
   // modal
   mimodal: string = "miModal";
