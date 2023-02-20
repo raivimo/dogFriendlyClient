@@ -22,8 +22,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
   @Input() oUsuario: IUsuario;
 
   responseFromServer: IPage<IPerro>;
-  
-  
+
 
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
