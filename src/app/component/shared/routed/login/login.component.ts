@@ -41,25 +41,18 @@ export class LoginComponent implements OnInit {
         next: (data: string) => {
           localStorage.setItem("token", data);
           this.oSessionService.emit(new EmitEvent(Events.login, data));
-          this.oRouter.navigate(['/home/admin'])
+          if (this.oSessionService.getUsertype() === 'usuario') {
+            this.oRouter.navigate(['/home/user'])
+          } else {
+            this.oRouter.navigate(['/home/admin'])
+          }
+          
         },
         error: (error: HttpErrorResponse) => {
           console.log(error.status, error.statusText);
         }
       }
     )
-
-    this.oSessionService.login(this.oFormularioLogin.get('login')!.value, this.oFormularioLogin.get('password')!.value)
-      .subscribe({
-        next: (data: string) => {
-          localStorage.setItem("token", data);
-          this.oSessionService.emit(new EmitEvent(Events.login, data));
-          this.oRouter.navigate(['/home/user']);
-        },
-        error: (error: HttpErrorResponse) => {
-          console.log(error.status, error.statusText);
-        }
-      })
   }
 
   loginAsAdmin() {
