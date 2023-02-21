@@ -13,7 +13,9 @@ import { faEye, faUserPen, faTrash, faArrowUp, faArrowDown } from '@fortawesome/
 })
 export class TipousuarioPlistAdminRoutedComponent implements OnInit {
 
-  constructor( private oTipousuarioService: TipousuarioService  ) { }
+  constructor( private oTipousuarioService: TipousuarioService ) {
+    this.responseFromServer = {} as IPage<ITipoUsuario>;
+   }
 
   responseFromServer: IPage<ITipoUsuario>;
   //

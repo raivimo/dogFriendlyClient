@@ -7,8 +7,7 @@
 
           <app-search-unrouted [placeHolder]="'Buscar Tipo de Usuario'" (onSearch)="setFilter( $event )"></app-search-unrouted>
 
-          <app-dropdown-register-page
-             class="mx-2" [PageSize]="responseFromServer.size" (eeRpp)="this.setRpp($event)">
+          <app-dropdown-register-page class="mx-2" [PageSize]="pageSize" (eeRpp)="this.setRpp($event)">
           </app-dropdown-register-page>
 
         </div>

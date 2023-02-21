@@ -31,7 +31,7 @@ export class FacturaPlistAdminRoutedComponent implements OnInit {
 
   constructor(
     private oFacturaService: FacturaService
-  ) { }
+  ) { this.responseFromServer = {} as IPage<IFactura>;}
 
   ngOnInit() {
     this.getPage();

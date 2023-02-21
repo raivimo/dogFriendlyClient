@@ -32,7 +32,7 @@ export class RazaPlistAdminRoutedComponent implements OnInit {
 
   constructor(
     private oRazaService: RazaService
-  ) { }
+  ) { this.responseFromServer = {} as IPage<IRaza>; }
 
   ngOnInit(){
     this.getPage();
