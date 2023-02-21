@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmitEvent, Events, SessionService } from 'src/app/service/session.service';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { RazaService } from '../../../../../../service/raza.service';
-import { PerroService } from '../../../../../../service/perro.service';
+import { RazaService } from 'src/app/service/raza.service';
+import { PerroService } from 'src/app/service/perro.service';
 import { Router } from '@angular/router';
 
 declare let bootstrap: any;
@@ -32,19 +32,14 @@ export class HomeUserRoutedComponent implements OnInit {
   constructor(
     private oSessionService: SessionService,
     private oUsuarioService: UsuarioService,
-    private oPerroService: PerroService,
-    private oRazaService: RazaService,
     protected oRouter: Router,
   ) {
     this.strUsername = oSessionService.getUserName();
-    if (this.strUsername) {
-      this.getUserID();
-    }
+    this.getUserID();
   }
 
   ngOnInit() {
   }
-
 
   logout() {
     this.oSessionService.logout();
@@ -52,7 +47,7 @@ export class HomeUserRoutedComponent implements OnInit {
     this.oRouter.navigate(['/login']);
   }
 
-  async getUserID() {
+  getUserID() {
     this.oSessionService.getUserId().subscribe({
       next: (n: number) => {
         this.strId = n
@@ -60,7 +55,6 @@ export class HomeUserRoutedComponent implements OnInit {
       }
     })
   }
-
 
   getUser() {
     this.oUsuarioService.getOne(this.strId).subscribe({

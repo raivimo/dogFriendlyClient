@@ -31,7 +31,7 @@ export class RazaFinderAdminUnroutedComponent implements OnInit {
 
   constructor(
     private oRazaService : RazaService
-  ) { }
+  ) { this.responseFromServer = {} as IPage<IRaza> }
 
   ngOnInit(): void {
     this.getPage();

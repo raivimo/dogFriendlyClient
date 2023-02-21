@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { ITipoUsuario } from 'src/app/model/tipousuario-response-interface';
 import { IUsuario, IUsuario2Form, IUsuario2Send } from 'src/app/model/usuario-interface';
 import { TipousuarioService } from 'src/app/service/tipousuario.service';
-import { EmitEvent, Events, UsuarioService } from 'src/app/service/usuario.service';
-import { Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 declare let bootstrap: any;
 
@@ -16,11 +13,11 @@ declare let bootstrap: any;
   styleUrls: ['./usuario-edit-user-routed.component.css']
 })
 
-
 export class UsuarioEditUserRoutedComponent implements OnInit {
 
   id: number = 0;
-  @Input() oUsuario: IUsuario = null;
+  @Input() oUsuario: IUsuario;
+
   oUsuario2Form: IUsuario2Form = null;
   oUsuario2Send: IUsuario2Send = null;
   oForm: FormGroup<IUsuario2Form>;
@@ -33,8 +30,6 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
   tipousuarioDescription: string = "";
 
   constructor(
-    private oRouter: Router,
-    private oActivatedRoute: ActivatedRoute,
     private oUsuarioService: UsuarioService,
     private oFormBuilder: FormBuilder,
     private oTipousuarioService: TipousuarioService,
@@ -57,7 +52,7 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
           apellido2: [data.apellido2, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
           email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
           login: [data.login, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-          fechaNacimiento: [data.fechaNacimiento, [Validators.required, /* Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],
+          fechaNacimiento: [data.fechaNacimiento, [Validators.required]],
           id_tipousuario: [data.tipousuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
         });
         this.updateTipousuarioDescription(this.oUsuario.tipousuario.id);
@@ -101,7 +96,7 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       keyboard: false
     })
     var myModalEl = document.getElementById(this.mimodal);
-    myModalEl.addEventListener('hidden.bs.modal', (event): void => {
+    myModalEl.addEventListener('hidden.bs.modal', (): void => {
       /* this.oRouter.navigate(['/admin/usuario/view', this.id])
 
       EMITIR EVENTO PARA ACTUALIZAR PADRE
@@ -130,7 +125,7 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       next: (data: ITipoUsuario) => {      
         this.tipousuarioDescription = data.nombre;        
       },
-      error: (error: any) => {
+      error: () => {
         this.tipousuarioDescription = "Tipousuario not found";        
         this.oForm.controls['id_tipousuario'].setErrors({'incorrect': true});
       }

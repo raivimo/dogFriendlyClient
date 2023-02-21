@@ -36,7 +36,7 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
 
   constructor(
     private oUsuarioService: UsuarioService
-  ) { }
+  ) { this.responseFromServer = {} as IPage<IUsuario> }
 
   ngOnInit(): void {
     this.getPage();

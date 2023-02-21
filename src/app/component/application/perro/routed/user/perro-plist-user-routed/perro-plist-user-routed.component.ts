@@ -12,7 +12,7 @@ import { PerroService } from 'src/app/service/perro.service';
 })
 export class PerroPlistUserRoutedComponent implements OnInit {
 
-  @Input() oUsuario:IUsuario;
+  @Input() oUsuario: IUsuario;
   @Output() closeEvent = new EventEmitter<number>();
   responseFromServer: IPage<IPerro>;
   //
@@ -28,8 +28,8 @@ export class PerroPlistUserRoutedComponent implements OnInit {
   sortDirection: string = "";
 
   constructor(
-    private oPerroService: PerroService,
-  ) {  }
+    private oPerroService: PerroService
+  ) { this.responseFromServer = {} as IPage<IPerro> }
 
   ngOnInit(): void {
     this.oPerroService.perroObervable.subscribe({
@@ -37,6 +37,7 @@ export class PerroPlistUserRoutedComponent implements OnInit {
         this.getPage();
       }
     })
+    
     this.id_UsuarioFilter = this.oUsuario.id;
     this.getPage();
   }
@@ -63,10 +64,7 @@ export class PerroPlistUserRoutedComponent implements OnInit {
   }
 
 
-  setFilterByRaza(id: number): void {
-    this.id_RazaFilter = id;
-    this.getPage();
-  }
+
 
 
 

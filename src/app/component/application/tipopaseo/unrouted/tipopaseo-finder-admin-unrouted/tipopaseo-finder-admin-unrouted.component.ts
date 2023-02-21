@@ -30,7 +30,7 @@ export class TipopaseoFinderAdminUnroutedComponent implements OnInit {
 
   constructor(
     private oTipoPaseoService: TipopaseoService
-  ) { }
+  ) { this.responseFromServer = {} as IPage<ITipoPaseo>}
 
   ngOnInit(): void {
     this.getPage();
