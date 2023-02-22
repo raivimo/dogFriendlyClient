@@ -8,6 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'DogFriendly';
   constructor() {
-    console.log("app.component: token", localStorage.getItem("token"));
   }
 }

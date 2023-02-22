@@ -44,7 +44,7 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
         this.getPage();
       }
     })
-    this.id_UsuarioFilter = this.oUsuario.id;
+    
     this.getPage();
   }
 
@@ -69,21 +69,6 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-  getUserID() {
-    this.oSessionService.getUserId().subscribe({
-      next: (n: number) => {
-        this.id_UsuarioFilter = n
-        this.getUser()
-      }
-    })
-  }
 
-  getUser() {
-    this.oUsuarioService.getOne(this.id_UsuarioFilter).subscribe({
-      next: (data: IUsuario) => {
-        this.oUsuario = data;
-      }
-    })
-  }
 
 }

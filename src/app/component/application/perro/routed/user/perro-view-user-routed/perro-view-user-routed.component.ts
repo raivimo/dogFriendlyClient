@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IPerro } from 'src/app/model/perro-interface';
+import { PerroService } from 'src/app/service/perro.service';
 
 @Component({
   selector: 'app-perro-view-user-routed',
@@ -7,9 +9,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerroViewUserRoutedComponent implements OnInit {
 
-  constructor() { }
+  /* @Input()  */id: number;
+  oPerro: IPerro = null;
 
-  ngOnInit(): void {
+  constructor(
+    private oPerroService: PerroService
+  ) { 
+    
+  }
+
+
+  ngOnInit() {
+    this.getOne();
+  }
+
+  ngOnChanges() {
+    this.getOne();
+  }
+
+  getOne() {
+    console.log(this.id);
+
+    if (this.id != 0) {
+      console.log(this.id);
+      this.oPerroService.getOne(this.id).subscribe({
+        next: (data: IPerro) => {
+          this.oPerro = data;
+
+          console.log(data);
+        }
+      })
+    }
+  }
+
+
+  changeID(ev) {
+    this.id = ev.target.value;
   }
 
 }
