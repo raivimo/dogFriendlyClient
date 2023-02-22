@@ -1,9 +1,7 @@
 <div class="row">
-    <div class="col">
-        <h3 class="text-center mb-5">Editar Perro</h3>
-         <!-- 
-            <form novalidate [formGroup]="oForm" (ngSubmit)="onSubmit()">
-       
+    <div class="col" *ngIf="id!=0">
+        <h3 class="text-center mb-5">Editar Perrito</h3>
+            <form novalidate [formGroup]="oForm" *ngIf="oForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 row">
                 <label for="inputID" class="col-sm-2 col-form-label">ID</label>
                 <div class="col-sm-2">
@@ -11,6 +9,7 @@
                 </div>
             </div>
 
+            <!-- Nombre -->
             <div class="mb-3 row">
                 <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
                
@@ -36,8 +35,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Nombre -->
 
-            
+            <!-- Fecha de Nacimiento -->
             <div class="mb-3 row">
                 <label for="fechaNacimiento" class="col-sm-2 col-form-label" aria-placeholder="dd-mm-yyyy">Fecha de
                     Nacimiento</label>
@@ -60,7 +60,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Fecha de Nacimiento -->
 
+            <!-- Genero -->
             <div class="mb-3 row">
                 <label for="inputGenero" class="col-sm-2 col-form-label">Genero</label>
                 <div class="col-sm-4 has-validation">
@@ -81,7 +83,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Genero -->
 
+            <!-- Peso -->
             <div class="mb-3 row">
                 <label for="inputPeso" class="col-sm-2 col-form-label">Peso</label>
                 <div class="col-sm-4 has-validation">
@@ -102,7 +106,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Peso -->
 
+            <!-- Sociable -->
             <div class="mb-3 row">
                 <label for="inputSociable" class="col-sm-2 col-form-label">Sociable</label>
                 <div class="col-sm-4 has-validation">
@@ -123,7 +129,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Sociable -->
 
+            <!-- Puede ir Suelto -->
             <div class="mb-3 row">
                 <label for="inputPuedeIrSuelto" class="col-sm-2 col-form-label">Puede ir Suelto</label>
                 <div class="col-sm-4 has-validation">
@@ -144,9 +152,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Puede ir Suelto -->
 
-
-
+            <!-- Es Jugueton -->
             <div class="mb-3 row">
                 <label for="inputPuedeIrSuelto" class="col-sm-2 col-form-label">Es Juguetón</label>
                 <div class="col-sm-4 has-validation">
@@ -167,14 +175,10 @@
                     </div>
                 </div>
             </div>
+            <!-- Es Jugueton -->
 
 
-
-
-
-
-
-
+            <!-- Raza -->
             <div class="mb-3 row">
                 <label for="inputRaza" class="col-sm-2 col-form-label">Raza</label>
                 <div class="col-sm-6 has-validation">
@@ -203,20 +207,21 @@
                     </div>
                 </div>
             </div>
+            <!-- Raza -->
+
 
             <div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
             </div>
         </form>
     </div>
-
 </div>
 
 
 
 
 
-
+<!-- Modelo Modal -->
 <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -225,8 +230,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 {{modalContent}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modelo Modal -->
+
+<!-- Raza Modal -->
+<div class="modal fade" id="findUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <app-usuario-finder-admin-unrouted (closeEvent)="closeRazaModal($event)"></app-usuario-finder-admin-unrouted>
 
             </div>
             <div class="modal-footer">
@@ -234,4 +258,5 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
+<!-- Raza Modal -->

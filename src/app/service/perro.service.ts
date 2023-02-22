@@ -18,7 +18,7 @@ export class PerroService {
     private entityURL = '/perro';
     url: string = ""
 
-     perroObervable = new EventEmitter<IPerro>(); 
+    perroObervable = new EventEmitter<IPerro>(); 
 
   
     constructor(private oHttp: HttpClient) {

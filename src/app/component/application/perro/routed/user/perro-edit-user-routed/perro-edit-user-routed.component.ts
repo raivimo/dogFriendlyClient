@@ -18,7 +18,7 @@ declare let bootstrap: any;
 export class PerroEditUserRoutedComponent implements OnInit {
 
   @Input() id: number;
-  
+
   oPerro: IPerro = null;
   oPerroForm: IPerroForm = null;
   oPerroSend: IPerroSend = null;
@@ -40,34 +40,38 @@ export class PerroEditUserRoutedComponent implements OnInit {
     private oRazaService: RazaService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+  }
+
+  ngOnChanges() {
     this.getOne();
   }
 
-  getOne(){
-    this.oPerroService.getOne(this.id).subscribe({
-      next: (data: IPerro) => {
-        this.oPerro = data;
-        console.log(data);
-        this.oForm = <FormGroup>this.oFormBuilder.group({
-          id: [data.id, [Validators.required]],
-          nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-          fechaNacimiento: [data.fechaNacimiento, [Validators.required, /*Validators.pattern(/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/) */]],
-          genero: [data.genero, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
-          imagen: [data.imagen, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          peso: [data.peso, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-          sociable: [data.sociable, [Validators.required,Validators.pattern(/^\d{0,1}$/)]],
-          puedeIrSuelto: [data.puedeIrSuelto, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
-          esJugueton: [data.esJugueton, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
-          
-          id_raza: [data.raza.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
-          id_usuario: [data.usuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
-        });
-   /*      this.updateUsuarioDescription(this.oPerro.usuario.id); */
-        this.updateRazaDescription(this.oPerro.raza.id);
+  getOne() {
+    if (this.id != 0) {
+      this.oPerroService.getOne(this.id).subscribe({
+        next: (data: IPerro) => {
+          this.oPerro = data;
+          this.oForm = <FormGroup>this.oFormBuilder.group({
+            id: [data.id, [Validators.required]],
+            nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+            fechaNacimiento: [data.fechaNacimiento, [Validators.required]],
+            genero: [data.genero, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
+            imagen: [data.imagen, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            peso: [data.peso, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+            sociable: [data.sociable, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
+            puedeIrSuelto: [data.puedeIrSuelto, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
+            esJugueton: [data.esJugueton, [Validators.required, Validators.pattern(/^\d{0,1}$/)]],
 
-      }
-    })
+            id_raza: [data.raza.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+            id_usuario: [data.usuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
+          });
+          this.updateRazaDescription(this.oPerro.raza.id);
+          this.updateUsuarioDescription(this.oPerro.raza.id);
+        }
+      })
+    }
   }
 
   onSubmit() {
@@ -83,21 +87,21 @@ export class PerroEditUserRoutedComponent implements OnInit {
       puedeIrSuelto: this.oForm.value.puedeIrSuelto,
       esJugueton: this.oForm.value.esJugueton,
 
-      raza: { id:this.oForm.value.id_raza },
-      usuario: { id:this.oForm.value.id_usuario }
+      raza: { id: this.oForm.value.id_raza },
+      usuario: { id: this.oForm.value.id_usuario }
     }
-    if (this.oForm.valid) {
-      console.log("is valid")
-      this.oPerroService.updateOne(this.oPerroSend).subscribe({
-        next: (data) => {
-          
-          //open bootstrap modal here
-          this.modalTitle = "dogFriends";
-          this.modalContent = "Perro " + this.id + " actualizado";
-          this.showModal();
-        }
-      })
-    }
+    /* if (this.oForm.valid) { */
+    console.log("llega")
+    this.oPerroService.updateOne(this.oPerroSend).subscribe({
+      next: (data: any) => {
+        this.oPerroService.perroObervable.emit(data);
+        //open bootstrap modal here
+        /*    this.modalTitle = "dogFriends";
+           this.modalContent = "Perro " + this.id + " actualizado";
+           this.showModal(); */
+      }
+    })
+    /* } */
   }
 
   showModal = () => {
@@ -106,24 +110,11 @@ export class PerroEditUserRoutedComponent implements OnInit {
     })
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      this.oRouter.navigate(['/admin/perro/view', this.id])
     })
     this.myModal.show()
   }
 
-/*   openModalFindUsuario(): void {
-    this.myModal = new bootstrap.Modal(document.getElementById("findUsuario"), { //pasar el myModal como parametro
-      keyboard: false
-    })
-    this.myModal.show()
-  } */
 
-/*   closeUsuarioModal(id_usuario: number) {
-    this.oForm.controls['id_usuario'].setValue(id_usuario);
-    this.updateUsuarioDescription(id_usuario);
-    this.myModal.hide();
-  }
- */
   openModalFindRaza(): void {
     this.myModal = new bootstrap.Modal(document.getElementById("findRaza"), { //pasar el myModal como parametro
       keyboard: false
@@ -133,30 +124,30 @@ export class PerroEditUserRoutedComponent implements OnInit {
 
   closeRazaModal(id_raza: number) {
     this.oForm.controls['id_raza'].setValue(id_raza);
-    /* this.updateUsuarioDescription(id_raza); */
+    this.updateUsuarioDescription(id_raza);
     this.myModal.hide();
   }
 
- /*  updateUsuarioDescription(id_usuario: number) {
+  updateUsuarioDescription(id_usuario: number) {
     this.oUsuarioService.getOne(id_usuario).subscribe({
-      next: (data: IUsuario) => {      
-        this.usuarioDescription = data.nombre;        
+      next: (data: IUsuario) => {
+        this.usuarioDescription = data.nombre;
       },
       error: (error: any) => {
-        this.usuarioDescription = "Usuario no encontrado";        
-        this.oForm.controls['id_usuario'].setErrors({'incorrect': true});
+        this.usuarioDescription = "Usuario no encontrado";
+        this.oForm.controls['id_usuario'].setErrors({ 'incorrect': true });
       }
     })
-  } */
+  }
 
   updateRazaDescription(id_raza: number) {
     this.oRazaService.getOne(id_raza).subscribe({
-      next: (data: IRaza) => {      
-        this.razaDescription = data.nombre;        
+      next: (data: IRaza) => {
+        this.razaDescription = data.nombre;
       },
       error: (error: any) => {
-        this.usuarioDescription = "Raza no encontrado";        
-        this.oForm.controls['id_raza'].setErrors({'incorrect': true});
+        this.usuarioDescription = "Raza no encontrado";
+        this.oForm.controls['id_raza'].setErrors({ 'incorrect': true });
       }
     })
   }

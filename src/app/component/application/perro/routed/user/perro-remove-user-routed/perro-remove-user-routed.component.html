@@ -1,1 +1,14 @@
-<p>perro-remove-user-routed works!</p>
+<div class="row">
+    <div class="col" *ngIf="id!=0">
+        <h3 class="text-center text-uppercase mb-1">¿Está seguro de eliminar a {{oPerro.nombre}}?</h3>
+        <div class="col-md-8 mx-auto py-3 align-items-center align-middle">
+            <div class="col text-center">
+                <button class="btn btn-primary btn-danger mx-3" data-bs-dismiss="modal" (click)="removeOne()">si</button>
+                <button class="btn btn-outline-primary mx-3" data-bs-dismiss="modal">no</button>
+            </div>
+        </div>
+        <div class="card-header pb-0 p-3 text-center">
+            <p>Sentimos mucho tu pérdida. <br> Esperamos que hayas disfrutado mucho de tu compañia perruna.</p>
+        </div>
+    </div>
+</div>

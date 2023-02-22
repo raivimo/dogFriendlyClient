@@ -97,7 +97,9 @@ export class PerroPlistUserRoutedComponent implements OnInit {
     this.myModal.show()
   }
 
-  openModalRemovePerro(): void {
+  openModalRemovePerro(id_perro: number): void {
+    this.closeEvent.emit(id_perro);
+    this.id_perro = id_perro;
     this.myModal = new bootstrap.Modal(document.getElementById("removePerro"), { //pasar el myModal como parametro
       keyboard: false
     })

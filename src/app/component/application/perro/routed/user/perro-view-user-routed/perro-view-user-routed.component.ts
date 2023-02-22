@@ -9,18 +9,20 @@ import { PerroService } from 'src/app/service/perro.service';
 })
 export class PerroViewUserRoutedComponent implements OnInit {
 
-  /* @Input()  */id: number;
+  @Input() id: number;
   oPerro: IPerro = null;
 
   constructor(
     private oPerroService: PerroService
-  ) { 
-    
-  }
+  ) { }
 
 
   ngOnInit() {
-    this.getOne();
+    this.oPerroService.perroObervable.subscribe({
+      next: (data) => {
+        this.getOne();
+      }
+    })
   }
 
   ngOnChanges() {
@@ -28,14 +30,11 @@ export class PerroViewUserRoutedComponent implements OnInit {
   }
 
   getOne() {
-    console.log(this.id);
-
     if (this.id != 0) {
       console.log(this.id);
       this.oPerroService.getOne(this.id).subscribe({
         next: (data: IPerro) => {
           this.oPerro = data;
-
           console.log(data);
         }
       })

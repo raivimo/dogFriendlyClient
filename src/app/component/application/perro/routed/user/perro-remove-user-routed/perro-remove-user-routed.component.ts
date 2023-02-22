@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IPerro } from 'src/app/model/perro-interface';
+import { PerroService } from 'src/app/service/perro.service';
 
 @Component({
   selector: 'app-perro-remove-user-routed',
@@ -7,9 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerroRemoveUserRoutedComponent implements OnInit {
 
-  constructor() { }
+  @Input() id: number;
+  oPerro: IPerro = null;
 
-  ngOnInit(): void {
+  constructor(
+    private oPerroService: PerroService,
+  ) { }
+
+  ngOnInit() {
+    this.oPerroService.perroObervable.subscribe({
+      next: (data) => {
+        this.getOne();
+      }
+    })
+  }
+
+  ngOnChanges() {
+    this.getOne();
+  }
+
+  getOne() {
+    if (this.id != 0) {
+      console.log(this.id);
+      this.oPerroService.getOne(this.id).subscribe({
+        next: (data: IPerro) => {
+          this.oPerro = data;
+          console.log(data);
+        }
+      })
+    }
+  }
+
+  removeOne() {
+    this.oPerroService.removeOne(this.id).subscribe({
+      next: (data: any) => {
+        this.oPerroService.perroObervable.emit(data);
+      }
+    })
+    
   }
 
 }

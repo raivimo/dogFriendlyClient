@@ -18,7 +18,7 @@
                     <button class="btn btn-sm btn-warning" (click)="openModalEditPerro(perro.id)">
                         <fa-icon [icon]="faUserPen"></fa-icon>
                     </button>
-                    <button class="btn btn-sm btn-danger" [routerLink]="['/admin/perro/remove', perro.id]">
+                    <button class="btn btn-sm btn-danger" (click)="openModalRemovePerro(perro.id)">
                         <fa-icon [icon]="faTrash"></fa-icon>
                     </button>
                 </div>
@@ -26,6 +26,7 @@
         </tr>
     </tbody>
 </table>
+
 <div class="container d-flex">
     <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
         (eePage)="setPage($event)"></app-pagination-unrouted>
@@ -43,10 +44,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <app-perro-view-user-routed [id]="id_perro"></app-perro-view-user-routed>
+                <app-perro-view-user-routed [id]="id_perro"></app-perro-view-user-routed>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm text-sm" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -63,10 +64,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <!--   <app-perro-edit-user-routed [id]="id_perro"></app-perro-edit-user-routed> -->
+                <app-perro-edit-user-routed [id]="id_perro"></app-perro-edit-user-routed>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm text-sm" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -83,16 +84,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <app-perro-remove-user-routed></app-perro-remove-user-routed>
+                <app-perro-remove-user-routed [id]="id_perro"></app-perro-remove-user-routed>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm text-sm" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal removePerro -->
 
+<!-- Modelo Modal -->
 <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -101,13 +103,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 {{modalContent}}
-
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm text-sm" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
+<!-- Modelo Modal -->
