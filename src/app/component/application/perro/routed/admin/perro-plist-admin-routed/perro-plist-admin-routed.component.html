@@ -15,7 +15,7 @@
       </div>
 
       <div class="col-md">
-        <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
+        <app-pagination-unrouted [nPage]="pageSize + 1" [nTotalPages]="responseFromServer.totalPages"
           (eePage)="setPage($event)"></app-pagination-unrouted>
       </div>
 

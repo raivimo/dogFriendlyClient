@@ -31,7 +31,7 @@ export class TipousuarioFinderAdminUnroutedComponent implements OnInit {
 
   constructor(
     private oTipousuarioService: TipousuarioService
-  ) { }
+  ) { this.responseFromServer = {} as IPage<ITipoUsuario>}
 
   ngOnInit(): void {
     this.getPage();

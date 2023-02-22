@@ -35,7 +35,7 @@ export class PaseoPlistAdminRoutedComponent implements OnInit {
 
   constructor(
     private oPaseoService : PaseoService
-  ) { }
+  ) {this.responseFromServer = {} as IPage<IPaseo>; }
 
   ngOnInit(): void {
     this.getPage();

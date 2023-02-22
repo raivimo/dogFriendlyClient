@@ -36,7 +36,7 @@ export class PerroPlistAdminRoutedComponent implements OnInit {
   constructor(
     private oPerroService: PerroService,
     private oActivatedRoute: ActivatedRoute,
-  ) {   }
+  ) { this.responseFromServer = {} as IPage<IPerro>  }
 
   ngOnInit(): void {
     this.getPage();

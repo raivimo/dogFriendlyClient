@@ -6,7 +6,7 @@ import { IUsuario } from 'src/app/model/usuario-interface';
 import { PerroService } from 'src/app/service/perro.service';
 import { RazaService } from 'src/app/service/raza.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { IRaza } from '../../../../../../model/raza-interface';
+import { IRaza } from 'src/app/model/raza-interface';
 
 declare let bootstrap: any;
 @Component({

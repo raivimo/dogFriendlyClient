@@ -7,13 +7,9 @@ import { IUsuario } from '../model/usuario-interface';
 import { IPage } from '../model/generic-types-interface';
 import { httpOptions } from '../../environments/environment';
 
-export enum Events {
-  UsuarioEditAdminRoutedComponent,
-  UsuarioEditUserRoutedComponent
-}
 
 export class EmitEvent {
-  constructor(public event: Events, public oUsuarioActualizado: IUsuario) { }
+  constructor( public oUsuarioActualizado: IUsuario) { }
 }
 
 

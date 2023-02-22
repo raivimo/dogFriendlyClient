@@ -19,8 +19,7 @@ declare let bootstrap: any;
 })
 export class PaseoNewUserRoutedComponent implements OnInit {
 
-  strId: number = null;
-  oUsuario: IUsuario;
+  @Input() oUsuario: IUsuario;
 
   oPaseo: IPaseo = null;
   oPaseoForm: IPaseoForm = null;
@@ -45,7 +44,7 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     private oPerroService: PerroService,
     private oPaseoService: PaseoService,
   ) { 
-    this.getUserID();
+    this.oUsuario = {} as IUsuario;
   }
 
   ngOnInit(): void {
@@ -168,23 +167,7 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     })
   }
 
-  async getUserID() {
-    this.oSessionService.getUserId().subscribe({
-      next: (n: number) => {
-        this.strId = n
-        this.getUser()
-      }
-    })
-  }
 
-
-  getUser() {
-    this.oUsuarioService.getOne(this.strId).subscribe({
-      next: (data: IUsuario) => {
-        this.oUsuario = data;
-      }
-    })
-  }
 
 
 }

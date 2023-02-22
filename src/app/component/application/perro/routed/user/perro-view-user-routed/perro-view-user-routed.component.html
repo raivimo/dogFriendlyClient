@@ -1,1 +1,50 @@
-<p>perro-view-user-routed works!</p>
+<div class="row">
+    <div class="col">
+        <h3 class="text-center mb-5">Ficha Técnica del perrito </h3>
+        <button class="btn btn-primary btn-sm" (click)="getOne()">Aprietame!</button>
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <td>Nombre</td>
+                    <td>{{oPerro.nombre}}</td>
+                </tr>
+                <tr>
+                    <td>Fecha de Nacimiento</td>
+                    <td>{{oPerro.fechaNacimiento}}</td>
+                </tr>
+                <tr>
+                    <td>Genero</td>
+                    <td>{{oPerro.genero}}</td>
+                </tr>
+                <tr>
+                    <td>Imagen</td>
+                    <td>{{oPerro.imagen}}</td>
+                </tr>
+                <tr>
+                    <td>Peso</td>
+                    <td>{{oPerro.peso}}</td>
+                </tr>
+                <tr>
+                    <td>Sociable</td>
+                    <td>{{oPerro.sociable}}</td>
+                </tr>
+                <tr>
+                    <td>Puede Ir Suelto</td>
+                    <td>{{oPerro.puedeIrSuelto}}</td>
+                </tr>
+                <tr>
+                    <td>es Jugueton</td>
+                    <td>{{oPerro.esJugueton}}</td>
+                </tr>
+                <tr>
+                    <td>Raza</td>
+                    <td>{{oPerro.raza.nombre}}</td>
+                </tr>
+                <tr>
+                    <td>Dueño</td>
+                    <td>{{oPerro.usuario.nombre}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

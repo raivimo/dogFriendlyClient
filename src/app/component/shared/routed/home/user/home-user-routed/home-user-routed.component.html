@@ -9,7 +9,7 @@
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-flex align-items-center">
                             <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none text-capitalize" *ngIf="strUsername">{{oUsuario.nombre}}</span>
+                            <span class="d-sm-inline d-none text-capitalize">{{strUsername}}</span>
                         </li>
                     </ul>
                 </div>
@@ -72,10 +72,8 @@
                             </div>
                             <div class="card-body p-3">
                                 <h6 class="text-uppercase text-body text-xs font-weight-bolder">Mis Mascotas</h6>
-
                                 <app-perro-plist-user-routed [oUsuario]="oUsuario"></app-perro-plist-user-routed>
                                 <button type="button" class="btn btn-outline-primary btn-sm mx-2" (click)="openModalNewPerro()">Añadir Mascota</button>
-                                <button type="button" class="btn btn-outline-primary btn-sm mx-2" (click)="openModalRemovePerro()">Eliminar Mascota</button>
                             </div>
                         </div>
                     </div>
@@ -97,7 +95,7 @@
                             <app-usuario-view-user-routed [oUsuario]="oUsuario"></app-usuario-view-user-routed>
                         </div>
                     </div>
-                    <!-- Usuario Emd -->
+                    <!-- Usuario Ends -->
 
 
                     <!-- Paseador / Paseos Start -->

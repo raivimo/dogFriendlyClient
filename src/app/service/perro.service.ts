@@ -5,6 +5,10 @@ import { IPage } from "../model/generic-types-interface";
 import { IPerro, IPerroSend } from '../model/perro-interface';
 import { EventEmitter, Injectable } from "@angular/core";
 
+export class EmitEvent {
+  constructor( public oPerroActualizado: IPerro) { }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +58,6 @@ export class PerroService {
     updateOne(oPerroSend: IPerroSend): Observable<number> {
       return this.oHttp.put<number>(this.url, oPerroSend, httpOptions);
     }
-  
   
     newOne(oPerroSend: IPerroSend): Observable<number> {       
       return this.oHttp.post<number>(this.url, oPerroSend, httpOptions);

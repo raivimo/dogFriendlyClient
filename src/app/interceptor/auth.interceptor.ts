@@ -21,16 +21,13 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('intercepting request ...', req);
         let request = req;
-        
         if (this.oSessionService.isSessionActive()) {
             request = req.clone({
                 setHeaders: {
                     authorization: `Bearer ${ this.oSessionService.getToken() }`
                   }
             });
-            console.log('  session active! New req: ', request);
         } else {
             this.oRouter.navigateByUrl('login');
         }
