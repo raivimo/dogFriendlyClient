@@ -39,7 +39,18 @@ export class HomeUserRoutedComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.oUsuarioService.usuarioObservale.subscribe({
+      next: (data) => {
+        this.oUsuarioService.getOne(data).subscribe({
+          next: (data2) => {
+            this.oUsuario = data2;
+          }
+        })
+      }
+    })
   }
+
+
 
   logout() {
     this.oSessionService.logout();

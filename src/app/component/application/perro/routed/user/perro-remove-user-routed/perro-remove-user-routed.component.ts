@@ -14,7 +14,7 @@ export class PerroRemoveUserRoutedComponent implements OnInit {
 
   constructor(
     private oPerroService: PerroService,
-  ) { }
+  ) { this.oPerro = {} as IPerro }
 
   ngOnInit() {
     this.oPerroService.perroObervable.subscribe({
@@ -22,10 +22,6 @@ export class PerroRemoveUserRoutedComponent implements OnInit {
         this.getOne();
       }
     })
-  }
-
-  ngOnChanges() {
-    this.getOne();
   }
 
   getOne() {
