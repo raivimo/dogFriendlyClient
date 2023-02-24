@@ -10,7 +10,7 @@ import { PerroService } from 'src/app/service/perro.service';
 export class PerroRemoveUserRoutedComponent implements OnInit {
 
   @Input() id: number;
-  oPerro: IPerro = null;
+  oPerro: IPerro;
 
   constructor(
     private oPerroService: PerroService,
@@ -22,6 +22,10 @@ export class PerroRemoveUserRoutedComponent implements OnInit {
         this.getOne();
       }
     })
+  }
+
+  ngOnChanges() {
+    this.getOne();
   }
 
   getOne() {
@@ -42,7 +46,6 @@ export class PerroRemoveUserRoutedComponent implements OnInit {
         this.oPerroService.perroObervable.emit(data);
       }
     })
-    
   }
 
 }

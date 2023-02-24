@@ -181,6 +181,7 @@ import { PerroFinderUserUnroutedComponent } from './component/application/perro/
 
     HomeAdminRoutedComponent,
     HomeUserRoutedComponent,
+    
     UsuarioEditUserRoutedComponent,
     UsuarioNewUserRoutedComponent,
     UsuarioViewUserRoutedComponent,

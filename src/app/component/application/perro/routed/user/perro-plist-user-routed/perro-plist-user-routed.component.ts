@@ -24,7 +24,6 @@ export class PerroPlistUserRoutedComponent implements OnInit {
 
   id_UsuarioFilter: number = 0;
   id_RazaFilter: number = 0;
-
   id_perro: number = 0;
 
   numberOfElements: number = 5;
@@ -118,9 +117,7 @@ export class PerroPlistUserRoutedComponent implements OnInit {
     this.myModal.hide();
   }
 
-  selectionPerro(id: number): void {
-    this.closeEvent.emit(id);
-  }
+
 
 
 

@@ -10,6 +10,7 @@ export class HomeGuessRoutedComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
 }
