@@ -26,6 +26,7 @@ export class PerroPlistUserRoutedComponent implements OnInit {
   id_RazaFilter: number = 0;
   id_perro: number = 0;
 
+
   numberOfElements: number = 5;
   pageSize: number = 5;
   page: number = 0;
@@ -53,6 +54,7 @@ export class PerroPlistUserRoutedComponent implements OnInit {
     })
     this.id_UsuarioFilter = this.oUsuario.id;
     this.getPage();
+    
   }
 
   getPage() {

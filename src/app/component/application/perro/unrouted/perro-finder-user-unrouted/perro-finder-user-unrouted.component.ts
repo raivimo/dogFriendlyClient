@@ -30,9 +30,7 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
 
   constructor(
     private oPerroService: PerroService,
-    private oSessionService: SessionService,
-    private oUsuarioService: UsuarioService
-  ) {
+    private oSessionService: SessionService  ) {
     this.responseFromServer = {} as IPage<IPerro>;
     this.getUserID();
   }
@@ -41,9 +39,6 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
     this.getPage();
   }
 
-
-
-
   getUserID() {
     this.oSessionService.getUserId().subscribe({
       next: (n: number) => {
@@ -51,8 +46,6 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
       }
     })
   }
-
-
 
   getPage() {
     this.oPerroService.getPerrosPlist(this.page, this.numberOfElements, this.strTermFilter, this.id_UsuarioFilter, this.id_RazaFilter, this.sortField, this.sortDirection)

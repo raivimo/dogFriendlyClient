@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IPage } from '../../../../../model/generic-types-interface';
 import { IPaseo } from 'src/app/model/paseo-interface';
-import { PaseoService } from '../../../../../service/paseo.service';
+import { PaseoService } from 'src/app/service/paseo.service';
 
 @Component({
   selector: 'app-paseo-detail-admin-unrouted',
