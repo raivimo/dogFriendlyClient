@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPaseo } from 'src/app/model/paseo-interface';
 import { PaseoService } from 'src/app/service/paseo.service';
 import { IPage } from 'src/app/model/generic-types-interface';
-import { ConnectableObservable } from 'rxjs';
+
+declare let bootstrap: any;
 
 @Component({
   selector: 'app-paseo-plist-user-routed',
@@ -14,7 +15,7 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
   @Output() closeEvent = new EventEmitter<number>();
   @Input() id_UsuarioFilter: number;
 
-  id:number = 1;
+  id_paseo: number = 0;
 
   oPaseo: IPaseo;
   responseFromServer: IPage<IPaseo>;
@@ -23,12 +24,22 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
   pageSize: number = 5;
   page: number = 0;
 
+  mimodal: string = "miModal";
+  myModal: any;
+  modalTitle: string = "";
+  modalContent: string = "";
+
   constructor(
     private oPaseoService: PaseoService,
   ) { this.responseFromServer = {} as IPage<IPaseo> }
 
   ngOnChanges() {
     if(this.id_UsuarioFilter != 0 ){
+      this.oPaseoService.paseoObservable.subscribe({
+        next: (data ) => {
+          this.getPaseosDuenyosMascotas();
+        }
+      })
     this.getPaseosDuenyosMascotas();
     }
   }
@@ -51,7 +62,18 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
     })
   }
 
+  openModalViewPaseo(id_paseo: number): void {
+    this.closeEvent.emit(id_paseo);
+    this.id_paseo = id_paseo;
+    this.myModal = new bootstrap.Modal(document.getElementById("viewPaseo"), { //pasar el myModal como parametro
+      keyboard: false
+    })
+    this.myModal.show()
+  }
 
+  closeViewPaseoModal(): void {
+    this.myModal.hide();
+  }
 
 
 

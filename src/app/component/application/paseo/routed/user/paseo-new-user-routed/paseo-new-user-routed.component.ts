@@ -87,11 +87,7 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     if (this.oForm.valid) {
       this.oPaseoService.newOne(this.oPaseoSend).subscribe({
         next: (data: number) => {
-          //open bootstrap modal here
-          this.modalTitle = "dogFriendly";
-          this.modalContent = "Paseo " + data + " creado";
-          console.log(this.oPaseoSend)
-          /*  this.showModal(data); */
+          this.oPaseoService.paseoObservable.emit();
         }
       })
     }

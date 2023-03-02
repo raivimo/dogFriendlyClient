@@ -1,9 +1,13 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { baseURL, httpOptions } from "src/environments/environment";
 import { IPaseo, IPaseoSend } from '../model/paseo-interface';
 import { IPage } from "../model/generic-types-interface";
 import { Observable } from "rxjs";
+
+export class EmitEvent {
+  constructor( public oPaseoActualizado: IPaseo) { }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +17,8 @@ export class PaseoService {
 
   private entityURL = '/paseo';
   url: string = ""
+
+  paseoObservable = new EventEmitter<IPaseo>(); 
 
   constructor(private oHttp: HttpClient) {
     this.url = `${baseURL}${this.entityURL}`;
