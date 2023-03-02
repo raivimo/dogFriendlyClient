@@ -1,19 +1,22 @@
-<div class="col-xl-3 col-md-6 mb-xl-0 mb-4" *ngFor="let paseo of responseFromServer.content">
+<div class="d-flex flex-row">
+  <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 p-2" *ngFor="let paseo of responseFromServer.content">
     <div class="card card-blog card-plain">
-      <div class="card-header p-0 mt-n4 mx-3" >
-        <a class="d-block shadow-xl border-radius-xl" >
+      <div class="card-header p-0 mt-n4 mx-3">
+        <a class="d-block shadow-xl border-radius-xl">
           <img src="../assets/img/home-decor-1.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
         </a>
       </div>
       <div class="card-body p-3">
-        <p class="mb-0 text-sm"> {{paseo.perro.nombre}} </p> <span class="mb-1 mt-0 text-sm d-flex">Te lo paseó: {{paseo.usuario.nombre}}</span>
+        <p class="mb-0 text-sm"> {{paseo.perro.nombre}} </p> <span class="mb-1 mt-0 text-sm">Te lo paseó:
+          {{paseo.usuario.nombre}}</span>
         <h5> {{paseo.lugar}} </h5>
         <p class="mb-4 text-sm">
-          Fecha: {{paseo.fecha}} <br> Precio: {{paseo.precio}}€ <br> Tipo de Paseo: {{paseo.tipopaseo.nombre}} <br> Duración: {{paseo.tipopaseo.duracion}} min. </p>
+          Fecha: {{paseo.fecha}} <br> Precio: {{paseo.precio}}€ <br> Tipo de Paseo: {{paseo.tipopaseo.nombre}} <br>
+          Duración: {{paseo.tipopaseo.duracion}} min. </p>
         <div class="d-flex align-items-center justify-content-between">
-          <button type="button" class="btn btn-outline-primary btn-sm mb-0" >View Project</button>
+          <button type="button" class="btn btn-outline-primary btn-sm mb-0">View Project</button>
         </div>
       </div>
     </div>
   </div>
-
+</div>
