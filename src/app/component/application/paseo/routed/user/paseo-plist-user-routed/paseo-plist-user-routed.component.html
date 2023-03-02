@@ -6,7 +6,7 @@
         </a>
       </div>
       <div class="card-body p-3">
-        <p class="mb-0 text-sm">{{paseo.perro.nombre}} </p> <span class="mb-1 mt-0 text-sm d-flex">Te lo paseó: {{paseo.usuario.nombre}}</span>
+        <p class="mb-0 text-sm"> {{paseo.perro.nombre}} </p> <span class="mb-1 mt-0 text-sm d-flex">Te lo paseó: {{paseo.usuario.nombre}}</span>
         <h5> {{paseo.lugar}} </h5>
         <p class="mb-4 text-sm">
           Fecha: {{paseo.fecha}} <br> Precio: {{paseo.precio}}€ <br> Tipo de Paseo: {{paseo.tipopaseo.nombre}} <br> Duración: {{paseo.tipopaseo.duracion}} min. </p>
@@ -16,18 +16,4 @@
       </div>
     </div>
   </div>
-
-<!--   <table *ngFor="let paseo of responseFromServer.content">
-    <thead>
-      <th>Nombre: </th>
-      <th>Duracion:</th>
-      <th>Perro: </th>
-    </thead>
-    <tbody>
-      <td>{{ paseo.fecha}} </td>
-      <td> {{paseo.tipopaseo.duracion }} </td>
-      <td> {{paseo.perro.nombre }} </td>
-    </tbody>
-  </table> -->
-
 
