@@ -14,7 +14,7 @@ export class PerroViewUserRoutedComponent implements OnInit {
 
   constructor(
     private oPerroService: PerroService
-  ) { }
+  ) { this.oPerro = {} as IPerro }
 
 
   ngOnInit() {
@@ -31,11 +31,9 @@ export class PerroViewUserRoutedComponent implements OnInit {
 
   getOne() {
     if (this.id != 0) {
-      console.log(this.id);
       this.oPerroService.getOne(this.id).subscribe({
         next: (data: IPerro) => {
           this.oPerro = data;
-          console.log(data);
         }
       })
     }

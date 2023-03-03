@@ -87,12 +87,12 @@ import { PerroViewUserRoutedComponent } from './component/application/perro/rout
 import { PerroRemoveUserRoutedComponent } from './component/application/perro/routed/user/perro-remove-user-routed/perro-remove-user-routed.component';
 import { PerroEditUserRoutedComponent } from './component/application/perro/routed/user/perro-edit-user-routed/perro-edit-user-routed.component';
 import { PerroPlistUserRoutedComponent } from './component/application/perro/routed/user/perro-plist-user-routed/perro-plist-user-routed.component';
-import { PaseoEditUserAdminComponent } from './component/application/paseo/routed/user/paseo-edit-user-admin/paseo-edit-user-admin.component';
 import { PaseoNewUserRoutedComponent } from './component/application/paseo/routed/user/paseo-new-user-routed/paseo-new-user-routed.component';
 import { PaseoPlistUserRoutedComponent } from './component/application/paseo/routed/user/paseo-plist-user-routed/paseo-plist-user-routed.component';
 import { PerroNewUserRoutedComponent } from './component/application/perro/routed/user/perro-new-user-routed/perro-new-user-routed.component';
 import { PaseadorPlistUserRoutedComponent } from './component/application/usuario/routed/user/paseador-plist-user-routed/paseador-plist-user-routed.component';
 import { PerroFinderUserUnroutedComponent } from './component/application/perro/unrouted/perro-finder-user-unrouted/perro-finder-user-unrouted.component';
+import { PaseoViewUserRoutedComponent } from './component/application/paseo/routed/user/paseo-view-user-routed/paseo-view-user-routed.component';
 
 
 @NgModule({
@@ -181,6 +181,7 @@ import { PerroFinderUserUnroutedComponent } from './component/application/perro/
 
     HomeAdminRoutedComponent,
     HomeUserRoutedComponent,
+    
     UsuarioEditUserRoutedComponent,
     UsuarioNewUserRoutedComponent,
     UsuarioViewUserRoutedComponent,
@@ -188,12 +189,12 @@ import { PerroFinderUserUnroutedComponent } from './component/application/perro/
     PerroRemoveUserRoutedComponent,
     PerroEditUserRoutedComponent,
     PerroPlistUserRoutedComponent,
-    PaseoEditUserAdminComponent,
     PaseoNewUserRoutedComponent,
     PaseoPlistUserRoutedComponent,
     PerroNewUserRoutedComponent,
     PaseadorPlistUserRoutedComponent,
     PerroFinderUserUnroutedComponent,
+    PaseoViewUserRoutedComponent,
    /*  HomeGuessRoutedComponent, */
 
   ],

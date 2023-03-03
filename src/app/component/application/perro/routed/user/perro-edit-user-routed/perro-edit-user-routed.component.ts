@@ -38,7 +38,7 @@ export class PerroEditUserRoutedComponent implements OnInit {
     private oFormBuilder: FormBuilder,
     private oUsuarioService: UsuarioService,
     private oRazaService: RazaService
-  ) { }
+  ) { this.oPerro = {} as IPerro; }
 
   ngOnInit() {
 

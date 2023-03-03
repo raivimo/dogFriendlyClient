@@ -15,8 +15,8 @@ declare let bootstrap: any;
 
 export class UsuarioEditUserRoutedComponent implements OnInit {
 
-  id: number = 0;
-  @Input() oUsuario: IUsuario;
+  @Input() id: number = 0;
+  oUsuario: IUsuario;
 
   oUsuario2Form: IUsuario2Form = null;
   oUsuario2Send: IUsuario2Send = null;
@@ -33,36 +33,38 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
     private oUsuarioService: UsuarioService,
     private oFormBuilder: FormBuilder,
     private oTipousuarioService: TipousuarioService,
-  ) { }
+  ) { this.oUsuario = {} as IUsuario }
 
   ngOnInit() {
-    this.id = this.oUsuario.id;
+
+  }
+
+  ngOnChanges() {
     this.getOne();
   }
 
   getOne() {
-    this.oUsuarioService.getOne(this.id).subscribe({
-      next: (data: IUsuario) => {
-        this.oUsuario = data;
-        console.log(data);
-        this.oForm = <FormGroup>this.oFormBuilder.group({
-          id: [data.id, [Validators.required]],
-          nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-          apellido1: [data.apellido1, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-          apellido2: [data.apellido2, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-          email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-          login: [data.login, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-          fechaNacimiento: [data.fechaNacimiento, [Validators.required]],
-          id_tipousuario: [data.tipousuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
-        });
-        this.updateTipousuarioDescription(this.oUsuario.tipousuario.id);
-
-      }
-    })
+    if (this.id != 0) {
+      this.oUsuarioService.getOne(this.id).subscribe({
+        next: (data: IUsuario) => {
+          this.oUsuario = data;
+          this.oForm = <FormGroup>this.oFormBuilder.group({
+            id: [data.id, [Validators.required]],
+            nombre: [data.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+            apellido1: [data.apellido1, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+            apellido2: [data.apellido2, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+            email: [data.email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            login: [data.login, [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+            fechaNacimiento: [data.fechaNacimiento, [Validators.required]],
+            id_tipousuario: [data.tipousuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
+          });
+          this.updateTipousuarioDescription(this.oUsuario.tipousuario.id);
+        }
+      })
+    }
   }
 
   onSubmit() {
-    console.log("onSubmit");
     this.oUsuario2Send = {
       id: this.oForm.value.id,
       nombre: this.oForm.value.nombre,
@@ -74,19 +76,18 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
       tipousuario: { id: this.oForm.value.id_tipousuario }
     }
     if (this.oForm.valid) {
-      console.log("is valid")
       this.oUsuarioService.updateOne(this.oUsuario2Send).subscribe({
         next: (data: any) => {
           this.oUsuarioService.usuarioObservale.emit(data);
           console.log(data);
-          
+
           //open bootstrap modal here
-        /*   this.modalTitle = "dogFriends";
-          this.modalContent = "Usuario " + this.id + " actualizado";
-          this.showModal(); */
+          /*   this.modalTitle = "dogFriends";
+            this.modalContent = "Usuario " + this.id + " actualizado";
+            this.showModal(); */
         }
       })
-      
+
 
     }
   }
@@ -122,12 +123,12 @@ export class UsuarioEditUserRoutedComponent implements OnInit {
 
   updateTipousuarioDescription(id_tipousuario: number) {
     this.oTipousuarioService.getOne(id_tipousuario).subscribe({
-      next: (data: ITipoUsuario) => {      
-        this.tipousuarioDescription = data.nombre;        
+      next: (data: ITipoUsuario) => {
+        this.tipousuarioDescription = data.nombre;
       },
       error: () => {
-        this.tipousuarioDescription = "Tipousuario not found";        
-        this.oForm.controls['id_tipousuario'].setErrors({'incorrect': true});
+        this.tipousuarioDescription = "Tipousuario not found";
+        this.oForm.controls['id_tipousuario'].setErrors({ 'incorrect': true });
       }
     })
   }

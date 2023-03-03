@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col" *ngIf="id!=0">
+        <h3 class="text-center mb-5">Ficha Técnica del Paseo</h3>
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <td>Fecha</td>
+                    <td>{{oPaseo.fecha}}</td>
+                </tr>
+                <tr>
+                    <td>Ubicación</td>
+                    <td>{{oPaseo.lugar}}</td>
+                </tr>
+                <tr>
+                    <td>Perro</td>
+                    <td>{{oPaseo.perro.nombre}}</td>
+                </tr>
+                <tr>
+                    <td>Precio</td>
+                    <td>{{oPaseo.precio}}</td>
+                </tr>
+                <tr>
+                    <td>Paseador</td>
+                    <td>{{oPaseo.usuario.nombre}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

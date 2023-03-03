@@ -9,7 +9,8 @@ import { PaseoService } from 'src/app/service/paseo.service';
 import { PerroService } from 'src/app/service/perro.service';
 import { TipopaseoService } from 'src/app/service/tipopaseo.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { SessionService } from '../../../../../../service/session.service';
+import { SessionService } from 'src/app/service/session.service';
+
 declare let bootstrap: any;
 
 @Component({
@@ -19,7 +20,7 @@ declare let bootstrap: any;
 })
 export class PaseoNewUserRoutedComponent implements OnInit {
 
-  @Input() oUsuario: IUsuario;
+  @Input() id_paseador;
 
   oPaseo: IPaseo = null;
   oPaseoForm: IPaseoForm = null;
@@ -43,9 +44,7 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     private oTipoPaseoService: TipopaseoService,
     private oPerroService: PerroService,
     private oPaseoService: PaseoService,
-  ) { 
-    this.oUsuario = {} as IUsuario;
-  }
+  ) { }
 
   ngOnInit(): void {
     this.oForm = <FormGroup>this.oFormBuilder.group({
@@ -55,7 +54,20 @@ export class PaseoNewUserRoutedComponent implements OnInit {
       precio: ["", [Validators.required, Validators.required, Validators.pattern(/^\d{1,6}$/)]],
 
       id_tipopaseo: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
-      id_usuario: [this.oUsuario.id, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+      id_usuario: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+      id_perro: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
+    });
+  }
+
+  ngOnChanges() {
+    this.oForm = <FormGroup>this.oFormBuilder.group({
+      id: [""],
+      fecha: ["", [Validators.required,]],
+      lugar: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      precio: ["", [Validators.required, Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+
+      id_tipopaseo: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
+      id_usuario: [this.id_paseador, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
       id_perro: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
   }
@@ -75,11 +87,7 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     if (this.oForm.valid) {
       this.oPaseoService.newOne(this.oPaseoSend).subscribe({
         next: (data: number) => {
-
-          //open bootstrap modal here
-          this.modalTitle = "dogFriendly";
-          this.modalContent = "Paseo " + data + " creado";
-         /*  this.showModal(data); */
+          this.oPaseoService.paseoObservable.emit();
         }
       })
     }
@@ -91,7 +99,6 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     })
     var myModalEl = document.getElementById(this.mimodal);
     myModalEl.addEventListener('hidden.bs.modal', (event): void => {
-      console.log({ id })
     })
     this.myModal.show()
   }

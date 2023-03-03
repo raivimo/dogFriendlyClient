@@ -14,14 +14,13 @@ import { IPage } from 'src/app/model/generic-types-interface';
 })
 export class PerroFinderUserUnroutedComponent implements OnInit {
 
-  @Input() oUsuario: IUsuario;
   @Output() closeEvent = new EventEmitter<number>();
   responseFromServer: IPage<IPerro>;
   //
   strTermFilter: string = "";
-
   id_UsuarioFilter: number = 0;
   id_RazaFilter: number = 0;
+  id_perro: number;
 
   numberOfElements: number = 5;
   pageSize: number = 5;
@@ -31,21 +30,21 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
 
   constructor(
     private oPerroService: PerroService,
-    private oSessionService: SessionService,
-    private oUsuarioService: UsuarioService
-  ) {
+    private oSessionService: SessionService  ) {
     this.responseFromServer = {} as IPage<IPerro>;
-    this.oUsuario = {} as IUsuario;
+    this.getUserID();
   }
 
   ngOnInit(): void {
-    this.oPerroService.perroObervable.subscribe({
-      next: (data) => {
-        this.getPage();
+    this.getPage();
+  }
+
+  getUserID() {
+    this.oSessionService.getUserId().subscribe({
+      next: (n: number) => {
+        this.id_UsuarioFilter = n;
       }
     })
-    
-    this.getPage();
   }
 
   getPage() {
@@ -67,6 +66,10 @@ export class PerroFinderUserUnroutedComponent implements OnInit {
   setPage(e: number) {
     this.page = (e - 1);
     this.getPage();
+  }
+
+  selectionPerro(id_perro: number): void {
+    this.closeEvent.emit(id_perro);
   }
 
 

@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPage } from 'src/app/model/generic-types-interface';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { SessionService } from 'src/app/service/session.service';
 declare let bootstrap: any;
 
 @Component({
@@ -12,6 +13,8 @@ declare let bootstrap: any;
 })
 export class PaseadorPlistUserRoutedComponent implements OnInit {
 
+  @Output() closeEvent = new EventEmitter<number>();
+  id_paseador: number = 0;
   
   mimodal: string = "miModal";
   myModal: any;
@@ -19,12 +22,9 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
   modalContent: string = "";
 
   perroDescription: string = "";
-
-  @Output() closeEvent = new EventEmitter<number>();
   responseFromServer: IPage<IUsuario>;
   //
   strTermFilter: string = "";
-
   id_tipousuarioFilter: number = 3;
 
   numberOfElements: number = 4;
@@ -35,7 +35,7 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
   //
 
   constructor(
-    private oUsuarioService: UsuarioService
+    private oUsuarioService: UsuarioService,
   ) { this.responseFromServer = {} as IPage<IUsuario> }
 
   ngOnInit(): void {
@@ -63,43 +63,35 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
     this.getPage();
   }
 
-  setRpp(rpp: number) {
-    this.numberOfElements = rpp;
-    this.page = 0;
-    this.getPage();
-
-  }
-
-  setFilter(term: string): void {
-    this.strTermFilter = term;
-    this.getPage();
-  }
-
   setFilterByTipousuario(id: number): void {
     this.id_tipousuarioFilter = id;
     this.getPage();
   }
 
-  setOrder(order: string): void {
-    this.sortField = order;
-    if (this.sortDirection == "asc") {
-      this.sortDirection = "desc";
-    } else {
-      this.sortDirection = "asc";
-    }
-    this.getPage();
-  }
 
-  openModalNewPaseo(){
+  openModalNewPaseo(id_paseador: number){
+    this.closeEvent.emit(this.id_paseador);
+    this.id_paseador=id_paseador;
     this.myModal = new bootstrap.Modal(document.getElementById("newPaseo"), { //pasar el myModal como parametro
       keyboard: false
     })
     this.myModal.show()
+    console.log(id_paseador);
   }
 
   closeNewPaseoModal(): void {
     this.myModal.hide();
   }
+
+
+
+
+
+
+
+
+
+
 
 
 }

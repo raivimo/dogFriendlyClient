@@ -10,9 +10,9 @@
         <tr *ngFor="let perro of responseFromServer.content">
             <td class="align-middle text-center">{{perro.nombre}}</td>
             <td class="align-middle text-center">{{perro.raza.nombre}}</td>
-            <td class="align-middle">
+            <td >
                 <div class="btn-group" role="group" aria-label="Herramientas">
-                    <button class="btn btn-sm btn-primary" (click)="openModalViewPerro(perro.id)">
+                    <button class="btn btn-sm btn-primary " (click)="openModalViewPerro(perro.id)">
                         <fa-icon [icon]="faEye"></fa-icon>
                     </button>
                     <button class="btn btn-sm btn-warning" (click)="openModalEditPerro(perro.id)">
