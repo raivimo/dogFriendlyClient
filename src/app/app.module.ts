@@ -93,6 +93,9 @@ import { PerroNewUserRoutedComponent } from './component/application/perro/route
 import { PaseadorPlistUserRoutedComponent } from './component/application/usuario/routed/user/paseador-plist-user-routed/paseador-plist-user-routed.component';
 import { PerroFinderUserUnroutedComponent } from './component/application/perro/unrouted/perro-finder-user-unrouted/perro-finder-user-unrouted.component';
 import { PaseoViewUserRoutedComponent } from './component/application/paseo/routed/user/paseo-view-user-routed/paseo-view-user-routed.component';
+import {AccordionModule} from 'primeng/accordion';
+import {MenuItem} from 'primeng/api'; 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -201,6 +204,7 @@ import { PaseoViewUserRoutedComponent } from './component/application/paseo/rout
   
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
