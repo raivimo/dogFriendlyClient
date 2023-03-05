@@ -46,6 +46,14 @@ export class PerroService {
       const { withCredentials, headers} = httpOptions
       return this.oHttp.get<IPage<IPerro>>(this.url, {headers: headers, withCredentials, params: params });
     }
+
+    getListPerrosUsuario(id_usuario: number): Observable<IPerro>{
+      let params = new HttpParams()
+      .set("usuario", id_usuario)
+
+      const { withCredentials, headers} = httpOptions
+      return this.oHttp.get<IPerro>(this.url + "/listaPerrosUsuario",  {headers: headers, withCredentials, params: params })
+    }
   
     getOne(id: number): Observable<IPerro> {
       return this.oHttp.get<IPerro>(this.url + "/" + id, httpOptions);

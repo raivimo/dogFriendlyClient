@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { IPaseo, IPaseoForm, IPaseoSend } from 'src/app/model/paseo-interface';
 import { IPerro } from 'src/app/model/perro-interface';
 import { ITipoPaseo } from 'src/app/model/tipopaseo-interface';
@@ -10,6 +9,9 @@ import { PerroService } from 'src/app/service/perro.service';
 import { TipopaseoService } from 'src/app/service/tipopaseo.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { SessionService } from 'src/app/service/session.service';
+import { PrimeNGConfig } from 'primeng/api';
+import { PickListFilterOptions } from 'primeng/picklist';
+
 
 declare let bootstrap: any;
 
@@ -21,32 +23,47 @@ declare let bootstrap: any;
 export class PaseoNewUserRoutedComponent implements OnInit {
 
   @Input() id_paseador;
+  @Output() closeEvent = new EventEmitter<number>();
 
   oPaseo: IPaseo = null;
   oPaseoForm: IPaseoForm = null;
   oPaseoSend: IPaseoSend = null;
   oForm: FormGroup<IPaseoForm>;
+
   // modal
   mimodal: string = 'miModal';
   myModal: any;
   modalTitle: string = '';
   modalContent: string = '';
+
   // foreigns
   tipopaseoDescription: string = '';
   usuarioDescription: string = '';
   perroDescription: string = '';
 
+  //PickList
+  perrosDisponibles: IPerro[];
+  perrosSeleccionados: IPerro[];
+
+  sourceFilterValue: string = '';
+  targetFilterValue: string = '';
+
+
+  id_UsuarioFilter: number = 0;
+  tutorial: number = 0;
+
   constructor(
-    private oRouter: Router,
     private oFormBuilder: FormBuilder,
-    private oSessionService: SessionService,
     private oUsuarioService: UsuarioService,
     private oTipoPaseoService: TipopaseoService,
     private oPerroService: PerroService,
     private oPaseoService: PaseoService,
-  ) { }
+    private oSessionService: SessionService,
+    private primengConfig: PrimeNGConfig )
+     { this.getUserID();
+       this.perrosSeleccionados = []; }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
       fecha: ["", [Validators.required,]],
@@ -60,6 +77,10 @@ export class PaseoNewUserRoutedComponent implements OnInit {
   }
 
   ngOnChanges() {
+    this.getListPerrosUsuario();
+    this.primengConfig.ripple = true;
+    console.log(this.perrosDisponibles);
+
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
       fecha: ["", [Validators.required,]],
@@ -70,6 +91,25 @@ export class PaseoNewUserRoutedComponent implements OnInit {
       id_usuario: [this.id_paseador, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
       id_perro: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
+    console.log(this.perrosSeleccionados)
+  }
+
+  getListPerrosUsuario() {
+    this.oPerroService.getListPerrosUsuario(this.id_UsuarioFilter)
+      .subscribe({
+        next: (resp: any ) => {
+          this.perrosDisponibles = resp;
+          }
+      })
+  }
+
+  getUserID() {
+    this.oSessionService.getUserId()
+    .subscribe({
+      next: (n: number) => {
+        this.id_UsuarioFilter = n;
+      }
+    })
   }
 
   onSubmit() {
@@ -173,6 +213,12 @@ export class PaseoNewUserRoutedComponent implements OnInit {
       }
     })
   }
+
+  cambiarTutorial(tutorial: number): void {
+    this.closeEvent.emit(tutorial=1);
+  }
+
+
 
 
 
