@@ -96,10 +96,13 @@ import { PaseoViewUserRoutedComponent } from './component/application/paseo/rout
 import {AccordionModule} from 'primeng/accordion';
 import {MenuItem} from 'primeng/api'; 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {PickList, PickListModule} from 'primeng/picklist';
+
 
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HomeAdminRoutedComponent,
     HomeUserRoutedComponent,
@@ -205,12 +208,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    PickListModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
+
   providers: [
     CryptoService,
     DecodeService,

@@ -46,28 +46,3 @@ export interface IFecha {
 
 
 
-export interface IReport {
-    codigo: string,
-    nombre: string,
-    fechas: boolean,
-    usuario: boolean,
-    producto: boolean
-}
-
-export interface IPrint {
-    cantidad: number;
-    fechainicial:string;
-    fechafinal:string;
-}
-
-export interface IOrder {
-    sortField: string;
-    sortDirection: string;
-}
-
-export interface IResult {
-    id: number;    
-    strOperation: string;
-    strEntity: string;
-    error: HttpErrorResponse;
-}
