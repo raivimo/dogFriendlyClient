@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { IPaseo, IPaseoForm, IPaseoSend } from 'src/app/model/paseo-interface';
 import { IPerro } from 'src/app/model/perro-interface';
 import { ITipoPaseo } from 'src/app/model/tipopaseo-interface';
@@ -9,7 +9,6 @@ import { TipopaseoService } from 'src/app/service/tipopaseo.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { SessionService } from 'src/app/service/session.service';
 import { PrimeNGConfig } from 'primeng/api';
-import { IUsuario } from 'src/app/model/usuario-interface';
 
 
 declare let bootstrap: any;
@@ -21,14 +20,14 @@ declare let bootstrap: any;
 })
 export class PaseoNewUserRoutedComponent implements OnChanges {
 
-  @Input() id_paseador;
+  @Input() id_paseador: number;
   @Output() closeEvent = new EventEmitter<number>();
 
   oPerro: IPerro = null;
 
   oPaseo: IPaseo = null;
   oPaseoSend: IPaseoSend = null;
-  oPaseoSendLista: IPaseoSend [] = [];
+  oPaseoSendLista: IPaseoSend[] = [];
   oForm: FormGroup<IPaseoForm>;
 
   // modal
@@ -59,7 +58,7 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
     private oPaseoService: PaseoService,
     private oSessionService: SessionService,
     private oUsuarioService: UsuarioService,
-    private primengConfig: PrimeNGConfig )
+    private primengConfig: PrimeNGConfig)
      { this.getUserID(), this.perrosSeleccionados = [] }
 
 
@@ -83,28 +82,35 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
   getListPerrosUsuario() {
     this.oPerroService.getListPerrosUsuario(this.id_UsuarioFilter)
       .subscribe({
-        next: (resp: any ) => {
+        next: (resp: any) => {
           this.perrosDisponibles = resp;
-          }
+        }
       })
   }
 
   getUserID() {
     this.oSessionService.getUserId()
-    .subscribe({
-      next: (n: number) => {
-        this.id_UsuarioFilter = n;
-      }
-    })
+      .subscribe({
+        next: (n: number) => {
+          this.id_UsuarioFilter = n;
+        }
+      })
   }
 
 
-  mandarPerros(){
+  crearObjetosConPerrosSeleccionados() {
     for (let index = 0; index < this.perrosSeleccionados.length; index++) {
       this.oPaseoSendNew = JSON.parse(JSON.stringify(this.oPaseoSend))
       this.oPaseoSendNew.perro.id = this.perrosSeleccionados[index].id;
       this.oPaseoSendLista.push(this.oPaseoSendNew)
     }
+  }
+
+  resetArrays() {
+    this.perrosSeleccionados = [];
+    this.oPaseoSendLista = [];
+    this.oForm.reset();
+    this.getListPerrosUsuario();
   }
 
 
@@ -122,21 +128,25 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
       usuario: { id: this.oForm.value.id_usuario },
       perro: { id: this.oForm.value.id_perro }
     }
-    this.mandarPerros();
+
+    this.crearObjetosConPerrosSeleccionados();
     console.log(this.oPaseoSendLista)
     this.oPaseoService.newList(this.oPaseoSendLista).subscribe({
       next: (data: number) => {
         this.oPaseoService.paseoObservable.emit();
       }
     })
+    this.resetArrays();
+   
 
-  /*   if (this.oForm.valid) {
-      this.oPaseoService.newOne(this.oPaseoSend).subscribe({
-        next: (data: number) => {
-          this.oPaseoService.paseoObservable.emit();
-        }
-      })
-    } */
+
+    /*   if (this.oForm.valid) {
+        this.oPaseoService.newOne(this.oPaseoSend).subscribe({
+          next: (data: number) => {
+            this.oPaseoService.paseoObservable.emit();
+          }
+        })
+      } */
   }
 
 
@@ -176,7 +186,7 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
   }
 
   cambiarTutorial(tutorial: number): void {
-    this.closeEvent.emit(tutorial=1);
+    this.closeEvent.emit(tutorial = 1);
   }
 
 
