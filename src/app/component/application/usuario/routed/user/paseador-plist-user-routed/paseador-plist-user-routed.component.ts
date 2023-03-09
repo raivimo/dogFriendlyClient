@@ -15,6 +15,7 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
 
   @Output() closeEvent = new EventEmitter<number>();
   id_paseador: number = 0;
+  oUsuario: IUsuario;
   
   mimodal: string = "miModal";
   myModal: any;
@@ -36,7 +37,8 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
 
   constructor(
     private oUsuarioService: UsuarioService,
-  ) { this.responseFromServer = {} as IPage<IUsuario> }
+  ) { this.responseFromServer = {} as IPage<IUsuario>,
+      this.oUsuario = {} as IUsuario }
 
   ngOnInit(): void {
     this.getPage();
@@ -76,7 +78,7 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
       keyboard: false
     })
     this.myModal.show()
-    console.log(id_paseador);
+    /* console.log(id_paseador); */
   }
 
   closeNewPaseoModal(): void {

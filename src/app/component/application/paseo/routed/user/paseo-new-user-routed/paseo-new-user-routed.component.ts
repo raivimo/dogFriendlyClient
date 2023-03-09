@@ -1,16 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IPaseo, IPaseoForm, IPaseoSend } from 'src/app/model/paseo-interface';
 import { IPerro } from 'src/app/model/perro-interface';
 import { ITipoPaseo } from 'src/app/model/tipopaseo-interface';
-import { IUsuario } from 'src/app/model/usuario-interface';
 import { PaseoService } from 'src/app/service/paseo.service';
 import { PerroService } from 'src/app/service/perro.service';
 import { TipopaseoService } from 'src/app/service/tipopaseo.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { SessionService } from 'src/app/service/session.service';
 import { PrimeNGConfig } from 'primeng/api';
-import { PickListFilterOptions } from 'primeng/picklist';
+import { IUsuario } from 'src/app/model/usuario-interface';
 
 
 declare let bootstrap: any;
@@ -20,14 +19,16 @@ declare let bootstrap: any;
   templateUrl: './paseo-new-user-routed.component.html',
   styleUrls: ['./paseo-new-user-routed.component.css']
 })
-export class PaseoNewUserRoutedComponent implements OnInit {
+export class PaseoNewUserRoutedComponent implements OnChanges {
 
   @Input() id_paseador;
   @Output() closeEvent = new EventEmitter<number>();
 
+  oPerro: IPerro = null;
+
   oPaseo: IPaseo = null;
-  oPaseoForm: IPaseoForm = null;
   oPaseoSend: IPaseoSend = null;
+  oPaseoSendLista: IPaseoSend [] = [];
   oForm: FormGroup<IPaseoForm>;
 
   // modal
@@ -38,8 +39,6 @@ export class PaseoNewUserRoutedComponent implements OnInit {
 
   // foreigns
   tipopaseoDescription: string = '';
-  usuarioDescription: string = '';
-  perroDescription: string = '';
 
   //PickList
   perrosDisponibles: IPerro[];
@@ -51,35 +50,22 @@ export class PaseoNewUserRoutedComponent implements OnInit {
 
   id_UsuarioFilter: number = 0;
   tutorial: number = 0;
+  oPaseoSendNew: IPaseo;
 
   constructor(
     private oFormBuilder: FormBuilder,
-    private oUsuarioService: UsuarioService,
     private oTipoPaseoService: TipopaseoService,
     private oPerroService: PerroService,
     private oPaseoService: PaseoService,
     private oSessionService: SessionService,
+    private oUsuarioService: UsuarioService,
     private primengConfig: PrimeNGConfig )
-     { this.getUserID();
-       this.perrosSeleccionados = []; }
+     { this.getUserID(), this.perrosSeleccionados = [] }
 
-  ngOnInit() {
-    this.oForm = <FormGroup>this.oFormBuilder.group({
-      id: [""],
-      fecha: ["", [Validators.required,]],
-      lugar: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      precio: ["", [Validators.required, Validators.required, Validators.pattern(/^\d{1,6}$/)]],
-
-      id_tipopaseo: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
-      id_usuario: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
-      id_perro: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
-    });
-  }
 
   ngOnChanges() {
     this.getListPerrosUsuario();
     this.primengConfig.ripple = true;
-    console.log(this.perrosDisponibles);
 
     this.oForm = <FormGroup>this.oFormBuilder.group({
       id: [""],
@@ -91,7 +77,7 @@ export class PaseoNewUserRoutedComponent implements OnInit {
       id_usuario: [this.id_paseador, [Validators.required, Validators.pattern(/^\d{1,6}$/)]],
       id_perro: ["", [Validators.required, Validators.pattern(/^\d{1,6}$/)]]
     });
-    console.log(this.perrosSeleccionados)
+
   }
 
   getListPerrosUsuario() {
@@ -112,8 +98,20 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     })
   }
 
+
+  mandarPerros(){
+    for (let index = 0; index < this.perrosSeleccionados.length; index++) {
+      this.oPaseoSendNew = JSON.parse(JSON.stringify(this.oPaseoSend))
+      this.oPaseoSendNew.perro.id = this.perrosSeleccionados[index].id;
+      this.oPaseoSendLista.push(this.oPaseoSendNew)
+    }
+  }
+
+
   onSubmit() {
     console.log("Aprentando boton!")
+    this.cambiarTutorial(this.tutorial = 0)
+
     this.oPaseoSend = {
       id: this.oForm.value.id,
       fecha: this.oForm.value.fecha,
@@ -124,14 +122,23 @@ export class PaseoNewUserRoutedComponent implements OnInit {
       usuario: { id: this.oForm.value.id_usuario },
       perro: { id: this.oForm.value.id_perro }
     }
-    if (this.oForm.valid) {
+    this.mandarPerros();
+    console.log(this.oPaseoSendLista)
+    this.oPaseoService.newList(this.oPaseoSendLista).subscribe({
+      next: (data: number) => {
+        this.oPaseoService.paseoObservable.emit();
+      }
+    })
+
+  /*   if (this.oForm.valid) {
       this.oPaseoService.newOne(this.oPaseoSend).subscribe({
         next: (data: number) => {
           this.oPaseoService.paseoObservable.emit();
         }
       })
-    }
+    } */
   }
+
 
   showModal = (id: number) => {
     this.myModal = new bootstrap.Modal(document.getElementById(this.mimodal), { //pasar el myModal como parametro
@@ -149,32 +156,10 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     })
     this.myModal.show()
   }
-  openModalFindUsuario(): void {
-    this.myModal = new bootstrap.Modal(document.getElementById("findUsuario"), { //pasar el myModal como parametro
-      keyboard: false
-    })
-    this.myModal.show()
-  }
-  openModalFindPerro(): void {
-    this.myModal = new bootstrap.Modal(document.getElementById("findPerro"), { //pasar el myModal como parametro
-      keyboard: false
-    })
-    this.myModal.show()
-  }
 
   closeTipopaseoModal(id_tipopaseo: number) {
     this.oForm.controls['id_tipopaseo'].setValue(id_tipopaseo);
     this.updateTipopaseoDescription(id_tipopaseo);
-    this.myModal.hide();
-  }
-  closeUsuarioModal(id_usuario: number) {
-    this.oForm.controls['id_usuario'].setValue(id_usuario);
-    this.updateUsuarioDescription(id_usuario);
-    this.myModal.hide();
-  }
-  closePerroModal(id_perro: number) {
-    this.oForm.controls['id_perro'].setValue(id_perro);
-    this.updatePerroDescription(id_perro);
     this.myModal.hide();
   }
 
@@ -190,33 +175,12 @@ export class PaseoNewUserRoutedComponent implements OnInit {
     })
   }
 
-  updateUsuarioDescription(id_usuario: number) {
-    this.oUsuarioService.getOne(id_usuario).subscribe({
-      next: (data: IUsuario) => {
-        this.usuarioDescription = data.nombre;
-      },
-      error: (error: any) => {
-        this.usuarioDescription = "Usuario no encontrado";
-        this.oForm.controls['id_tipopaseo'].setErrors({ 'incorrect': true });
-      }
-    })
-  }
-
-  updatePerroDescription(id_perro: number) {
-    this.oPerroService.getOne(id_perro).subscribe({
-      next: (data: IPerro) => {
-        this.perroDescription = data.nombre;
-      },
-      error: (error: any) => {
-        this.perroDescription = "Perro no encontrado";
-        this.oForm.controls['id_perro'].setErrors({ 'incorrect': true });
-      }
-    })
-  }
-
   cambiarTutorial(tutorial: number): void {
     this.closeEvent.emit(tutorial=1);
   }
+
+
+
 
 
 

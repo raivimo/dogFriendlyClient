@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IPaseo } from 'src/app/model/paseo-interface';
 import { PaseoService } from '../../../../../../service/paseo.service';
+import { IPerro } from 'src/app/model/perro-interface';
 
 @Component({
   selector: 'app-paseo-view-user-routed',
@@ -11,10 +12,12 @@ export class PaseoViewUserRoutedComponent implements OnInit {
 
   @Input() id: number;
   oPaseo: IPaseo = null;
+  oPerro: IPerro = null;
 
   constructor(
     private oPaseoService: PaseoService
-  ) { this.oPaseo = {} as IPaseo }
+  ) { this.oPaseo = {} as IPaseo,
+      this.oPerro = {} as IPerro }
 
 
   ngOnInit() {
