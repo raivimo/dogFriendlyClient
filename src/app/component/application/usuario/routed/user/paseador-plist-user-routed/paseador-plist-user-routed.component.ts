@@ -76,7 +76,7 @@ export class PaseadorPlistUserRoutedComponent implements OnInit {
       keyboard: false
     })
     this.myModal.show()
-    console.log(id_paseador);
+    /* console.log(id_paseador); */
   }
 
   closeNewPaseoModal(): void {

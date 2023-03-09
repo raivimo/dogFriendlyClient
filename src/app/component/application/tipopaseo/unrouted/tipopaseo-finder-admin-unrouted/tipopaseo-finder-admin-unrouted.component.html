@@ -5,14 +5,13 @@
         <h1 class="text-center mb-5">Lista de Tipos de Paseo</h1>
 
         <div class="col-md text-end d-flex justify-content-center align-items-center mb-3">
-
           <app-search-unrouted [placeHolder]="'Buscar Tipo de Paseo'" (onSearch)="setFilter( $event )"></app-search-unrouted>
 
           <app-dropdown-register-page
              class="mx-2" [PageSize]="responseFromServer.size" (eeRpp)="this.setRpp($event)">
           </app-dropdown-register-page>
-
         </div>
+
         <div class="col-md">
           <app-pagination-unrouted [nPage]="responseFromServer.number + 1" [nTotalPages]="responseFromServer.totalPages"
           (eePage)="setPage($event)"></app-pagination-unrouted>
@@ -30,10 +29,8 @@
               <td>{{tipopaseo.id}}</td>
               <td>{{tipopaseo.nombre}}</td>
               <td>
-                <div class="btn-group" role="group" aria-label="Herramientas">
-                  <button class="btn btn-sm btn-primary" (click)="selectionTipoPaseo(tipopaseo.id)">
-                    Seleccionar
-                  </button>
+                <div>
+                  <button class="btn btn-sm btn-primary" (click)="selectionTipoPaseo(tipopaseo.id)">Seleccionar</button>
                 </div>
               </td>
             </tr>

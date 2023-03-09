@@ -78,5 +78,9 @@ export class PaseoService {
     return this.oHttp.post<number>(this.url, oPaseoSend, httpOptions);
   }
 
+  newList(oPaseoSendLista: IPaseoSend [] ): Observable<number> {
+    return this.oHttp.post<number>(this.url + "/multiplesPaseos", oPaseoSendLista, httpOptions);
+  }
+
 
 }

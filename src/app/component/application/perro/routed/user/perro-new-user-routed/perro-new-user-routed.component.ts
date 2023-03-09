@@ -1,13 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IPage } from 'src/app/model/generic-types-interface';
 import { IPerro, IPerroForm, IPerroSend } from 'src/app/model/perro-interface';
 import { IRaza } from 'src/app/model/raza-interface';
 import { IUsuario } from 'src/app/model/usuario-interface';
 import { PerroService } from 'src/app/service/perro.service';
 import { RazaService } from 'src/app/service/raza.service';
-import { UsuarioService } from 'src/app/service/usuario.service';
 
 declare let bootstrap: any;
 
@@ -21,13 +18,8 @@ export class PerroNewUserRoutedComponent implements OnInit {
   @Output() actualizaPerros = new EventEmitter<number>();
   @Input() oUsuario: IUsuario;
 
-  responseFromServer: IPage<IPerro>;
-
-
   oPerro: IPerro = null;
-  oPerroForm: IPerroForm = null;
   oPerroSend: IPerroSend = null;
-  oPerroSendDefault: IPerroSend = null;
   oForm: FormGroup<IPerroForm>;
   // modal
   mimodal: string = "miModal";
@@ -39,11 +31,8 @@ export class PerroNewUserRoutedComponent implements OnInit {
   razaDescription: string = "";
 
   constructor(
-    private oRouter: Router,
-    private oActivatedRoute: ActivatedRoute,
     private oPerroService: PerroService,
     private oFormBuilder: FormBuilder,
-    private oUsuarioService: UsuarioService,
     private oRazaService: RazaService
   ) { }
 
@@ -83,7 +72,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
     if (this.oForm.valid) {
       console.log(this.oPerroSend + "llega")
       this.oPerroService.newOne(this.oPerroSend).subscribe({
-        next: (data: number) => {
+        next: () => {
           this.oPerroService.perroObervable.emit();
         }
       })
@@ -95,7 +84,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
       keyboard: false
     })
     var myModalEl = document.getElementById(this.mimodal);
-    myModalEl.addEventListener('hidden.bs.modal', (event): void => {
+    myModalEl.addEventListener('hidden.bs.modal', (): void => {
       console.log({ id })
     })
     this.myModal.show()
@@ -120,7 +109,7 @@ export class PerroNewUserRoutedComponent implements OnInit {
       next: (data: IRaza) => {
         this.razaDescription = data.nombre;
       },
-      error: (error: any) => {
+      error: () => {
         this.usuarioDescription = "Raza no encontrado";
         this.oForm.controls['id_raza'].setErrors({ 'incorrect': true });
       }

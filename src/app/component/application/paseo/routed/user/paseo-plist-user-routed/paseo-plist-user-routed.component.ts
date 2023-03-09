@@ -51,15 +51,8 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
     this.oPaseoService.getPaseosDuenyosMascotas(this.page, this.numberOfElements, this.id_UsuarioFilter).subscribe({
       next: (data: IPage<IPaseo> ) => {
         this.responseFromServer = data;
-        if(this.page > data.totalPages -1 ) {
-          this.page = data.totalPages -1;
-          this.getPaseosDuenyosMascotas();
         }
-        console.log(this.responseFromServer.content);
-        console.log(this.id_UsuarioFilter);
-      }
-      
-    })
+      })
   }
 
   openModalViewPaseo(id_paseo: number): void {
