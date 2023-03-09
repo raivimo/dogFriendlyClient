@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { EventEmitter, Injectable } from "@angular/core";
 import { baseURL, httpOptions } from "src/environments/environment";
 import { IPaseo, IPaseoSend } from '../model/paseo-interface';
-import { IPage } from "../model/generic-types-interface";
+import { IPage } from '../model/generic-types-interface';
 import { Observable } from "rxjs";
 
 export class EmitEvent {
@@ -50,15 +50,13 @@ export class PaseoService {
   }
 
 
-  getPaseosDuenyosMascotas(page: number, size: number, id_usuario: number): Observable<IPage<IPaseo>> {
+  getPaseosDuenyosMascotas(id_usuario: number): Observable<IPaseo> {
     let params = new HttpParams()
-    .set("page", page)
-    .set("size", size);
     if (id_usuario != 0){
       params = params.set("usuario", id_usuario);
     }
     const { withCredentials, headers } = httpOptions
-    return this.oHttp.get<IPage<IPaseo>>(this.url + "/paseosDuenyo",  { headers: headers, withCredentials, params: params });
+    return this.oHttp.get<IPaseo>(this.url + "/paseosDuenyo",  { headers: headers, withCredentials, params: params });
   }
 
   getOne(id: number): Observable<IPaseo> {

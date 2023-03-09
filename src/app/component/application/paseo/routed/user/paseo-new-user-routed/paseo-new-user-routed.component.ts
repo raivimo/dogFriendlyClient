@@ -24,6 +24,8 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
   @Input() id_paseador;
   @Output() closeEvent = new EventEmitter<number>();
 
+  oPerro: IPerro = null;
+
   oPaseo: IPaseo = null;
   oPaseoSend: IPaseoSend = null;
   oPaseoSendLista: IPaseoSend [] = [];
@@ -56,11 +58,9 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
     private oPerroService: PerroService,
     private oPaseoService: PaseoService,
     private oSessionService: SessionService,
-
     private oUsuarioService: UsuarioService,
     private primengConfig: PrimeNGConfig )
-     { this.getUserID(),
-       this.perrosSeleccionados = [] }
+     { this.getUserID(), this.perrosSeleccionados = [] }
 
 
   ngOnChanges() {
@@ -126,6 +126,7 @@ export class PaseoNewUserRoutedComponent implements OnChanges {
     console.log(this.oPaseoSendLista)
     this.oPaseoService.newList(this.oPaseoSendLista).subscribe({
       next: (data: number) => {
+        this.oPaseoService.paseoObservable.emit();
       }
     })
 

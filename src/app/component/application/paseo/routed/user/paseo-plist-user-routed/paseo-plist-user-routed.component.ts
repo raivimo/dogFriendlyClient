@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { IPaseo } from 'src/app/model/paseo-interface';
 import { PaseoService } from 'src/app/service/paseo.service';
 import { IPage } from 'src/app/model/generic-types-interface';
@@ -10,7 +10,7 @@ declare let bootstrap: any;
   templateUrl: './paseo-plist-user-routed.component.html',
   styleUrls: ['./paseo-plist-user-routed.component.css']
 })
-export class PaseoPlistUserRoutedComponent implements OnInit {
+export class PaseoPlistUserRoutedComponent implements OnChanges {
 
   @Output() closeEvent = new EventEmitter<number>();
   @Input() id_UsuarioFilter: number;
@@ -18,11 +18,13 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
   id_paseo: number = 0;
 
   oPaseo: IPaseo;
-  responseFromServer: IPage<IPaseo>;
+  responseFromServer: any;
 
-  numberOfElements: number = 5;
-  pageSize: number = 5;
+  numberOfElements: number = 4;
+  pageSize: number = 14;
   page: number = 0;
+  sortField: string = "";
+  sortDirection: string = "";
 
   mimodal: string = "miModal";
   myModal: any;
@@ -31,7 +33,7 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
 
   constructor(
     private oPaseoService: PaseoService,
-  ) { this.responseFromServer = {} as IPage<IPaseo> }
+  ) { this.responseFromServer = {} as IPaseo }
 
   ngOnChanges() {
     if(this.id_UsuarioFilter != 0 ){
@@ -44,12 +46,21 @@ export class PaseoPlistUserRoutedComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
 
-  getPaseosDuenyosMascotas() {
-    this.oPaseoService.getPaseosDuenyosMascotas(this.page, this.numberOfElements, this.id_UsuarioFilter).subscribe({
+/*   getPaseosDuenyosMascotas() {
+    this.oPaseoService.getPaseosDuenyosMascotas(this.page, this.numberOfElements, this.id_UsuarioFilter, this.sortField, this.sortDirection)
+    .subscribe({
       next: (data: IPage<IPaseo> ) => {
+        this.responseFromServer = data;
+        }
+      })
+  } */
+
+  
+  getPaseosDuenyosMascotas() {
+    this.oPaseoService.getPaseosDuenyosMascotas(this.id_UsuarioFilter)
+    .subscribe({
+      next: (data: any ) => {
         this.responseFromServer = data;
         }
       })

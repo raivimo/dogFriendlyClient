@@ -19,7 +19,6 @@ export interface IPage<T> {
     empty: boolean;
 }
 
-
 export interface Sort2 {
     empty: boolean;
     sorted: boolean;
