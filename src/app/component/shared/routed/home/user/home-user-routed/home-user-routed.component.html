@@ -46,7 +46,8 @@
 
                             <!-- HOME -->
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab" role="tab" aria-selected="true">
+                                <a class="nav-link mb-0 px-0 py-1 active " data-bs-toggle="tab" role="tab"
+                                    aria-selected="true">
                                     <i class="material-icons text-lg position-relative">home</i>
                                     <span class="ms-1">Home</span>
                                 </a>
@@ -55,8 +56,9 @@
 
                             <!-- LOG OUT -->
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab" (click)="logout()" role="tab"  aria-selected="false">
-                                    <i class="fa fa-sign-out text-lg position-relative" ></i>
+                                <a class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab" (click)="logout()" role="tab"
+                                    aria-selected="false">
+                                    <i class="fa fa-sign-out text-lg position-relative"></i>
                                 </a>
                             </li>
                             <!-- LOG OUT -->
@@ -78,7 +80,8 @@
                             <div class="card-body p-3">
                                 <h6 class="text-uppercase text-body text-xs font-weight-bolder">Mis Mascotas</h6>
                                 <app-perro-plist-user-routed [oUsuario]="oUsuario"></app-perro-plist-user-routed>
-                                <button type="button" class="btn btn-outline-primary btn-sm mx-2" (click)="openModalNewPerro()">Añadir Mascota</button>
+                                <button type="button" class="btn btn-outline-primary btn-sm mx-2"
+                                    (click)="openModalNewPerro()">Añadir Mascota</button>
                             </div>
                         </div>
                     </div>
@@ -93,7 +96,8 @@
                                         <h6 class="mb-0 text-capitalize">perfil del usuario</h6>
                                     </div>
                                     <div class="col-md-4 text-end">
-                                        <i class="fas fa-user-edit text-secondary text-sm" (click)="openModalEditUser()" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Perfil"></i>
+                                        <i class="fas fa-user-edit text-secondary text-sm" (click)="openModalEditUser()"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Perfil"></i>
                                     </div>
                                 </div>
                             </div>
@@ -103,113 +107,116 @@
                     <!-- Usuario Ends -->
 
                     <!-- Paseadores disponibles Start -->
-                        <div class="col-12 col-xl-4">
-                            <div class="card card-plain h-100">
-                                <div class="card-header pb-0 p-3">
-                                    <h6 class="mb-0">Paseadores Disponibles</h6>
-                                </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="card card-plain h-100">
+                            <div class="card-header pb-0 p-3">
+                                <h6 class="mb-0">Paseadores Disponibles</h6>
+                            </div>
                             <app-paseador-plist-user-routed> </app-paseador-plist-user-routed>
                         </div>
                     </div>
                 </div>
-                    <!-- Paseadores disponibles Ends -->
+                <!-- Paseadores disponibles Ends -->
 
 
 
 
-                    <!-- Detalle Start -->
-                    <div class="col-12 mt-4">
-                        <div class="mb-5 ps-3">
-                            <h6 class="mb-1">Paseos</h6>
-                            <p class="text-sm">Mis últimos paseos</p>
-                        </div>
-                        <div class="row">
+                <!-- Lista Paseos/Usuario Start -->
+                <div class="col-12 mt-4">
+                    <div class="mb-5 ps-3">
+                        <h6 class="mb-1">Paseos</h6>
+                        <p class="text-sm">Mis últimos paseos</p>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-md-8">
                             <app-paseo-plist-user-routed [id_UsuarioFilter]="oUsuario.id"> </app-paseo-plist-user-routed>
-                            </div>
                         </div>
                     </div>
-                    <!-- Detalle Ends -->
                 </div>
+                <!-- Lista Paseos/Usuario Ends -->
+
             </div>
+        </div>
+    </div>
 
 
 
 
 
-            
-        <!-- Modales Start -->
-        
-        <!-- Modelo Modal -->
-        <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body"> {{modalContent}} </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
+
+    <!-- Modales Start -->
+
+    <!-- Modelo Modal -->
+    <div class="modal fade" [id]="mimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> {{modalContent}} </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-        <!-- Modelo Modal -->
+    </div>
+    <!-- Modelo Modal -->
 
-        <!-- Modal newPerro -->
-        <div class="modal fade" id="newPerro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <app-perro-new-user-routed [oUsuario]="oUsuario"></app-perro-new-user-routed>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
+    <!-- Modal newPerro -->
+    <div class="modal fade" id="newPerro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-perro-new-user-routed [oUsuario]="oUsuario"></app-perro-new-user-routed>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-        <!-- Modal newPerro -->
-        
-        <!-- Modal removePerro -->
-        <div class="modal fade" id="removePerro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <app-perro-remove-user-routed></app-perro-remove-user-routed>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal removePerro -->
+    </div>
+    <!-- Modal newPerro -->
 
-        <!-- Modal editUser -->
-        <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <app-usuario-edit-user-routed [id]="strId"></app-usuario-edit-user-routed>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
+    <!-- Modal removePerro -->
+    <div class="modal fade" id="removePerro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-perro-remove-user-routed></app-perro-remove-user-routed>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
-        <!-- Modal editUser -->
+    </div>
+    <!-- Modal removePerro -->
+
+    <!-- Modal editUser -->
+    <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-usuario-edit-user-routed [id]="strId"></app-usuario-edit-user-routed>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal editUser -->
 </body>
