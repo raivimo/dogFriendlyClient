@@ -102,22 +102,26 @@ import {PickList, PickListModule} from 'primeng/picklist';
 
 @NgModule({
   declarations: [
-
     AppComponent,
-    HomeAdminRoutedComponent,
-    HomeUserRoutedComponent,
+    MenuComponent,
+
+    //Login
     LoginComponent,
     LogoutComponent,
-    MenuComponent,
+    
     //Usuario
     UsuarioEditAdminRoutedComponent,
     UsuarioPlistAdminRoutedComponent,
     UsuarioRemoveAdminRoutedComponent,
     UsuarioViewAdminRoutedComponent,
     UsuarioNewAdminRoutedComponent,
-    //Unrouted
     UsuarioFinderAdminUnroutedComponent,
     UsuarioDetailAdminUnroutedComponent,
+    
+    UsuarioEditUserRoutedComponent,
+    UsuarioNewUserRoutedComponent,
+    UsuarioViewUserRoutedComponent,
+    PaseadorPlistUserRoutedComponent,
 
     //Tipousuario
     TipousuarioPlistAdminRoutedComponent,
@@ -125,7 +129,6 @@ import {PickList, PickListModule} from 'primeng/picklist';
     TipousuarioNewAdminRoutedComponent,
     TipousuarioRemoveAdminRoutedComponent,
     TipousuarioViewAdminRoutedComponent,
-    //Unrouted
     TipousuarioFinderAdminUnroutedComponent,
     TipousuarioDetailAdminUnroutedComponent,
 
@@ -135,9 +138,15 @@ import {PickList, PickListModule} from 'primeng/picklist';
     PerroPlistAdminRoutedComponent,
     PerroRemoveAdminRoutedComponent,
     PerroViewAdminRoutedComponent,
-    //Unrouted
     PerroDetailAdminUnroutedComponent,
     PerroFinderAdminUnroutedComponent,
+    
+    PerroViewUserRoutedComponent,
+    PerroRemoveUserRoutedComponent,
+    PerroEditUserRoutedComponent,
+    PerroPlistUserRoutedComponent,
+    PerroNewUserRoutedComponent,
+    PerroFinderUserUnroutedComponent,
 
     //Raza
     RazaEditAdminRoutedComponent,
@@ -145,7 +154,6 @@ import {PickList, PickListModule} from 'primeng/picklist';
     RazaPlistAdminRoutedComponent,
     RazaRemoveAdminRoutedComponent,
     RazaViewAdminRoutedComponent,
-    //Unrouted
     RazaFinderAdminUnroutedComponent,
     RazaDetailAdminUnroutedComponent,
 
@@ -155,8 +163,12 @@ import {PickList, PickListModule} from 'primeng/picklist';
     PaseoPlistAdminRoutedComponent,
     PaseoRemoveAdminRoutedComponent,
     PaseoViewAdminRoutedComponent,
-    //Unrouted
     PaseoDetailAdminUnroutedComponent,
+    PaseoFinderAdminUnroutedComponent,
+
+    PaseoNewUserRoutedComponent,
+    PaseoPlistUserRoutedComponent,
+    PaseoViewUserRoutedComponent,
 
     //TipoPaseo
     TipopaseoEditAdminRoutedComponent,
@@ -164,7 +176,6 @@ import {PickList, PickListModule} from 'primeng/picklist';
     TipopaseoPlistAdminRoutedComponent,
     TipopaseoRemoveAdminRoutedComponent,
     TipopaseoViewAdminRoutedComponent,
-    //Unrouted
     TipopaseoFinderAdminUnroutedComponent,
     TipopaseoDetailAdminUnroutedComponent,
 
@@ -174,7 +185,6 @@ import {PickList, PickListModule} from 'primeng/picklist';
     FacturaPlistAdminRoutedComponent,
     FacturaViewAdminRoutedComponent,
     FacturaRemoveAdminRoutedComponent,
-    //Unrouted
 
     //Shared
     PaginationUnroutedComponent,
@@ -183,24 +193,10 @@ import {PickList, PickListModule} from 'primeng/picklist';
     SearchUnroutedComponent,
     DropdownRegisterPageComponent,
     FacturaDetailAdminUnroutedComponent,
-    PaseoFinderAdminUnroutedComponent,
 
+    //Home
     HomeAdminRoutedComponent,
     HomeUserRoutedComponent,
-    
-    UsuarioEditUserRoutedComponent,
-    UsuarioNewUserRoutedComponent,
-    UsuarioViewUserRoutedComponent,
-    PerroViewUserRoutedComponent,
-    PerroRemoveUserRoutedComponent,
-    PerroEditUserRoutedComponent,
-    PerroPlistUserRoutedComponent,
-    PaseoNewUserRoutedComponent,
-    PaseoPlistUserRoutedComponent,
-    PerroNewUserRoutedComponent,
-    PaseadorPlistUserRoutedComponent,
-    PerroFinderUserUnroutedComponent,
-    PaseoViewUserRoutedComponent,
    /*  HomeGuessRoutedComponent, */
 
   ],
