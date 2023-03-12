@@ -79,7 +79,6 @@ import { HttpOptionsService } from './service/httpoptions.service';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { HomeAdminRoutedComponent } from './component/shared/routed/home/admin/home-admin-routed/home-admin-routed.component';
 import { HomeUserRoutedComponent } from './component/shared/routed/home/user/home-user-routed/home-user-routed.component';
-import { HomeGuessRoutedComponent } from './component/shared/routed/home/guess/home-guess-routed/home-guess-routed.component';
 import { UsuarioEditUserRoutedComponent } from './component/application/usuario/routed/user/usuario-edit-user-routed/usuario-edit-user-routed.component';
 import { UsuarioNewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-new-user-routed/usuario-new-user-routed.component';
 import { UsuarioViewUserRoutedComponent } from './component/application/usuario/routed/user/usuario-view-user-routed/usuario-view-user-routed.component';
@@ -93,10 +92,12 @@ import { PerroNewUserRoutedComponent } from './component/application/perro/route
 import { PaseadorPlistUserRoutedComponent } from './component/application/usuario/routed/user/paseador-plist-user-routed/paseador-plist-user-routed.component';
 import { PerroFinderUserUnroutedComponent } from './component/application/perro/unrouted/perro-finder-user-unrouted/perro-finder-user-unrouted.component';
 import { PaseoViewUserRoutedComponent } from './component/application/paseo/routed/user/paseo-view-user-routed/paseo-view-user-routed.component';
-import {AccordionModule} from 'primeng/accordion';
-import {MenuItem} from 'primeng/api'; 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PickList, PickListModule} from 'primeng/picklist';
+import {PickListModule} from 'primeng/picklist';
+import { TabMenuModule } from 'primeng/tabmenu';
+
+
+
 
 
 
@@ -205,6 +206,7 @@ import {PickList, PickListModule} from 'primeng/picklist';
     BrowserModule,
     BrowserAnimationsModule,
     PickListModule,
+    TabMenuModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

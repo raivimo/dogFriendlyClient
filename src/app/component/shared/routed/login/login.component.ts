@@ -12,7 +12,7 @@ import { EmitEvent, Events, SessionService } from 'src/app/service/session.servi
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   username: string = ""
   oFormularioLogin: FormGroup<IUser>;
@@ -29,15 +29,13 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  }
+
 
   login() {
     const user = this.oFormularioLogin.get('login')!.value
     const password = this.oFormularioLogin.get('password')!.value
 
-    this.oSessionService.login(user, password).subscribe(
-      {
+    this.oSessionService.login(user, password).subscribe({
         next: (data: string) => {
           localStorage.setItem("token", data);
           this.oSessionService.emit(new EmitEvent(Events.login, data));
